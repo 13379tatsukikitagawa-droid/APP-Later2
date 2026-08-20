@@ -1,0 +1,699 @@
+/* ==========================================================================
+   Later — Landing Page
+   Dark, quiet, Apple-esque scroll storytelling. One feature per screen.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg: #0a0a0a;
+  --bg-raise: #121212;
+  --ink: #f4f3ef;
+  --ink-dim: #a8a8a4;
+  --ink-faint: #6b6b68;
+  --accent: #4ade6c;
+  --accent-dim: #4ade6c66;
+  --frame: #f4f2ea;
+  --frame-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  --serif: 'Shippori Mincho B1', 'Cormorant Garamond', serif;
+  --wordmark: 'Cormorant Garamond', 'Shippori Mincho B1', serif;
+  --sans: 'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-pad: clamp(24px, 6vw, 64px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Progress bar ---------- */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 100;
+  will-change: transform;
+}
+
+/* ---------- Shared section shell ---------- */
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-pad);
+  overflow: clip;
+}
+
+.section-tall {
+  min-height: 220svh;
+}
+
+.section-inner {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.headline {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 7.2vw, 4.4rem);
+  line-height: 1.28;
+  letter-spacing: 0.01em;
+  text-align: center;
+  max-width: min(90vw, 820px);
+  text-wrap: balance;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  will-change: transform, opacity;
+}
+
+.headline em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.body-text {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(0.98rem, 2.4vw, 1.15rem);
+  line-height: 1.9;
+  color: var(--ink-dim);
+  text-align: center;
+  max-width: min(85vw, 480px);
+  text-wrap: balance;
+  margin-top: clamp(18px, 3vw, 26px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s var(--ease) 0.15s, transform 1s var(--ease) 0.15s;
+}
+
+.is-visible .eyebrow,
+.is-visible .headline,
+.is-visible .body-text {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Mockup / visual elements: opacity + transform driven every frame by JS
+   as the user scrolls (continuous, not a one-off reveal). Kept at 0 by
+   default so there is no flash of unstyled content before JS runs. */
+.js-fx {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  min-height: 100svh;
+  position: relative;
+  background: radial-gradient(ellipse at 50% 35%, #101410 0%, #0a0a0a 62%);
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 28%, var(--accent-dim), transparent 45%);
+  opacity: 0.35;
+  will-change: transform, opacity;
+}
+
+.hero-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(20px, 4vw, 30px);
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: transform, opacity;
+}
+
+.hero.is-visible .hero-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1.3s var(--ease) 0.15s, transform 1.3s var(--ease) 0.15s;
+}
+
+.hero-scroll-cue {
+  opacity: 0;
+  transition: opacity 1s var(--ease) 0.9s;
+}
+
+.hero.is-visible .hero-scroll-cue {
+  opacity: 1;
+}
+
+.aperture {
+  width: clamp(52px, 9vw, 74px);
+  height: clamp(52px, 9vw, 74px);
+  animation: aperture-breathe 7s ease-in-out infinite;
+}
+
+@keyframes aperture-breathe {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(14deg) scale(1.04); }
+}
+
+.aperture path {
+  stroke: var(--accent);
+}
+
+.wordmark {
+  font-family: var(--wordmark);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(2.6rem, 11vw, 5.5rem);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.hero-tagline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 4.2vw, 2rem);
+  color: var(--ink-dim);
+  max-width: 18ch;
+  line-height: 1.5;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: clamp(28px, 5vw, 48px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-faint);
+}
+
+.hero-scroll-cue span {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  width: 14px;
+  height: 22px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 8px;
+  position: relative;
+}
+
+.scroll-arrow::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  70% { transform: translate(-50%, 9px); opacity: 0; }
+  100% { transform: translate(-50%, 9px); opacity: 0; }
+}
+
+/* ==========================================================================
+   Cheki (instant film) card — shared component
+   ========================================================================== */
+
+.cheki {
+  --cheki-w: clamp(190px, 42vw, 260px);
+  width: var(--cheki-w);
+  background: var(--frame);
+  border-radius: 10px;
+  padding: 14px 14px 34px;
+  box-shadow: var(--frame-shadow);
+  position: relative;
+}
+
+.cheki-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  border-radius: 3px;
+  background: linear-gradient(155deg, #23281f 0%, #0e100c 55%, #1a2016 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cheki-date {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: #b8b6ac;
+}
+
+/* ==========================================================================
+   Section 1 — Group shooting (locked)
+   ========================================================================== */
+
+.section-group {
+  background: #0a0a0a;
+}
+
+.group-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(36px, 6vw, 56px);
+}
+
+.group-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lock-cluster {
+  display: flex;
+  gap: clamp(14px, 3vw, 22px);
+  perspective: 1000px;
+}
+
+.lock-cluster .cheki {
+  --cheki-w: clamp(96px, 22vw, 150px);
+  will-change: transform, filter;
+}
+
+.lock-cluster .cheki:nth-child(2) {
+  transform: translateY(-14px);
+}
+
+.cheki-lock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 8, 5, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  will-change: opacity, backdrop-filter;
+}
+
+.cheki-lock-overlay svg {
+  width: 30%;
+  height: 30%;
+  opacity: 0.85;
+}
+
+.progress-count {
+  font-family: var(--serif);
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+.progress-count strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Section 2 — Voting
+   ========================================================================== */
+
+.section-vote {
+  background: #0b0d0a;
+}
+
+.vote-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(30px, 5vw, 46px);
+}
+
+.vote-card-wrap {
+  position: relative;
+}
+
+.vote-card-wrap .cheki {
+  --cheki-w: clamp(200px, 46vw, 280px);
+}
+
+.vote-heart {
+  position: absolute;
+  bottom: -18px;
+  right: -12px;
+  width: clamp(46px, 9vw, 62px);
+  height: clamp(46px, 9vw, 62px);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+.vote-heart svg {
+  width: 46%;
+  height: 46%;
+}
+
+.vote-reveal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  color: var(--ink-faint);
+  will-change: transform, opacity;
+}
+
+.vote-reveal .name {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.vote-reveal .divider {
+  width: 24px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Section 3 — ME
+   ========================================================================== */
+
+.section-me {
+  background: #0a0a0a;
+}
+
+.me-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(30px, 5vw, 40px);
+}
+
+.me-picker-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 5vw, 34px);
+}
+
+.me-picker-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  color: var(--ink-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.me-picker-number {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 11vw, 5.5rem);
+  color: var(--ink);
+  min-width: 2ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  will-change: transform, opacity;
+}
+
+.me-picker-number .accent {
+  color: var(--accent);
+}
+
+.me-picker-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.me-card {
+  margin-top: 8px;
+}
+
+.me-card .cheki {
+  --cheki-w: clamp(170px, 38vw, 230px);
+}
+
+/* ==========================================================================
+   Section 4 — Gallery
+   ========================================================================== */
+
+.section-gallery {
+  background: #0b0d0a;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: clamp(80px, 12vw, 120px);
+}
+
+.gallery-copy {
+  align-self: center;
+  margin-bottom: clamp(40px, 7vw, 64px);
+}
+
+.gallery-track {
+  display: flex;
+  gap: clamp(18px, 4vw, 30px);
+  padding: 20px var(--section-pad) 60px;
+  width: 100%;
+}
+
+.gallery-track .cheki {
+  --cheki-w: clamp(150px, 34vw, 210px);
+  flex: 0 0 auto;
+  will-change: transform;
+}
+
+.gallery-track .cheki:nth-child(odd) {
+  margin-top: 28px;
+}
+
+.gallery-track .cheki:nth-child(3n) {
+  margin-top: -16px;
+}
+
+/* ==========================================================================
+   Section 5 — Developing
+   ========================================================================== */
+
+.section-developing {
+  background: #090a08;
+}
+
+.developing-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(30px, 5vw, 44px);
+}
+
+.developing-card .cheki {
+  --cheki-w: clamp(220px, 50vw, 320px);
+}
+
+.developing-overlay {
+  position: absolute;
+  inset: 0;
+  background: #060705;
+  will-change: clip-path, opacity;
+}
+
+.developing-caption {
+  font-family: var(--serif);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+  will-change: opacity;
+}
+
+.developing-caption .accent {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   Closing
+   ========================================================================== */
+
+.closing {
+  background: radial-gradient(ellipse at 50% 60%, #101410 0%, #0a0a0a 65%);
+  gap: clamp(28px, 5vw, 40px);
+}
+
+.closing .headline {
+  max-width: min(70vw, 560px);
+}
+
+.cta-button {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 16px 38px;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s var(--ease) 0.3s, transform 0.9s var(--ease) 0.3s,
+    background 0.25s ease, transform 0.25s ease;
+}
+
+.is-visible .cta-button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cta-button:hover {
+  background: #63ec80;
+  transform: translateY(-2px);
+}
+
+.cta-note {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease) 0.45s, transform 0.9s var(--ease) 0.45s;
+}
+
+.is-visible .cta-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  padding: 40px var(--section-pad) 60px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  background: var(--bg);
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .eyebrow,
+  .headline,
+  .body-text,
+  .reveal-up,
+  .cta-button,
+  .cta-note {
+    transition-duration: 0.3s !important;
+    transform: none !important;
+  }
+
+  .aperture,
+  .scroll-arrow::before {
+    animation: none !important;
+  }
+
+  .hero-glow,
+  .lock-cluster .cheki,
+  .vote-heart,
+  .vote-reveal,
+  .me-picker-number,
+  .gallery-track .cheki,
+  .developing-overlay,
+  .developing-caption,
+  .hero-content {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+
+@media (max-width: 420px) {
+  .lock-cluster {
+    gap: 10px;
+  }
+  .lock-cluster .cheki:nth-child(2) {
+    transform: translateY(-8px);
+  }
+}
