@@ -36,6 +36,55 @@
     hero.classList.add('is-visible');
   });
 
+  /* ------------------------------------------------------------------
+     Section nav: highlights which of the 5 feature sections is centered
+     in the viewport, and hides itself over the hero and closing screens.
+     Runs regardless of reduced-motion — it's a state toggle, not motion.
+     ------------------------------------------------------------------ */
+  var sectionNav = document.querySelector('.section-nav');
+  if (sectionNav && 'IntersectionObserver' in window) {
+    var navDots = sectionNav.querySelectorAll('.section-nav-dot');
+    var navObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.id;
+          navDots.forEach(function (dot) {
+            dot.classList.toggle('is-active', dot.getAttribute('data-nav-target') === id);
+          });
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+    ['group', 'vote', 'me', 'gallery', 'developing'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) navObserver.observe(el);
+    });
+
+    var closingEl = document.getElementById('closing');
+    var heroPassed = false;
+    var closingReached = false;
+    var updateNavVisibility = function () {
+      sectionNav.classList.toggle('is-visible', heroPassed && !closingReached);
+    };
+    new IntersectionObserver(
+      function (entries) {
+        heroPassed = !entries[0].isIntersecting;
+        updateNavVisibility();
+      },
+      { threshold: 0.15 }
+    ).observe(hero);
+    if (closingEl) {
+      new IntersectionObserver(
+        function (entries) {
+          closingReached = entries[0].isIntersecting;
+          updateNavVisibility();
+        },
+        { threshold: 0.15 }
+      ).observe(closingEl);
+    }
+  }
+
   var heroVideo = hero.querySelector('.hero-video');
 
   if (reduceMotion) {
@@ -50,6 +99,24 @@
   if (heroVideo) {
     var playPromise = heroVideo.play();
     if (playPromise && playPromise.catch) playPromise.catch(function () {});
+  }
+
+  // ME phone demo: only decode/play while it's actually on screen.
+  var mePhoneVideo = document.querySelector('.me-phone-video');
+  if (mePhoneVideo && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var p = mePhoneVideo.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            mePhoneVideo.pause();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    ).observe(mePhoneVideo);
   }
 
   /* ------------------------------------------------------------------

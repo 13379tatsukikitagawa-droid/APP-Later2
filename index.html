@@ -11,6 +11,14 @@
 
 <div class="progress-bar" id="progressBar"></div>
 
+<nav class="section-nav" aria-label="セクション">
+  <a class="section-nav-dot" href="#group" data-nav-target="group"><span class="section-nav-label">Group</span><span class="section-nav-mark" aria-hidden="true"></span></a>
+  <a class="section-nav-dot" href="#vote" data-nav-target="vote"><span class="section-nav-label">Vote</span><span class="section-nav-mark" aria-hidden="true"></span></a>
+  <a class="section-nav-dot" href="#me" data-nav-target="me"><span class="section-nav-label">ME</span><span class="section-nav-mark" aria-hidden="true"></span></a>
+  <a class="section-nav-dot" href="#gallery" data-nav-target="gallery"><span class="section-nav-label">Gallery</span><span class="section-nav-mark" aria-hidden="true"></span></a>
+  <a class="section-nav-dot" href="#developing" data-nav-target="developing"><span class="section-nav-label">Developing</span><span class="section-nav-mark" aria-hidden="true"></span></a>
+</nav>
+
 <!-- ================= HERO ================= -->
 <section class="hero" id="hero">
   <div class="hero-video-wrap">
@@ -128,9 +136,10 @@
     </div>
     <p class="me-picker-label js-fx">Set your goal</p>
     <div class="me-card js-fx">
-      <div class="cheki">
-        <div class="cheki-photo"></div>
-        <div class="cheki-date">ME &nbsp;·&nbsp; 2026.03.10</div>
+      <div class="me-phone">
+        <video class="me-phone-video" poster="assets/me-poster.jpg" muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="assets/me-demo.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
