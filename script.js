@@ -36,13 +36,20 @@
     hero.classList.add('is-visible');
   });
 
+  var heroVideo = hero.querySelector('.hero-video');
+
   if (reduceMotion) {
-    // Respect reduced-motion: skip all continuous scroll-linked effects.
-    // Mockup elements still need to end up visible without JS driving them.
+    // Respect reduced-motion: skip all continuous scroll-linked effects and
+    // leave the hero video paused on its poster frame instead of autoplaying.
     document.querySelectorAll('.js-fx').forEach(function (el) {
       el.style.opacity = '1';
     });
     return;
+  }
+
+  if (heroVideo) {
+    var playPromise = heroVideo.play();
+    if (playPromise && playPromise.catch) playPromise.catch(function () {});
   }
 
   /* ------------------------------------------------------------------
@@ -87,6 +94,7 @@
   }
 
   var heroGlow = hero.querySelectorAll('[data-parallax]');
+  var heroVideoEl = hero.querySelector('.hero-video');
 
   var groupSection = document.getElementById('group');
   var lockCards = groupSection.querySelectorAll('[data-lock-card]');
@@ -125,6 +133,12 @@
         el.style.transform = 'translate3d(0,' + scrolled * factor + 'px,0)';
       });
       hero.style.opacity = String(clamp(1 - scrolled / (window.innerHeight * 0.9), 0, 1));
+      if (heroVideoEl) {
+        var heroProgress = clamp(scrolled / window.innerHeight, 0, 1);
+        var videoScale = 1.02 + heroProgress * 0.14;
+        heroVideoEl.style.transform =
+          'translate3d(0,' + scrolled * 0.2 + 'px,0) scale(' + videoScale + ')';
+      }
     }
 
     // 01. Group — cards unlock one by one as the pin scrolls through.
