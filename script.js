@@ -119,6 +119,24 @@
     ).observe(mePhoneVideo);
   }
 
+  // Countdown widget demo: same lazy play/pause treatment.
+  var countdownVideo = document.querySelector('.countdown-video');
+  if (countdownVideo && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var p = countdownVideo.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            countdownVideo.pause();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    ).observe(countdownVideo);
+  }
+
   /* ------------------------------------------------------------------
      Continuous scroll-linked effects (parallax, unlocking, developing).
      A single rAF-throttled loop reads layout once per frame and writes
