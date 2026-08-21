@@ -168,6 +168,10 @@ img {
   min-height: 100svh;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: radial-gradient(ellipse at 50% 35%, #101410 0%, #0a0a0a 62%);
 }
 
@@ -210,7 +214,7 @@ img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(20px, 4vw, 30px);
+  gap: clamp(12px, 2.4vw, 18px);
   opacity: 0;
   transform: translateY(18px);
   will-change: transform, opacity;
@@ -232,8 +236,8 @@ img {
 }
 
 .aperture {
-  width: clamp(52px, 9vw, 74px);
-  height: clamp(52px, 9vw, 74px);
+  width: clamp(30px, 5.5vw, 42px);
+  height: clamp(30px, 5.5vw, 42px);
   animation: aperture-breathe 7s ease-in-out infinite;
 }
 
@@ -250,7 +254,7 @@ img {
   font-family: var(--wordmark);
   font-weight: 600;
   font-style: italic;
-  font-size: clamp(2.6rem, 11vw, 5.5rem);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
   letter-spacing: 0.02em;
   color: var(--ink);
 }
@@ -258,9 +262,9 @@ img {
 .hero-tagline {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.3rem, 4.2vw, 2rem);
+  font-size: clamp(0.92rem, 3.6vw, 1.3rem);
   color: var(--ink-dim);
-  max-width: 18ch;
+  white-space: nowrap;
   line-height: 1.5;
 }
 
