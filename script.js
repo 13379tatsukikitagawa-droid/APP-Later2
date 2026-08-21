@@ -118,8 +118,8 @@
 
   var developingSection = document.getElementById('developing');
   var developingOverlay = developingSection.querySelector('[data-developing-overlay]');
+  var developingPhoto = developingSection.querySelector('[data-developing-photo]');
   var developingPercent = developingSection.querySelector('[data-developing-percent]');
-  if (developingOverlay) developingOverlay.style.transformOrigin = 'bottom';
 
   var progressBar = document.getElementById('progressBar');
 
@@ -203,10 +203,19 @@
         (0.5 - cp) * dir * 3 + 'deg)';
     });
 
-    // 05. Developing — the overlay recedes from the bottom as the pin scrolls.
+    // 05. Developing — the emulsion fog clears and the photo gains density
+    // (brightness/contrast/saturation) as the pin scrolls, like instant film.
     var dp = pinProgress(developingSection);
     if (developingOverlay) {
-      developingOverlay.style.transform = 'scaleY(' + (1 - dp) + ')';
+      developingOverlay.style.opacity = String(1 - dp);
+    }
+    if (developingPhoto) {
+      var dBrightness = 1.9 - 0.9 * dp;
+      var dContrast = 0.35 + 0.7 * dp;
+      var dSaturate = 0.05 + dp;
+      var dBlur = (1 - dp) * 1;
+      developingPhoto.style.filter =
+        'brightness(' + dBrightness + ') contrast(' + dContrast + ') saturate(' + dSaturate + ') blur(' + dBlur + 'px)';
     }
     if (developingPercent) {
       developingPercent.textContent = Math.round(dp * 100) + '%';
