@@ -31,6 +31,7 @@
 html {
   background: var(--bg);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -38,7 +39,6 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   font-weight: 300;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -156,6 +156,10 @@ img {
 
 .section-tall {
   min-height: 220svh;
+  /* The base .section centers its child for normal 100vh sections; a tall
+     pinned section needs its sticky child aligned to the top instead, or
+     centering within the full 220vh box delays/shortens the pin window. */
+  justify-content: flex-start;
 }
 
 .section-inner {
@@ -430,13 +434,62 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(36px, 6vw, 56px);
+  gap: clamp(20px, 3.6vw, 40px);
 }
 
 .group-copy {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.group-creation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-phone-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.is-visible .group-phone-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.group-phone {
+  width: clamp(72px, 16vw, 104px);
+  aspect-ratio: 1180 / 2398;
+  border-radius: clamp(12px, 2.4vw, 17px);
+  padding: 5px;
+  background: #050605;
+  border: 1px solid rgba(244, 243, 239, 0.12);
+  box-shadow: var(--frame-shadow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  transition: opacity 1s var(--ease) 0.1s, transform 1s var(--ease) 0.1s;
+}
+
+.is-visible .group-phone {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.group-phone-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: clamp(7px, 1.6vw, 12px);
+  display: block;
 }
 
 .lock-cluster {
@@ -813,6 +866,8 @@ footer {
   .body-text,
   .reveal-up,
   .countdown-widget,
+  .group-phone,
+  .group-phone-label,
   .cta-button,
   .cta-note {
     transition-duration: 0.3s !important;

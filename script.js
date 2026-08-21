@@ -137,6 +137,24 @@
     ).observe(countdownVideo);
   }
 
+  // Group-creation demo: same lazy play/pause treatment.
+  var groupPhoneVideo = document.querySelector('.group-phone-video');
+  if (groupPhoneVideo && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var p = groupPhoneVideo.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            groupPhoneVideo.pause();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    ).observe(groupPhoneVideo);
+  }
+
   /* ------------------------------------------------------------------
      Continuous scroll-linked effects (parallax, unlocking, developing).
      A single rAF-throttled loop reads layout once per frame and writes
