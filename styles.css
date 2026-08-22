@@ -569,6 +569,15 @@ img {
   --cheki-w: clamp(200px, 46vw, 280px);
 }
 
+.vote-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .vote-heart {
   position: absolute;
   bottom: -18px;
