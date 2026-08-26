@@ -311,8 +311,26 @@ img {
 }
 
 .logo-lockup {
-  width: clamp(150px, 30vw, 220px);
-  height: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 12px);
+}
+
+.logo-icon {
+  height: clamp(30px, 6vw, 42px);
+  width: auto;
+  animation: logo-spin 6s linear infinite;
+}
+
+@keyframes logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-text {
+  height: clamp(26px, 5vw, 36px);
+  width: auto;
 }
 
 .hero-tagline {
@@ -881,7 +899,8 @@ footer {
     transform: none !important;
   }
 
-  .scroll-arrow::before {
+  .scroll-arrow::before,
+  .logo-icon {
     animation: none !important;
   }
 
