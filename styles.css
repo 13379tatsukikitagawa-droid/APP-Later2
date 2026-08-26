@@ -16,7 +16,6 @@
   --frame: #f4f2ea;
   --frame-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
   --serif: 'Shippori Mincho B1', 'Cormorant Garamond', serif;
-  --wordmark: 'Cormorant Garamond', 'Shippori Mincho B1', serif;
   --sans: 'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --section-pad: clamp(24px, 6vw, 64px);
@@ -311,28 +310,9 @@ img {
   opacity: 1;
 }
 
-.aperture {
-  width: clamp(38px, 6.5vw, 52px);
-  height: clamp(38px, 6.5vw, 52px);
-  animation: aperture-breathe 7s ease-in-out infinite;
-}
-
-@keyframes aperture-breathe {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(14deg) scale(1.04); }
-}
-
-.aperture path {
-  stroke: var(--accent);
-}
-
-.wordmark {
-  font-family: var(--wordmark);
-  font-weight: 600;
-  font-style: italic;
-  font-size: clamp(1.6rem, 6vw, 2.3rem);
-  letter-spacing: 0.02em;
-  color: var(--ink);
+.logo-lockup {
+  width: clamp(150px, 30vw, 220px);
+  height: auto;
 }
 
 .hero-tagline {
@@ -901,7 +881,6 @@ footer {
     transform: none !important;
   }
 
-  .aperture,
   .scroll-arrow::before {
     animation: none !important;
   }
