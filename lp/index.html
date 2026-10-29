@@ -271,6 +271,61 @@ html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),tran
 .msheet.show .ms-in{opacity:1;transform:none}
 @media (min-width:720px){.ms-panel{left:50%;right:auto;width:min(620px,92vw);translate:-50% 0;bottom:5svh;border-radius:28px;border-bottom:1px solid var(--line);padding:30px 32px 34px}.ms-row{margin:20px -32px 0;padding:0 32px 4px}.mc{width:150px}}
 
+
+/* ---------- mondo: from the globe into the world ---------- */
+.mn{position:relative;background:#050506}
+.mn-track{position:relative;height:340svh}
+.mn-stick{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate;touch-action:pan-y;background:radial-gradient(ellipse at 50% 46%,#15151b,#050506 72%)}
+.mn-stars{position:absolute;inset:0;z-index:0;background-image:radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 78% 12%,#fff7,transparent),radial-gradient(1.5px 1.5px at 38% 74%,#fff8,transparent),radial-gradient(1px 1px at 90% 58%,#fff6,transparent),radial-gradient(1px 1px at 22% 88%,#fff7,transparent),radial-gradient(1.2px 1.2px at 64% 34%,#fff6,transparent),radial-gradient(1px 1px at 52% 8%,#fff8,transparent),radial-gradient(1px 1px at 6% 56%,#fff6,transparent);pointer-events:none}
+.mn-bg{position:absolute;inset:0;margin:0;z-index:0;opacity:0}
+.mn-bg video{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) brightness(.62)}
+.mn-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(5,5,6,.78))}
+.mn-globe{position:absolute;left:50%;top:44%;width:min(330px,76vw);aspect-ratio:1;translate:-50% -50%;z-index:2;will-change:transform,opacity}
+.mn-globe .globe-wrap{width:100%}
+.mn-scene{position:absolute;inset:0;z-index:1;perspective:900px;perspective-origin:50% 48%;pointer-events:none}
+@media (max-width:760px){.mn-scene{perspective:720px}}
+.mn-ring{position:absolute;left:50%;top:48%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.mn-card{position:absolute;left:0;top:0;width:var(--cw,150px);aspect-ratio:3/4;margin:0;border-radius:18px;overflow:hidden;background:var(--well);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1);pointer-events:auto;cursor:pointer}
+.mn-card img{width:100%;height:100%;object-fit:cover}
+.mn-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 30%,transparent 55%,rgba(0,0,0,.72))}
+.mn-card figcaption{position:absolute;left:11px;right:11px;bottom:9px;z-index:2;line-height:1.3}
+.mn-card figcaption b{display:block;font-size:.9rem}
+.mn-card figcaption .mono{font-size:.5rem;letter-spacing:.08em;opacity:.85}
+.mn-title,.mn-end{position:absolute;left:0;right:0;z-index:4;text-align:center;pointer-events:none}
+.mn-title{bottom:calc(8svh + env(safe-area-inset-bottom,0px))}
+.mn-end{bottom:calc(9svh + env(safe-area-inset-bottom,0px));opacity:0}
+.mn-end h2{font-size:clamp(1.9rem,7vw,3.6rem);text-shadow:0 2px 26px rgba(0,0,0,.7)}
+.mn-end .tap-hint,.mn-title .mono{pointer-events:auto}
+.mn-title .mondo-word{margin-top:0}
+.mn-title p.s{margin-top:6px;color:var(--sub)}
+.mn-hint{margin-top:16px}
+
+/* ---------- long-press orb ---------- */
+.orb-wrap{position:relative;width:124px;height:124px}
+.orb-wrap::before,.orb-wrap::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.2px solid rgba(255,255,255,.4);animation:ripple 3s ease-out infinite;pointer-events:none}
+.orb-wrap::after{animation-delay:1.5s}
+.orb-wrap.holding::before,.orb-wrap.holding::after{animation:none;opacity:0}
+@keyframes ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+.orb-fx{position:absolute;left:50%;top:50%;width:380px;height:380px;margin:-190px 0 0 -190px;pointer-events:none;z-index:0}
+.orb{position:absolute;inset:0;z-index:1;border:0;padding:0;background:none;border-radius:50%;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;--p:0}
+.orb-ticks{position:absolute;left:-20px;top:-20px;width:calc(100% + 40px);height:calc(100% + 40px);overflow:visible;pointer-events:none}
+.orb-ticks line{stroke:rgba(255,255,255,.3);stroke-width:2.2;stroke-linecap:round;transition:stroke .12s}
+.orb-ticks line.on{stroke:#fff;filter:drop-shadow(0 0 4px #ffd9a8)}
+.orb-glow{position:absolute;inset:-34%;border-radius:50%;background:radial-gradient(circle,rgba(255,176,120,.6),rgba(200,123,255,.25) 40%,transparent 66%);opacity:calc(.3 + var(--p) * .7);transform:scale(calc(1 + var(--p) * .55));transition:opacity .2s,transform .2s;pointer-events:none}
+.orb-core{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#1d1a52;transform:scale(calc(1 - var(--p) * .13));transition:transform .18s;box-shadow:0 0 0 1.5px rgba(255,255,255,.75) inset,0 22px 50px rgba(0,0,0,.55);animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{50%{scale:1.04}}
+.orb.hold .orb-core{animation:none}
+.orb-aur{position:absolute;inset:-35%;background:conic-gradient(from 0deg,#ffd08a,#ff9e8a,#c87bff,#5a3fc0,#7bd6ff,#ffd08a);filter:blur(13px) saturate(1.25);animation:aur 7s linear infinite}
+.orb.hold .orb-aur{animation-duration:1.1s}
+@keyframes aur{to{transform:rotate(360deg)}}
+.orb-core::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 118%,rgba(29,26,82,.9),transparent 55%),radial-gradient(circle at 70% 90%,rgba(255,255,255,.18),transparent 35%)}
+.orb-hi{position:absolute;left:13%;top:7%;width:74%;height:42%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,0));z-index:2}
+.orb-lab{position:absolute;inset:0;z-index:3;display:grid;place-content:center;text-align:center;color:#fff;text-shadow:0 1px 10px rgba(40,20,90,.7);line-height:1.2}
+.orb-lab b{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.3em;font-weight:700;opacity:.85}
+.orb-lab em{font-style:normal;font-weight:900;font-size:1rem;margin-top:3px}
+.ygrid.holding .ytile video{transition:filter .12s linear,transform .12s linear;filter:blur(calc(24px - var(--pk,0) * 16px)) saturate(calc(.2 + var(--pk,0) * .6)) brightness(calc(.8 + var(--pk,0) * .25));transform:scale(calc(1.15 - var(--pk,0) * .08))}
+.ygrid.holding::after{content:"";position:absolute;inset:-30px;border-radius:30px;pointer-events:none;box-shadow:0 0 calc(var(--pk,0) * 90px) rgba(255,176,120,.35)}
+
 /* ---------- closing ---------- */
 .closing{position:relative;text-align:center;overflow:hidden;isolation:isolate;padding-block:clamp(72px,12vw,130px)}
 .closing .bg{position:absolute;inset:0;z-index:-2}
@@ -446,7 +501,7 @@ footer a:hover{color:var(--txt)}
 </section>
 
 <!-- ========== OPEN YESTERDAY ========== -->
-<section class="sec" aria-labelledby="h-open">
+<section class="sec" aria-labelledby="h-open" style="padding-bottom:36px">
   <div class="wrap" style="text-align:center">
     <span class="mono k">月を長押し</span>
     <h2 id="h-open">撮ったら、ひらく。</h2>
@@ -459,26 +514,45 @@ footer a:hover{color:var(--txt)}
       <div class="ytile"><video src="../assets/lp/clip-41181.mp4" poster="../assets/lp/clip-41181.jpg" muted loop playsinline aria-label="朝、コーヒーを持って自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あなた</b><span class="mono">7:05</span></div></div>
       <div class="lock" id="lock">
         <div class="bloom" id="bloom"></div>
-        <button class="orb-btn" id="openOrb" type="button" aria-label="長押しで昨日をひらく"><svg viewBox="0 0 152 152" aria-hidden="true"><circle class="gauge" cx="76" cy="76" r="72"/></svg><span>長押し</span></button>
+        <div class="orb-wrap" id="orbWrap">
+          <canvas class="orb-fx" id="orbFx" width="380" height="380" aria-hidden="true"></canvas>
+          <button class="orb" id="openOrb" type="button" aria-label="長押しで昨日をひらく">
+            <svg class="orb-ticks" id="orbTicks" viewBox="0 0 184 184" aria-hidden="true"></svg>
+            <span class="orb-glow"></span>
+            <span class="orb-core"><span class="orb-aur"></span><span class="orb-hi"></span></span>
+            <span class="orb-lab"><b>HOLD</b><em id="orbLab">長押し</em></span>
+          </button>
+        </div>
       </div>
     </div>
     <p style="margin-top:8px"><button class="link-btn" id="closeY" type="button" hidden>もういちど、閉じる</button></p>
   </div>
 </section>
 
-<!-- ========== MONDO ========== -->
-<section class="sec mondo" aria-labelledby="h-mondo">
-  <div class="wrap">
-    <div class="globe-wrap">
-      <div class="halo" aria-hidden="true"></div>
-      <svg class="ring-text" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring">WORLD LIGHTS — YESTERDAY — LATER — WORLD LIGHTS — YESTERDAY — LATER —</textPath></text></svg>
-      <canvas id="globe" width="680" height="680" aria-hidden="true"></canvas>
-      <button class="globe-hit" id="globeBtn" type="button" aria-haspopup="dialog" aria-label="Mondoの詳細を見る"></button>
+<!-- ========== MONDO: from the globe into the world ========== -->
+<section class="mn" id="mondo" aria-labelledby="h-mondo">
+  <div class="mn-track" id="mnTrack">
+    <div class="mn-stick" id="mnStick">
+      <figure class="mn-bg" id="mnBg" aria-hidden="true"><video muted loop playsinline></video></figure>
+      <div class="mn-stars" aria-hidden="true"></div>
+      <div class="mn-scene" aria-hidden="true"><div class="mn-ring" id="mnRing"></div></div>
+      <div class="mn-globe" id="mnGlobe">
+        <div class="globe-wrap">
+          <div class="halo" aria-hidden="true"></div>
+          <svg class="ring-text" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring">WORLD LIGHTS — YESTERDAY — LATER — WORLD LIGHTS — YESTERDAY — LATER —</textPath></text></svg>
+          <canvas id="globe" width="680" height="680" aria-hidden="true"></canvas>
+          <button class="globe-hit" id="globeBtn" type="button" aria-haspopup="dialog" aria-label="Mondoの詳細を見る"></button>
+        </div>
+      </div>
+      <div class="mn-title" id="mnTitle">
+        <div class="mondo-word"><b>Mondo</b><i>yesterday</i></div>
+        <p class="s mono">昨日の世界 · <span class="y-date">10.27</span> · 128 の光</p>
+      </div>
+      <div class="mn-end" id="mnEnd">
+        <h2 id="h-mondo">名前も、いいねもない。</h2>
+        <button class="tap-hint mn-hint" id="globeHint" type="button">詳細を見る</button>
+      </div>
     </div>
-    <div class="mondo-word"><b>Mondo</b><i>yesterday</i></div>
-    <h2 id="h-mondo" style="font-size:clamp(1.3rem,4.4vw,1.9rem);margin-top:6px">名前も、いいねもない。</h2>
-    <p class="s mono">昨日の世界 · <span class="y-date">10.27</span> · 128 の光</p>
-    <button class="tap-hint" id="globeHint" type="button">地球儀をタップ</button>
   </div>
 </section>
 
@@ -748,21 +822,107 @@ hshow(0);requestAnimationFrame(hloop);
   requestAnimationFrame(frame);
 })();
 
-/* ---------- open yesterday ---------- */
+/* ---------- open yesterday: a long-press orb with ticks, gathering light and a peek ---------- */
 (function(){
-  var og=$('#openOrb .gauge'),yg=$('#ygrid');
+  var yg=$('#ygrid'),orb=$('#openOrb'),wrap=$('#orbWrap'),ticks=$('#orbTicks'),lab=$('#orbLab'),fx=$('#orbFx'),fc=fx.getContext('2d');
+  var NT=60,tk=[];
+  for(var i=0;i<NT;i++){var a=i/NT*Math.PI*2-Math.PI/2,l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',(92+Math.cos(a)*80).toFixed(1));l.setAttribute('y1',(92+Math.sin(a)*80).toFixed(1));l.setAttribute('x2',(92+Math.cos(a)*88).toFixed(1));l.setAttribute('y2',(92+Math.sin(a)*88).toFixed(1));ticks.appendChild(l);tk.push(l)}
+  var parts=[],holdP=0,holding=false,fxRaf=0,fxLast=0,lit=0;
+  var COL=['255,208,138','255,158,138','200,123,255','255,255,255','123,214,255'];
   function ytiles(on){$$('.ytile video',yg).forEach(function(v){if(on)play(v);else v.pause()})}
-  holdable($('#openOrb'),1200,{
-    progress:function(p){og.style.strokeDashoffset=452*(1-p)},
-    tickEvery:function(p){return 220-150*p},
-    tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(5+40*p))}catch(e){}},
-    done:function(){
-      og.style.strokeDashoffset=452;var b=$('#bloom');b.classList.remove('go');void b.offsetWidth;b.classList.add('go');
-      hap('open');setTimeout(function(){yg.classList.add('open');$('#closeY').hidden=false;if(!reduce)ytiles(true)},250);
+  function spawnIn(){var a=Math.random()*Math.PI*2,r=170+Math.random()*20;parts.push({x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,a:a,r:r,life:1,sz:1.2+Math.random()*1.8,c:COL[Math.floor(Math.random()*COL.length)],mode:0})}
+  function burst(){for(var i=0;i<90;i++){var a=Math.random()*Math.PI*2,v=1.5+Math.random()*4.5;parts.push({x:Math.cos(a)*40,y:Math.sin(a)*40,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,sz:1.4+Math.random()*2.4,c:COL[Math.floor(Math.random()*COL.length)],mode:1})}}
+  function fxLoop(t){
+    var dt=Math.min(40,t-fxLast);fxLast=t;
+    fc.clearRect(0,0,380,380);fc.globalCompositeOperation='lighter';
+    if(holding&&!reduce){var n=Math.round(holdP*3.2);for(var k=0;k<n;k++)spawnIn()}
+    for(var i=parts.length-1;i>=0;i--){var p=parts[i];
+      if(p.mode===0){p.a+=.035*(1+holdP*2);p.r-=(1.6+holdP*3.2)*(dt/16);p.x=Math.cos(p.a)*p.r;p.y=Math.sin(p.a)*p.r;if(p.r<44){parts.splice(i,1);continue}p.life=clamp(p.r/180,0,1)}
+      else{p.x+=p.vx*(dt/16);p.y+=p.vy*(dt/16);p.vx*=.965;p.vy*=.965;p.life-=.016*(dt/16);if(p.life<=0){parts.splice(i,1);continue}}
+      var al=p.mode===0?(1-p.life*.6)*.9:p.life;
+      fc.fillStyle='rgba('+p.c+','+al.toFixed(2)+')';fc.beginPath();fc.arc(190+p.x,190+p.y,p.sz*(p.mode===0?(.6+.8*(1-p.life)):1),0,6.283);fc.fill();
+    }
+    fc.globalCompositeOperation='source-over';
+    if(holding||parts.length){fxRaf=requestAnimationFrame(fxLoop)}else{fxRaf=0}
+  }
+  function fxOn(){if(!fxRaf){fxLast=performance.now();fxRaf=requestAnimationFrame(fxLoop)}}
+  function setP(p){
+    holdP=p;orb.style.setProperty('--p',p.toFixed(3));yg.style.setProperty('--pk',p.toFixed(3));
+    var n=Math.floor(p*NT);if(n!==lit){tk.forEach(function(l,i){l.classList.toggle('on',i<n)});lit=n}
+    lab.textContent=p>0?(p>.66?'もうすぐ':'そのまま…'):'長押し';
+  }
+  holdable(orb,1500,{
+    progress:function(p){
+      if(!holding){holding=true;wrap.classList.add('holding');yg.classList.add('holding');ytiles(true);fxOn()}
+      setP(p);
     },
-    cancel:function(){og.style.strokeDashoffset=452;hap('soft2')}
+    tickEvery:function(p){return 240-170*p},
+    tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(5+44*p))}catch(e){}},
+    done:function(){
+      holding=false;setP(1);burst();fxOn();
+      var b=$('#bloom');b.classList.remove('go');void b.offsetWidth;b.classList.add('go');
+      hap('open');
+      setTimeout(function(){yg.classList.remove('holding');yg.classList.add('open');$('#closeY').hidden=false;wrap.classList.remove('holding');if(!reduce)ytiles(true);setP(0)},300);
+    },
+    cancel:function(){holding=false;wrap.classList.remove('holding');yg.classList.remove('holding');setP(0);if(!yg.classList.contains('open'))ytiles(false);hap('soft2')}
   });
   $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('#closeY').hidden=true;ytiles(false);hap('tap')});
+})();
+
+/* ---------- mondo: dive from the globe into a ring of world prints ---------- */
+(function(){
+  var track=$('#mnTrack'),stick=$('#mnStick'),ring=$('#mnRing'),globe=$('#mnGlobe'),title=$('#mnTitle'),end=$('#mnEnd'),bg=$('#mnBg'),bgv=$('video',bg);
+  var hit=$('#globeBtn');
+  var people=$$('.ytile video').map(function(v){return v.getAttribute('poster')});
+  var sky=['dawn','noon','school','dusk','night','stars'].map(function(k){var v=$('#heroMedia .hv[data-k="'+k+'"] video');return v&&v.getAttribute('poster')});
+  var NAMES=[['ゆうなぎ','日本 · 神奈川県'],['Dawn','日本 · 北海道'],['Lumi','Italia · Roma'],['Noon','Deutschland'],['ほたる','日本 · 大阪府'],['Dusk','Philippines'],['Wren','United States'],['Night','日本 · 東京都'],['しずく','日本 · 千葉県'],['Stars','Chile'],['つむぎ','日本 · 世田谷区'],['Rise','Íslandi']];
+  var cards=[];
+  for(var i=0;i<12;i++){
+    var src=(i%2===0?people[(i/2)%people.length]:sky[(i-1)/2%sky.length]);if(!src)continue;
+    var f=document.createElement('figure');f.className='mn-card';
+    f.innerHTML='<img alt="" src="'+src+'"><figcaption><b>'+NAMES[i][0]+'</b><span class="mono">'+NAMES[i][1]+'</span></figcaption>';
+    ring.appendChild(f);cards.push(f);
+  }
+  var N=cards.length,CW=window.innerWidth>760?230:176,R=Math.round((CW/2)/Math.tan(Math.PI/N)*1.16);
+  stick.style.setProperty('--cw',CW+'px');
+  cards.forEach(function(f,i){f.style.transform='translate(-50%,-50%) rotateY('+(i*360/N)+'deg) translateZ('+(-R)+'px)'});
+  var src=$('#heroMedia .hv[data-k="dawn"] video');if(src){bgv.src=src.getAttribute('src');bgv.poster=src.getAttribute('poster')||''}
+  var vis=false,dp=0,mx=0,my=0,user=0,vel=0,drag=false,lastX=0,moved=0;
+  function ss(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x)}
+  try{new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!reduce)play(bgv);else bgv.pause()},{rootMargin:'10% 0px'}).observe(track)}catch(e){vis=true}
+  if(reduce){
+    track.style.height='auto';stick.style.position='relative';ring.style.display='none';bg.style.display='none';
+    globe.style.top='38%';end.style.opacity='1';end.style.position='relative';end.style.bottom='auto';end.style.marginTop='0';
+    title.style.position='relative';title.style.bottom='auto';stick.style.height='auto';stick.style.paddingBlock='72px 64px';globe.style.position='relative';globe.style.left='auto';globe.style.top='auto';globe.style.translate='none';globe.style.margin='0 auto';return;
+  }
+  stick.addEventListener('pointerdown',function(e){if(dp<.62)return;drag=true;lastX=e.clientX;moved=0;vel=0});
+  window.addEventListener('pointermove',function(e){
+    mx=e.clientX/window.innerWidth-.5;my=e.clientY/window.innerHeight-.5;
+    if(!drag)return;var dx=e.clientX-lastX;lastX=e.clientX;moved+=Math.abs(dx);user+=dx*.35;vel=dx*.35;
+  },{passive:true});
+  window.addEventListener('pointerup',function(){drag=false});
+  ring.addEventListener('click',function(e){if(moved>8){e.stopPropagation();return}if(e.target.closest('.mn-card'))hit.click()});
+  function frame(){
+    requestAnimationFrame(frame);
+    if(!vis)return;
+    var r=track.getBoundingClientRect(),span=r.height-window.innerHeight;
+    var tp=clamp(-r.top/span,0,1);dp+=(tp-dp)*.14;
+    if(!drag){user+=vel;vel*=.94}
+    var zin=ss(.26,.7,dp);
+    var gs=1+ss(.06,.5,dp)*5.2,go=1-ss(.26,.5,dp);
+    globe.style.transform='scale('+gs.toFixed(3)+')';globe.style.opacity=go.toFixed(3);
+    hit.style.pointerEvents=dp<.25?'auto':'none';
+    title.style.opacity=(1-ss(.02,.13,dp)).toFixed(3);
+    var z=-1500*(1-zin);
+    var ang=-30+dp*300+user+mx*8;
+    ring.style.transform='translateZ('+z.toFixed(1)+'px) rotateX('+(-3+my*4).toFixed(2)+'deg) rotateY('+ang.toFixed(2)+'deg)';
+    ring.style.opacity=ss(.2,.46,dp).toFixed(3);
+    bg.style.opacity=(ss(.3,.72,dp)*.9).toFixed(3);
+    var eo=ss(.72,.9,dp);end.style.opacity=eo.toFixed(3);end.style.transform='translateY('+(16*(1-eo)).toFixed(1)+'px)';
+    end.style.pointerEvents=eo>.5?'auto':'none';
+  }
+  requestAnimationFrame(frame);
 })();
 
 /* ---------- opening sequence: ~40 prints flash by, land on "Later" ---------- */
