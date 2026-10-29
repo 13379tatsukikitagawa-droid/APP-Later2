@@ -79,10 +79,10 @@ html.hero-go .hero .circ.draw path{animation:draw 1.2s .9s var(--ease) both}
 /* ---------- hero: a day of full-bleed clips ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:#050506}
 .hero-media{position:absolute;inset:0;z-index:-2}
-.hv{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
+.hv{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .7s ease}
 .hv.on{opacity:1}
 .hv video{width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);filter:saturate(1.15) contrast(1.05);transform:scale(1.06)}
-.hv.on video{animation:kb 7.4s linear forwards}
+.hv.on video{animation:kb 3.4s linear forwards}
 @keyframes kb{from{transform:scale(1.06)}to{transform:scale(1.15)}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.6) 0%,rgba(10,10,11,.1) 26%,rgba(10,10,11,.18) 50%,rgba(10,10,11,.86) 86%,var(--ground) 100%)}
 .hero .wrap{width:100%;padding-block:clamp(110px,18vh,160px) clamp(40px,7vh,72px)}
@@ -541,13 +541,13 @@ function holdable(el,ms,o){
 function play(v){if(!v)return;var p=v.play();if(p&&p.catch)p.catch(function(){})}
 
 /* ---------- hero: one day of clips, story-style bars ---------- */
-var hvs=$$('#heroMedia .hv'),T=5400,hcur=0,helapsed=0,hlast=0,hvis=true,hprev=null;
+var hvs=$$('#heroMedia .hv'),T=2600,hcur=0,helapsed=0,hlast=0,hvis=true,hprev=null;
 function hshow(i){
   var prev=hcur;hcur=i;helapsed=0;
   hvs.forEach(function(f,k){f.classList.toggle('on',k===i)});
   var nv=$('video',hvs[i]);try{nv.currentTime=0}catch(e){}
   if(!reduce)play(nv);
-  if(prev!==i){var pv=$('video',hvs[prev]);clearTimeout(hprev);hprev=setTimeout(function(){if(hcur!==prev)pv.pause()},1400)}
+  if(prev!==i){var pv=$('video',hvs[prev]);clearTimeout(hprev);hprev=setTimeout(function(){if(hcur!==prev)pv.pause()},900)}
   $('#recClock').textContent=hvs[i].getAttribute('data-t');
   $('#recLab').textContent=hvs[i].getAttribute('data-l');
 }
