@@ -6,6 +6,7 @@
 <title>Later</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="1日3こま。今日を撮ると、昨日がひらく。撮った1枚は、あしたの朝に仕上がるカメラアプリ Later。">
+<script>document.documentElement.classList.add('has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},12000);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Instrument+Serif:ital@1&family=Space+Mono:wght@400;700&family=Klee+One:wght@600&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
@@ -49,16 +50,18 @@ h1,h2,h3{font-family:var(--f-body);font-weight:900;letter-spacing:-.045em;line-h
 .wrap{max-width:1180px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
 .mono{font-family:var(--f-mono);letter-spacing:.14em;font-size:.72rem;text-transform:uppercase}
 .hand{font-family:var(--f-hand);font-weight:600}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.22;mix-blend-mode:overlay;background-size:180px 180px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:600;opacity:.22;mix-blend-mode:overlay;background-size:180px 180px}
 
 /* ---------- header ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:90;background:transparent}
 .top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:80;transition:background .3s,backdrop-filter .3s}
 .top.solid{background:color-mix(in srgb,var(--ground) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
-.logo{display:inline-flex;align-items:flex-start;text-decoration:none}
-.logo b{font-family:var(--f-word);font-weight:900;font-size:1.5rem;letter-spacing:-.05em;line-height:1}
-.logo i{font-family:var(--f-serif);font-style:italic;font-size:.95rem;color:var(--sub);margin:-6px 0 0 3px}
+.logo{display:inline-flex;align-items:flex-start;text-decoration:none;font-size:1rem}
+.logo b{font-family:var(--f-word);font-weight:900;font-size:1.5em;letter-spacing:-.05em;line-height:1}
+.logo i{font-family:var(--f-serif);font-style:italic;font-size:.633em;color:var(--sub);margin:-.395em 0 0 .2em}
+html.has-intro:not(.logo-in) .top .logo{opacity:0}
+html.intro-on,html.intro-on body{overflow:hidden;height:100%}
 .top-actions{display:flex;align-items:center;gap:8px}
 .chip-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(20,20,22,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:999px;padding:7px 12px;font-size:.78rem;cursor:pointer;white-space:nowrap}
 .chip-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--sub)}
@@ -77,7 +80,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .circ{position:relative;display:inline-block;white-space:nowrap}
 .circ svg{position:absolute;left:-12%;top:-18%;width:124%;height:136%;overflow:visible;pointer-events:none}
 .circ path{fill:none;stroke:var(--stamp);stroke-width:2.8;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0}
-.circ.draw path{animation:draw 1.2s .6s var(--ease) both}
+html:not(.has-intro) .circ.draw path{animation:draw 1.2s .6s var(--ease) both}
+html.has-intro:not(.hero-go) .hero .circ path{stroke-dashoffset:420}
+html.hero-go .hero .circ.draw path{animation:draw 1.2s .9s var(--ease) both}
 @keyframes draw{from{stroke-dashoffset:420}}
 
 /* ---------- prints ---------- */
@@ -109,6 +114,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .film i{width:12px;height:16px;border-radius:3px;border:1.5px dashed var(--sub)}
 .film i.used{background:var(--txt);border:1.5px solid var(--txt)}
 .film span{margin-left:6px;color:var(--sub)}
+.hero-media video{transform:scale(1.14)}
+html.hero-go .hero-media video{transform:none;transition:transform 2.6s var(--ease)}
+html.has-intro .ha{opacity:0;transform:translateY(34px)}
+html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .scroll-cue{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.65rem}
 @media (max-width:879px){.scroll-cue{display:none}}
 
@@ -293,6 +302,45 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 .credit{max-width:1180px;margin:0 auto;padding:0 var(--gr) 28px var(--gl);color:#6d6c74;font-size:.72rem;line-height:1.7}
 .credit a{text-decoration:underline;text-underline-offset:2px}
 
+/* ---------- opening sequence ---------- */
+.intro{position:fixed;inset:0;z-index:500;background:#050506;overflow:hidden;touch-action:none;cursor:pointer;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,transparent var(--ir,0px),#000 calc(var(--ir,0px) + 1.5px));
+  mask-image:radial-gradient(circle at 50% 50%,transparent var(--ir,0px),#000 calc(var(--ir,0px) + 1.5px))}
+.intro-stage{position:absolute;inset:0;overflow:hidden;transition:opacity .3s}
+.intro-hud{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:var(--gl);right:var(--gr);display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9),0 0 16px rgba(255,120,30,.55);z-index:6;transition:opacity .4s}
+.intro-hud i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-right:6px;box-shadow:0 0 10px #ff3b30;animation:rec 1s steps(2) infinite}
+.intro-hud.off{opacity:0}
+.intro-skip{position:absolute;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:6;border:1px solid rgba(255,255,255,.22);background:rgba(20,20,22,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:rgba(255,255,255,.8);border-radius:999px;padding:8px 18px;font-size:.78rem;letter-spacing:.06em;cursor:pointer}
+.intro-dot{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:#fff;box-shadow:0 0 18px #fff,0 0 60px rgba(255,255,255,.7);animation:dotp 1s ease-in-out infinite;transition:opacity .25s,transform .25s}
+.intro-dot.off{opacity:0;transform:scale(.2)}
+@keyframes dotp{50%{transform:scale(1.5)}}
+.intro-bloom{position:absolute;left:50%;top:50%;width:90vmax;height:90vmax;margin:-45vmax;border-radius:50%;background:radial-gradient(circle,rgba(255,226,196,.5) 0%,rgba(255,150,110,.18) 28%,transparent 60%);opacity:0;transform:scale(.1);pointer-events:none}
+.intro-bloom.go{animation:bloomIn 1.7s var(--ease) both}
+@keyframes bloomIn{0%{opacity:0;transform:scale(.1)}22%{opacity:.85}100%{opacity:0;transform:scale(1)}}
+.ip{position:absolute;left:var(--x);top:var(--y);width:var(--w);transform:translate(-50%,-50%) rotate(var(--r));background:var(--print);padding:6px 6px 22px;border-radius:4px;box-shadow:0 14px 34px rgba(0,0,0,.65);animation:ipIn .26s cubic-bezier(.2,.9,.3,1.15) backwards;transition:filter .35s,opacity .35s}
+@keyframes ipIn{from{opacity:0;filter:brightness(1.7);transform:translate(-50%,-50%) rotate(var(--r)) scale(1.5)}}
+.ip .w{aspect-ratio:3/4;overflow:hidden;background:#111}
+.ip img,.ip video{width:100%;height:100%;object-fit:cover;display:block}
+.ip .d{position:absolute;right:9px;bottom:4px;font-family:var(--f-mono);font-size:.52rem;letter-spacing:.06em;color:#ff8a2a;text-shadow:0 0 5px rgba(255,140,40,.9)}
+.ip.phone{padding:4px;background:#1b1b1e;border-radius:20px;width:var(--pw)}
+.ip.phone .w{aspect-ratio:390/844;border-radius:16px}
+.ip.phone .d{display:none}
+.ip.old{filter:brightness(.55)}
+.ip.older{filter:brightness(.3)}
+.ip.suck{animation:none;left:50%;top:50%;opacity:0;filter:brightness(1.4);transform:translate(-50%,-50%) rotate(calc(var(--r) * 3)) scale(.06);transition:left .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),top .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),transform .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),opacity .5s ease-in calc(var(--sd,0s) + .12s)}
+.intro-fly{position:fixed;inset:0;z-index:501;display:grid;place-content:center;justify-items:center;gap:clamp(14px,3vw,24px);pointer-events:none}
+.iw{display:flex;align-items:flex-start;font-size:clamp(3.4rem,16vw,9rem);color:#fff;transform-origin:center;will-change:transform}
+.iw b{font-family:var(--f-word);font-weight:900;font-size:1.5em;letter-spacing:-.05em;line-height:1;display:inline-flex}
+.iw b span{display:inline-block;opacity:0;filter:blur(16px);transform:translateY(.22em) scale(1.08)}
+.iw.on b span{animation:ltr .8s var(--ease) both;animation-delay:calc(var(--k) * 80ms)}
+@keyframes ltr{to{opacity:1;filter:blur(0);transform:none}}
+.iw i{font-family:var(--f-serif);font-style:italic;font-size:.633em;color:var(--sub);margin:-.395em 0 0 .2em;opacity:0}
+.iw.on i{animation:fadeIn .9s .7s var(--ease) both}
+@keyframes fadeIn{to{opacity:1}}
+.intro-tag{color:rgba(255,255,255,.78);font-size:clamp(.85rem,2.6vw,1.05rem);letter-spacing:.08em;opacity:0;transition:opacity .6s}
+.intro-tag.on{opacity:1}
+.intro-tag.gone{opacity:0;transition-duration:.25s}
+.replay{margin-left:12px}
 .flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:300}
 .flash.go{animation:flash .5s ease-out}
 @keyframes flash{0%{opacity:.95}100%{opacity:0}}
@@ -313,6 +361,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 </style>
 </head>
 <body>
+<div class="intro" id="intro" role="presentation">
+  <div class="intro-stage" id="introStage" aria-hidden="true"></div>
+  <div class="intro-dot" id="introDot" aria-hidden="true"></div>
+  <div class="intro-bloom" id="introBloom" aria-hidden="true"></div>
+  <div class="intro-hud" id="introHud" aria-hidden="true"><span><i></i>REC · YESTERDAY</span><span id="introDate">'26 10 28</span></div>
+  <button class="intro-skip" id="introSkip" type="button">スキップ</button>
+</div>
+<div class="intro-fly" id="introFly" aria-hidden="true">
+  <div class="iw" id="introWord"><b><span style="--k:0">L</span><span style="--k:1">a</span><span style="--k:2">t</span><span style="--k:3">e</span><span style="--k:4">r</span></b><i>today</i></div>
+  <p class="intro-tag" id="introTag">今日を撮ると、昨日がひらく。</p>
+</div>
+<div class="intro-pool" hidden aria-hidden="true">
+  <img src="../assets/lp/pic-1.jpg" alt=""><img src="../assets/lp/pic-2.jpg" alt=""><img src="../assets/lp/pic-3.jpg" alt=""><img src="../assets/lp/pic-4.jpg" alt=""><img src="../assets/lp/pic-5.jpg" alt=""><img src="../assets/lp/pic-6.jpg" alt=""><img src="../assets/lp/pic-7.jpg" alt=""><img src="../assets/lp/pic-8.jpg" alt=""><img src="../assets/lp/pic-9.jpg" alt="">
+</div>
 <div class="grain" id="grain" aria-hidden="true"></div>
 <div class="flash" id="flash" aria-hidden="true"></div>
 
@@ -330,12 +392,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero" aria-labelledby="h-hero">
   <div class="hero-media" aria-hidden="true"><video id="heroVideo" src="../assets/lp/hero-friends.mp4" poster="../assets/lp/hero-friends.jpg" muted loop playsinline autoplay></video></div>
-  <div class="rec" aria-hidden="true"><div><i></i>REC · TODAY</div><div id="recStamp">'26 10 28 18:42</div></div>
+  <div class="rec ha" style="--d:.5s" aria-hidden="true"><div><i></i>REC · TODAY</div><div id="recStamp">'26 10 28 18:42</div></div>
   <div class="wrap">
-    <p class="mono" style="color:rgba(255,255,255,.75);margin-bottom:14px">1日3こまの、あしたに届くカメラ</p>
-    <h1 id="h-hero">今日を撮ると、<br><span class="circ draw">昨日<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>がひらく。</h1>
-    <p class="tagline">撮れるのは<b>1日3こまだけ</b>。撮った1枚は、ひと晩かけて現像されて<b>あしたの朝9:00</b>に仕上がる。友だちの昨日は、今日を撮った人にだけひらく。</p>
-    <div class="hero-cta">
+    <p class="mono ha" style="color:rgba(255,255,255,.75);margin-bottom:14px;--d:.15s">1日3こまの、あしたに届くカメラ</p>
+    <h1 id="h-hero" class="ha" style="--d:.25s">今日を撮ると、<br><span class="circ draw">昨日<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>がひらく。</h1>
+    <p class="tagline ha" style="--d:.45s">撮れるのは<b>1日3こまだけ</b>。撮った1枚は、ひと晩かけて現像されて<b>あしたの朝9:00</b>に仕上がる。友だちの昨日は、今日を撮った人にだけひらく。</p>
+    <div class="hero-cta ha" style="--d:.6s">
       <a class="btn btn-glow" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlightで先に使う</a>
       <a class="hand" href="#story" style="color:var(--peach);text-decoration:none">↓ アプリの中を見る</a>
     </div>
@@ -551,7 +613,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Later</span><span class="mono">TODAY ⇄ YESTERDAY</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Later<button class="link-btn replay" id="replayIntro" type="button">オープニングをもう一度</button></span><span class="mono">TODAY ⇄ YESTERDAY</span></div></footer>
 <p class="credit">動画素材: <a href="https://mixkit.co/free-stock-video/" target="_blank" rel="noopener">Mixkit</a>(Stock Video Free License)。画面は開発中のアプリのものです。</p>
 
 <p class="haps" id="haps" aria-live="polite"></p>
@@ -768,6 +830,138 @@ $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('
     if(reduce)return;
     vio&&vio.observe(v);
   });
+})();
+
+/* ---------- opening sequence: rewind through photos, land on "Later" ---------- */
+(function(){
+  var root=document.documentElement;
+  var intro=$('#intro'),fly=$('#introFly'),iw=$('#introWord'),stage=$('#introStage'),hud=$('#introHud'),hudDate=$('#introDate');
+  var bloom=$('#introBloom'),dot=$('#introDot'),tagEl=$('#introTag'),skipBtn=$('#introSkip');
+  var timers=[],irRaf=0,running=false,finished=true,primed=false;
+  function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t}
+  function clearAll(){timers.forEach(clearTimeout);timers=[];cancelAnimationFrame(irRaf)}
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+  function buzz(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+
+  function buildItems(){
+    var items=[];
+    $$('.intro-pool img').forEach(function(im){items.push({k:'img',src:im.getAttribute('src')})});
+    var clips=$$('.ytile video');
+    clips.forEach(function(v,i){
+      var poster=v.getAttribute('poster'),src=v.getAttribute('src');
+      items.push(i%2===0?{k:'vid',src:src,poster:poster}:{k:'img',src:poster});
+    });
+    var hs=$('.closing .bg img');if(hs)items.push({k:'img',src:hs.getAttribute('src')});
+    shuffle($$('.step-img')).slice(0,4).forEach(function(im){items.push({k:'phone',src:im.getAttribute('src')})});
+    items=shuffle(items).slice(0,18);
+    // keep at least one phone in the second half so the app shows up before the logo
+    return items;
+  }
+  function preload(items){
+    var jobs=items.filter(function(it){return it.k!=='vid'}).map(function(it){return new Promise(function(res){var im=new Image();im.onload=im.onerror=function(){res()};im.src=it.src;if(im.decode)im.decode().then(res,res)})});
+    return Promise.race([Promise.all(jobs),new Promise(function(r){setTimeout(r,2200)})]);
+  }
+
+  function spawn(it,i,n){
+    var p=i/(n-1),el=document.createElement('figure');
+    var vw=Math.min(window.innerWidth,1100),big=window.innerWidth>760?1.55:1;
+    var d=new Date(now);d.setDate(d.getDate()-1-Math.floor(i*1.7+Math.random()*2));
+    hudDate.textContent=stampOf(d);
+    el.className='ip'+(it.k==='phone'?' phone':'');
+    var x=14+((i*37+Math.random()*22)%72),y=24+((i*53+Math.random()*18)%52);
+    var w=Math.min(vw*.4,230)*big*(0.82+0.42*p)*rnd(.9,1.12);
+    el.style.setProperty('--x',x.toFixed(1)+'%');el.style.setProperty('--y',y.toFixed(1)+'%');
+    el.style.setProperty('--w',w.toFixed(0)+'px');
+    el.style.setProperty('--pw',(Math.min(vw*.27,150)*big).toFixed(0)+'px');
+    el.style.setProperty('--r',rnd(-13,13).toFixed(1)+'deg');
+    el.style.zIndex=String(i+1);
+    var inner;
+    if(it.k==='vid'){inner='<video muted loop playsinline autoplay poster="'+it.poster+'" src="'+it.src+'"></video>'}
+    else{inner='<img alt="" src="'+it.src+'">'}
+    el.innerHTML='<div class="w">'+inner+'</div><span class="d">'+stampOf(d)+'</span>';
+    stage.appendChild(el);
+    var v=el.querySelector('video');if(v){var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
+    var kids=stage.children;
+    if(kids.length>3)kids[kids.length-4].classList.add('old');
+    if(kids.length>7)kids[kids.length-8].classList.add('older');
+    buzz(6);
+  }
+
+  function hole(ms){
+    var t0=performance.now(),max=Math.hypot(window.innerWidth,window.innerHeight)/2+60;
+    function f(t){var q=Math.min(1,(t-t0)/ms),e=q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;intro.style.setProperty('--ir',(max*e).toFixed(1)+'px');if(q<1)irRaf=requestAnimationFrame(f)}
+    irRaf=requestAnimationFrame(f);
+  }
+  function flight(ms){
+    var tg=$('.top .logo').getBoundingClientRect(),r=iw.getBoundingClientRect();
+    var dx=(tg.left+tg.width/2)-(r.left+r.width/2),dy=(tg.top+tg.height/2)-(r.top+r.height/2),sc=tg.width/r.width;
+    iw.style.transition='transform '+ms+'ms cubic-bezier(.65,0,.25,1)';
+    iw.style.transform='translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale('+sc.toFixed(4)+')';
+  }
+  function finish(){
+    clearAll();clearTimeout(window.__ifs);
+    root.classList.add('logo-in');
+    requestAnimationFrame(function(){
+      intro.style.display='none';fly.style.display='none';
+      root.classList.remove('intro-on');root.classList.add('hero-go');
+      stage.innerHTML='';running=false;finished=true;
+    });
+  }
+  function exit(ms){
+    root.classList.add('hero-go');
+    tagEl.classList.add('gone');hud.classList.add('off');
+    if(reduce){intro.style.transition='opacity .5s';intro.style.opacity='0';fly.style.transition='opacity .5s';fly.style.opacity='0';later(finish,560);return}
+    flight(ms);hole(ms);later(finish,ms+80);
+  }
+  function showWord(){
+    iw.classList.add('on');
+    later(function(){tagEl.classList.add('on')},reduce?300:1000);
+    buzz([16,50,24]);
+  }
+  function collapse(){
+    dot.classList.add('off');
+    $$('.ip',stage).forEach(function(el){el.style.setProperty('--sd',(Math.random()*.16).toFixed(2)+'s');el.classList.add('suck')});
+    bloom.classList.add('go');
+    buzz([20,30,28]);
+    later(showWord,560);
+    later(function(){exit(950)},560+2350);
+  }
+  function montage(items){
+    var n=items.length,t=0;
+    items.forEach(function(it,i){
+      later(function(){spawn(it,i,n)},t);
+      t+=Math.max(60,270*Math.pow(.84,i));
+    });
+    later(collapse,t+420);
+  }
+  function skip(){
+    if(!running||finished)return;
+    clearAll();
+    stage.style.opacity='0';dot.classList.add('off');
+    iw.classList.add('on');tagEl.classList.add('on');
+    later(function(){exit(520)},260);
+  }
+  function run(){
+    running=true;finished=false;
+    root.classList.add('has-intro','intro-on');root.classList.remove('hero-go','logo-in');
+    intro.style.cssText='';fly.style.cssText='';iw.style.cssText='';iw.classList.remove('on');
+    tagEl.className='intro-tag';hud.classList.remove('off');dot.classList.remove('off');bloom.classList.remove('go');
+    stage.style.opacity='';stage.innerHTML='';
+    window.scrollTo({top:0,behavior:'instant'});
+    if(reduce){
+      dot.classList.add('off');hud.classList.add('off');
+      later(showWord,150);later(function(){exit(0)},1900);
+      return;
+    }
+    var items=buildItems();
+    preload(items).then(function(){if(!running||finished)return;later(function(){montage(items)},360)});
+  }
+  intro.addEventListener('click',skip);
+  skipBtn.addEventListener('click',function(e){e.stopPropagation();skip()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')skip()});
+  $('#replayIntro').addEventListener('click',function(){if(running)return;run()});
+  try{run()}catch(err){finish()}
 })();
 
 /* ---------- globe ---------- */
