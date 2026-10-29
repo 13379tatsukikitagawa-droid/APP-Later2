@@ -85,7 +85,7 @@ html.hero-go .hero .circ.draw path{animation:draw 1.2s .9s var(--ease) both}
 .hv.on video{animation:kb 7.4s linear forwards}
 @keyframes kb{from{transform:scale(1.06)}to{transform:scale(1.15)}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.6) 0%,rgba(10,10,11,.1) 26%,rgba(10,10,11,.18) 50%,rgba(10,10,11,.86) 86%,var(--ground) 100%)}
-.hero .wrap{width:100%;padding-block:clamp(110px,18vh,160px) clamp(58px,9vh,88px)}
+.hero .wrap{width:100%;padding-block:clamp(110px,18vh,160px) clamp(40px,7vh,72px)}
 .rec{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:calc(74px + env(safe-area-inset-top,0px));z-index:5;font-family:var(--f-mono);letter-spacing:.12em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9),0 0 16px rgba(255,120,30,.55);text-align:right;line-height:1.2}
 .rec .r1{font-size:.7rem}
 .rec .r1 i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-right:6px;box-shadow:0 0 10px #ff3b30;animation:rec 1.2s steps(2) infinite}
@@ -95,11 +95,6 @@ html.hero-go .hero .circ.draw path{animation:draw 1.2s .9s var(--ease) both}
 .hero h1{font-size:clamp(2.9rem,11.4vw,8.4rem);letter-spacing:-.06em;line-height:1.02;max-width:12em}
 .hero .tagline{margin-top:clamp(14px,2.6vw,22px);font-size:clamp(1rem,2.8vw,1.3rem);color:rgba(244,243,239,.9)}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:clamp(20px,4vw,30px)}
-.hero-bars{position:absolute;left:var(--gl);right:var(--gr);bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:5px;z-index:6}
-.hero-bars button{flex:1;border:0;background:none;padding:10px 0;cursor:pointer}
-.hero-bars button span{display:block;height:3px;border-radius:3px;background:rgba(255,255,255,.28);overflow:hidden}
-.hero-bars button i{display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
-.hero-bars button.done i{transform:scaleX(1)}
 html.has-intro .ha{opacity:0;transform:translateY(34px)}
 html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 
@@ -351,7 +346,6 @@ footer a:hover{color:var(--txt)}
       <a class="btn btn-glow" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlightで先に使う</a>
     </div>
   </div>
-  <div class="hero-bars ha" id="heroBars" style="--d:.7s"></div>
 </section>
 
 <!-- ========== DAY: a pinned scene, the phone turns through the day ========== -->
@@ -547,16 +541,13 @@ function holdable(el,ms,o){
 function play(v){if(!v)return;var p=v.play();if(p&&p.catch)p.catch(function(){})}
 
 /* ---------- hero: one day of clips, story-style bars ---------- */
-var hvs=$$('#heroMedia .hv'),hbars=$('#heroBars'),T=5400,hcur=0,helapsed=0,hlast=0,hvis=true,hprev=null;
-hvs.forEach(function(f,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label',f.getAttribute('data-l')+' '+f.getAttribute('data-t'));b.innerHTML='<span><i></i></span>';b.addEventListener('click',function(){hshow(i)});hbars.appendChild(b)});
-var hbtn=$$('button',hbars);
+var hvs=$$('#heroMedia .hv'),T=5400,hcur=0,helapsed=0,hlast=0,hvis=true,hprev=null;
 function hshow(i){
   var prev=hcur;hcur=i;helapsed=0;
   hvs.forEach(function(f,k){f.classList.toggle('on',k===i)});
   var nv=$('video',hvs[i]);try{nv.currentTime=0}catch(e){}
   if(!reduce)play(nv);
   if(prev!==i){var pv=$('video',hvs[prev]);clearTimeout(hprev);hprev=setTimeout(function(){if(hcur!==prev)pv.pause()},1400)}
-  hbtn.forEach(function(b,k){b.classList.toggle('done',k<i);$('i',b).style.transform=k<i?'':'scaleX(0)'});
   $('#recClock').textContent=hvs[i].getAttribute('data-t');
   $('#recLab').textContent=hvs[i].getAttribute('data-l');
 }
@@ -565,7 +556,6 @@ function hloop(t){
   var run=root.classList.contains('hero-go')&&hvis&&!document.hidden&&!reduce;
   if(run){
     helapsed+=dt;
-    $('i',hbtn[hcur]).style.transform='scaleX('+clamp(helapsed/T,0,1).toFixed(3)+')';
     if(helapsed>=T)hshow((hcur+1)%hvs.length);
   }
   requestAnimationFrame(hloop);
