@@ -196,7 +196,6 @@ html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),tran
 .sec .mono.k{display:block;color:var(--stamp);margin-bottom:12px}
 .ygrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:26px;position:relative;max-width:620px;margin-inline:auto}
 @media (min-width:720px){.ygrid{gap:14px}}
-.ytile{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:var(--well)}
 .ytile video{width:100%;height:100%;object-fit:cover;filter:blur(24px) saturate(.2) brightness(.8);transform:scale(1.15);transition:filter 1.6s var(--ease),transform 2s var(--ease)}
 .ytile .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),transparent 30%,transparent 55%,rgba(0,0,0,.72));opacity:0;transition:opacity .8s}
 .ytile .inf{position:absolute;left:9px;right:9px;bottom:8px;color:#fff;opacity:0;transform:translateY(8px);transition:all .8s var(--ease);line-height:1.3}
@@ -324,7 +323,72 @@ html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),tran
 .orb-lab b{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.3em;font-weight:700;opacity:.85}
 .orb-lab em{font-style:normal;font-weight:900;font-size:1rem;margin-top:3px}
 .ygrid.holding .ytile video{transition:filter .12s linear,transform .12s linear;filter:blur(calc(24px - var(--pk,0) * 16px)) saturate(calc(.2 + var(--pk,0) * .6)) brightness(calc(.8 + var(--pk,0) * .25));transform:scale(calc(1.15 - var(--pk,0) * .08))}
-.ygrid.holding::after{content:"";position:absolute;inset:-30px;border-radius:30px;pointer-events:none;box-shadow:0 0 calc(var(--pk,0) * 90px) rgba(255,176,120,.35)}
+
+
+/* ---------- open yesterday: a frosted wall that wakes up ---------- */
+.ow{position:relative;min-height:100svh;display:flex;align-items:center;padding-block:92px 44px;overflow:hidden;isolation:isolate;background:#050506}
+.ow-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.ow-bg i{position:absolute;left:50%;top:58%;width:130vmax;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,150,100,.2),rgba(150,110,255,.12) 30%,transparent 55%);animation:aura 7s ease-in-out infinite}
+@keyframes aura{50%{scale:1.12;opacity:.65}}
+.ow .wrap{width:100%}
+.ow h2{font-size:clamp(2.1rem,8.4vw,4.2rem)}
+.ow-stage{perspective:1100px;perspective-origin:50% 40%;margin-top:34px;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .35s var(--ease)}
+.ow .ygrid{max-width:600px;gap:12px;margin-top:0;transform-style:preserve-3d;transform:translateZ(calc(var(--pk,0) * 120px)) rotateX(calc(var(--pk,0) * -4deg));transition:transform .14s linear;animation:wsway 9s ease-in-out infinite}
+@keyframes wsway{0%,100%{rotate:0 1 0 -3deg}50%{rotate:0 1 0 3deg}}
+.ytile{position:relative;aspect-ratio:3/4;transform-style:preserve-3d;transform:translateZ(calc(var(--tz,0px) + var(--pk,0) * var(--pz,50px))) rotateY(var(--ry,0deg));animation:tfloat 5.2s ease-in-out infinite;animation-delay:var(--fd,0s);transition:transform .14s linear,opacity 1s var(--ease) calc(var(--d,0s) * 1.6),scale 1s var(--ease) calc(var(--d,0s) * 1.6)}
+.ow:not(.in) .ytile{opacity:0;scale:.82}
+@keyframes tfloat{50%{translate:0 -7px}}
+@keyframes tpop{40%{scale:1.07}}
+.ytile:nth-child(1){--ry:15deg;--tz:-10px;--fd:0s;--d:.16s;--pz:40px}
+.ytile:nth-child(2){--ry:0deg;--tz:-50px;--fd:-1.2s;--d:0s;--pz:80px}
+.ytile:nth-child(3){--ry:-15deg;--tz:-10px;--fd:-2.4s;--d:.16s;--pz:40px}
+.ytile:nth-child(4){--ry:15deg;--tz:-10px;--fd:-3.2s;--d:.22s;--pz:40px}
+.ytile:nth-child(5){--ry:0deg;--tz:-50px;--fd:-.6s;--d:.06s;--pz:80px}
+.ytile:nth-child(6){--ry:-15deg;--tz:-10px;--fd:-1.8s;--d:.22s;--pz:40px}
+.ygrid.open .ytile{animation:tpop .9s var(--ease) var(--d) both,tfloat 5.2s ease-in-out infinite;animation-delay:var(--d),var(--fd);cursor:pointer}
+.ygrid.open .ytile:hover{--pk:.35}
+.tc{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:var(--well);box-shadow:0 26px 54px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
+.ytile video{transition:filter 1.4s var(--ease) var(--d,0s),transform 1.8s var(--ease) var(--d,0s)}
+.tglow{position:absolute;inset:5%;border-radius:22px;background:var(--poster) center/cover;filter:blur(30px) saturate(1.8);opacity:.5;transform:translateZ(-28px) scale(1.2);pointer-events:none;transition:opacity 1.4s var(--ease) var(--d,0s)}
+.ygrid.open .tglow{opacity:.9}
+.lk{position:absolute;inset:0;z-index:3;display:grid;place-items:start end;padding:11px;pointer-events:none;transition:opacity .9s var(--ease) var(--d,0s)}
+.lk::before{content:"";position:absolute;inset:0;background:linear-gradient(112deg,transparent 28%,rgba(255,255,255,.22) 48%,transparent 66%);background-size:260% 100%;animation:lsweep 3.8s ease-in-out infinite;animation-delay:var(--fd,0s)}
+@keyframes lsweep{0%{background-position:130% 0}60%,100%{background-position:-60% 0}}
+.lk svg{position:relative;width:19px;height:19px;opacity:.85}
+.ygrid.holding .lk::before{animation-duration:1.1s}
+.ygrid.open .lk{opacity:0}
+.ow .ygrid,.ow .lock{pointer-events:none}
+.ow .ytile,.ow .orb{pointer-events:auto}
+.ygrid.open .orb{pointer-events:none}
+.ow .lock{transform:translateZ(170px)}
+.ow .lock::before{content:"";position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(255,200,140,.4),transparent 18%,transparent 50%,rgba(200,150,255,.34),transparent 68%);filter:blur(34px);opacity:calc(var(--pk,0) * .95);animation:spin 5s linear infinite;pointer-events:none;z-index:-1}
+.ow .link-btn{display:inline-flex;margin-top:22px;border:1px solid var(--line);border-radius:999px;padding:8px 18px;text-decoration:none;color:var(--txt);background:rgba(20,20,22,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ow .link-btn[hidden]{display:none}
+
+/* ---------- print viewer ---------- */
+.vwr{position:fixed;inset:0;z-index:410;display:grid;place-items:center;touch-action:pan-y}
+.vwr[hidden]{display:none}
+.vwr:focus{outline:none}
+.vwr-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(60,40,40,.55),rgba(5,5,6,.92));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;transition:opacity .4s}
+.vwr.show .vwr-bg{opacity:1}
+.vwr-stage{position:relative;perspective:1000px}
+.vwr-card{position:relative;margin:0;width:min(78vw,58svh,420px);background:var(--print);border-radius:6px;padding:12px 12px 52px;box-shadow:0 50px 90px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.2) inset;color:#6b6860;transform:translateY(40px) scale(.84) rotate(-5deg);opacity:0;transition:transform .7s var(--ease),opacity .5s;will-change:transform}
+.vwr.show .vwr-card{transform:rotateX(var(--vx,0deg)) rotateY(var(--vy,0deg));opacity:1}
+.vwr-card.sl-l{transition:transform .2s ease-in,opacity .2s;transform:translateX(-60px) rotate(-6deg)!important;opacity:0!important}
+.vwr-card.sl-r{transition:transform .2s ease-in,opacity .2s;transform:translateX(60px) rotate(6deg)!important;opacity:0!important}
+.vwr-win{position:relative;aspect-ratio:3/4;overflow:hidden;background:#111}
+.vwr-win video{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.1)}
+.vwr-win::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.35)),linear-gradient(calc(120deg + var(--vy,0deg) * 4),rgba(255,255,255,.2),transparent 40%);pointer-events:none}
+.vwr-card .stamp{opacity:1;right:22px;top:22px;bottom:auto;font-size:.7rem}
+.vwr-card figcaption{position:absolute;left:16px;right:16px;bottom:13px;display:flex;justify-content:space-between;align-items:baseline}
+.vwr-card figcaption b{font-family:var(--f-hand);font-size:1.15rem;font-weight:600;color:#4f4c45}
+.vwr-card figcaption .mono{font-size:.62rem}
+.vwr-x,.vwr-nav{position:absolute;z-index:3;border:1px solid var(--line);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;border-radius:50%;width:46px;height:46px;font-size:1.5rem;line-height:1;cursor:pointer}
+.vwr-x{right:max(16px,env(safe-area-inset-right,0px));top:calc(16px + env(safe-area-inset-top,0px))}
+.vwr-nav.prev{left:max(14px,2vw);top:50%;margin-top:-23px}
+.vwr-nav.next{right:max(14px,2vw);top:50%;margin-top:-23px}
+.vwr-idx{position:absolute;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--sub);z-index:3}
+@media (max-width:640px){.vwr-nav{top:auto;bottom:calc(14px + env(safe-area-inset-bottom,0px));margin:0}.vwr-nav.prev{left:18px}.vwr-nav.next{right:18px}}
 
 /* ---------- closing ---------- */
 .closing{position:relative;text-align:center;overflow:hidden;isolation:isolate;padding-block:clamp(72px,12vw,130px)}
@@ -501,17 +565,19 @@ footer a:hover{color:var(--txt)}
 </section>
 
 <!-- ========== OPEN YESTERDAY ========== -->
-<section class="sec" aria-labelledby="h-open" style="padding-bottom:36px">
+<section class="ow" id="open" aria-labelledby="h-open">
+  <div class="ow-bg" aria-hidden="true"><i></i></div>
   <div class="wrap" style="text-align:center">
     <span class="mono k">月を長押し</span>
     <h2 id="h-open">撮ったら、ひらく。</h2>
+    <div class="ow-stage" id="owStage">
     <div class="ygrid" id="ygrid">
-      <div class="ytile"><video src="../assets/lp/clip-42306.mp4" poster="../assets/lp/clip-42306.jpg" muted loop playsinline aria-label="ドーナツ柄の壁の前で帽子をかぶる女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あおぞら</b><span class="mono">7:42</span></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-40028.mp4" poster="../assets/lp/clip-40028.jpg" muted loop playsinline aria-label="2人で自撮りする友だち"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>つむぎ</b><span class="mono">16:20</span></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-42313.mp4" poster="../assets/lp/clip-42313.jpg" muted loop playsinline aria-label="レトロなダイナーでふざける2人"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ほたる</b><span class="mono">19:05</span></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-51252.mp4" poster="../assets/lp/clip-51252.jpg" muted loop playsinline aria-label="カメラ越しに笑う女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ひなた</b><span class="mono">12:10</span></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-42308.mp4" poster="../assets/lp/clip-42308.jpg" muted loop playsinline aria-label="虹色の傘で自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>しずく</b><span class="mono">17:31</span></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-41181.mp4" poster="../assets/lp/clip-41181.jpg" muted loop playsinline aria-label="朝、コーヒーを持って自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あなた</b><span class="mono">7:05</span></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-42306.mp4" poster="../assets/lp/clip-42306.jpg" muted loop playsinline aria-label="ドーナツ柄の壁の前で帽子をかぶる女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あおぞら</b><span class="mono">7:42</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-40028.mp4" poster="../assets/lp/clip-40028.jpg" muted loop playsinline aria-label="2人で自撮りする友だち"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>つむぎ</b><span class="mono">16:20</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-42313.mp4" poster="../assets/lp/clip-42313.jpg" muted loop playsinline aria-label="レトロなダイナーでふざける2人"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ほたる</b><span class="mono">19:05</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-51252.mp4" poster="../assets/lp/clip-51252.jpg" muted loop playsinline aria-label="カメラ越しに笑う女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ひなた</b><span class="mono">12:10</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-42308.mp4" poster="../assets/lp/clip-42308.jpg" muted loop playsinline aria-label="虹色の傘で自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>しずく</b><span class="mono">17:31</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
+      <div class="ytile"><i class="tglow"></i><div class="tc"><video src="../assets/lp/clip-41181.mp4" poster="../assets/lp/clip-41181.jpg" muted loop playsinline aria-label="朝、コーヒーを持って自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あなた</b><span class="mono">7:05</span></div><div class="lk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
       <div class="lock" id="lock">
         <div class="bloom" id="bloom"></div>
         <div class="orb-wrap" id="orbWrap">
@@ -525,9 +591,20 @@ footer a:hover{color:var(--txt)}
         </div>
       </div>
     </div>
-    <p style="margin-top:8px"><button class="link-btn" id="closeY" type="button" hidden>もういちど、閉じる</button></p>
+    </div>
+    <p style="margin-top:0"><button class="link-btn" id="closeY" type="button" hidden>もういちど、閉じる</button></p>
   </div>
 </section>
+
+
+<div class="vwr" id="viewer" tabindex="-1" role="dialog" aria-modal="true" aria-label="昨日の1枚" hidden>
+  <div class="vwr-bg" id="vwrBg"></div>
+  <div class="vwr-stage" id="vwrStage"><figure class="vwr-card" id="vwrCard"><div class="vwr-win"><video muted loop playsinline></video></div><span class="stamp vwr-stamp"></span><figcaption id="vwrCap"></figcaption></figure></div>
+  <button class="vwr-x" id="vwrX" type="button" aria-label="閉じる">×</button>
+  <button class="vwr-nav prev" id="vwrPrev" type="button" aria-label="前の写真">‹</button>
+  <button class="vwr-nav next" id="vwrNext" type="button" aria-label="次の写真">›</button>
+  <p class="mono vwr-idx" id="vwrIdx"></p>
+</div>
 
 <!-- ========== MONDO: from the globe into the world ========== -->
 <section class="mn" id="mondo" aria-labelledby="h-mondo">
@@ -828,7 +905,19 @@ hshow(0);requestAnimationFrame(hloop);
   var NT=60,tk=[];
   for(var i=0;i<NT;i++){var a=i/NT*Math.PI*2-Math.PI/2,l=document.createElementNS('http://www.w3.org/2000/svg','line');
     l.setAttribute('x1',(92+Math.cos(a)*80).toFixed(1));l.setAttribute('y1',(92+Math.sin(a)*80).toFixed(1));l.setAttribute('x2',(92+Math.cos(a)*88).toFixed(1));l.setAttribute('y2',(92+Math.sin(a)*88).toFixed(1));ticks.appendChild(l);tk.push(l)}
-  var parts=[],holdP=0,holding=false,fxRaf=0,fxLast=0,lit=0;
+  var parts=[],holdP=0,holding=false,fxRaf=0,fxLast=0,lit=0,tone=null;
+  function toneStart(){
+    if(!hapOn||reduce)return;
+    try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')actx.resume();
+      var o=actx.createOscillator(),o2=actx.createOscillator(),g=actx.createGain();o.type='sine';o2.type='triangle';g.gain.value=.0001;
+      o.connect(g);o2.connect(g);g.connect(actx.destination);o.start();o2.start();tone={o:o,o2:o2,g:g}}catch(e){tone=null}
+  }
+  function toneSet(p){if(!tone)return;var t=actx.currentTime,f=150+p*430;tone.o.frequency.setTargetAtTime(f,t,.05);tone.o2.frequency.setTargetAtTime(f*1.5,t,.05);tone.g.gain.setTargetAtTime(.012+p*.04,t,.05)}
+  function toneStop(chime){
+    if(!tone)return;var t=actx.currentTime,tn=tone;tone=null;tn.g.gain.setTargetAtTime(.0001,t,.06);
+    setTimeout(function(){try{tn.o.stop();tn.o2.stop()}catch(e){}},300);
+    if(chime){try{[880,1320,1760].forEach(function(fr,k){var o=actx.createOscillator(),g=actx.createGain();o.type='sine';o.frequency.value=fr;g.gain.setValueAtTime(.0001,t+k*.07);g.gain.exponentialRampToValueAtTime(.05,t+k*.07+.02);g.gain.exponentialRampToValueAtTime(.0001,t+k*.07+.9);o.connect(g);g.connect(actx.destination);o.start(t+k*.07);o.stop(t+k*.07+1)})}catch(e){}}
+  }
   var COL=['255,208,138','255,158,138','200,123,255','255,255,255','123,214,255'];
   function ytiles(on){$$('.ytile video',yg).forEach(function(v){if(on)play(v);else v.pause()})}
   function spawnIn(){var a=Math.random()*Math.PI*2,r=170+Math.random()*20;parts.push({x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,a:a,r:r,life:1,sz:1.2+Math.random()*1.8,c:COL[Math.floor(Math.random()*COL.length)],mode:0})}
@@ -854,20 +943,52 @@ hshow(0);requestAnimationFrame(hloop);
   }
   holdable(orb,1500,{
     progress:function(p){
-      if(!holding){holding=true;wrap.classList.add('holding');yg.classList.add('holding');ytiles(true);fxOn()}
-      setP(p);
+      if(!holding){holding=true;wrap.classList.add('holding');yg.classList.add('holding');ytiles(true);fxOn();toneStart()}
+      setP(p);toneSet(p);
     },
     tickEvery:function(p){return 240-170*p},
     tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(5+44*p))}catch(e){}},
     done:function(){
-      holding=false;setP(1);burst();fxOn();
+      holding=false;setP(1);burst();fxOn();toneStop(true);
       var b=$('#bloom');b.classList.remove('go');void b.offsetWidth;b.classList.add('go');
       hap('open');
       setTimeout(function(){yg.classList.remove('holding');yg.classList.add('open');$('#closeY').hidden=false;wrap.classList.remove('holding');if(!reduce)ytiles(true);setP(0)},300);
     },
-    cancel:function(){holding=false;wrap.classList.remove('holding');yg.classList.remove('holding');setP(0);if(!yg.classList.contains('open'))ytiles(false);hap('soft2')}
+    cancel:function(){holding=false;toneStop(false);wrap.classList.remove('holding');yg.classList.remove('holding');setP(0);if(!yg.classList.contains('open'))ytiles(false);hap('soft2')}
   });
   $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('#closeY').hidden=true;ytiles(false);hap('tap')});
+})();
+
+/* ---------- the wall: wake-up on view, pointer tilt, print viewer ---------- */
+(function(){
+  var ow=$('#open'),yg=$('#ygrid'),stage=$('#owStage'),tiles=$$('.ytile',yg);
+  var vw=$('#viewer'),card=$('#vwrCard'),vv=$('video',card),cap=$('#vwrCap'),idx=$('#vwrIdx'),cur=0,isOpen=false,busy=false;
+  tiles.forEach(function(t){var p=$('video',t).getAttribute('poster');if(p)t.style.setProperty('--poster','url("'+p+'")')});
+  if(reduce||!('IntersectionObserver' in window))ow.classList.add('in');
+  else new IntersectionObserver(function(es,o){if(es[0].isIntersecting){ow.classList.add('in');o.disconnect()}},{threshold:.3}).observe(ow);
+  if(!reduce&&window.matchMedia('(hover:hover)').matches){
+    ow.addEventListener('pointermove',function(e){var r=ow.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;stage.style.setProperty('--tx',(-y*7).toFixed(2)+'deg');stage.style.setProperty('--ty',(x*9).toFixed(2)+'deg')});
+    ow.addEventListener('pointerleave',function(){stage.style.setProperty('--tx','0deg');stage.style.setProperty('--ty','0deg')});
+  }
+  function fill(i){
+    var t=tiles[i],v=$('video',t);vv.src=v.getAttribute('src');vv.poster=v.getAttribute('poster')||'';
+    cap.innerHTML='<b>'+$('.inf b',t).textContent+'</b><span class="mono">'+$('.inf .mono',t).textContent+'</span>';
+    $('.vwr-stamp',card).textContent=$('.stamp',t).textContent;idx.textContent=(i+1)+' / '+tiles.length;play(vv);
+  }
+  function show(i){cur=i;fill(i);vw.hidden=false;void vw.offsetWidth;vw.classList.add('show');root.style.overflow='hidden';isOpen=true;hap('tap',true);vw.focus({preventScroll:true})}
+  function hide(){if(!isOpen)return;isOpen=false;vw.classList.remove('show');root.style.overflow='';vv.pause();setTimeout(function(){if(!isOpen)vw.hidden=true},reduce?10:450)}
+  function go(d){
+    if(busy)return;busy=true;card.classList.add(d>0?'sl-l':'sl-r');hap('tap',true);
+    setTimeout(function(){cur=(cur+d+tiles.length)%tiles.length;fill(cur);card.classList.remove('sl-l','sl-r');card.style.transition='none';card.style.transform=d>0?'translateX(60px) rotate(6deg)':'translateX(-60px) rotate(-6deg)';card.style.opacity='0';void card.offsetWidth;card.style.transition='';card.style.transform='';card.style.opacity='';busy=false},reduce?10:210);
+  }
+  tiles.forEach(function(t,i){t.addEventListener('click',function(){if(yg.classList.contains('open'))show(i)})});
+  $('#vwrX').addEventListener('click',hide);$('#vwrBg').addEventListener('click',hide);
+  $('#vwrPrev').addEventListener('click',function(){go(-1)});$('#vwrNext').addEventListener('click',function(){go(1)});
+  document.addEventListener('keydown',function(e){if(!isOpen)return;if(e.key==='Escape')hide();if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+  var sx=null;
+  vw.addEventListener('pointerdown',function(e){sx=e.clientX});
+  vw.addEventListener('pointerup',function(e){if(sx==null)return;var dx=e.clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1)});
+  if(!reduce)vw.addEventListener('pointermove',function(e){if(!isOpen||busy)return;var x=e.clientX/window.innerWidth-.5,y=e.clientY/window.innerHeight-.5;card.style.setProperty('--vy',(x*14).toFixed(2)+'deg');card.style.setProperty('--vx',(-y*12).toFixed(2)+'deg')});
 })();
 
 /* ---------- mondo: dive from the globe into a ring of world prints ---------- */
