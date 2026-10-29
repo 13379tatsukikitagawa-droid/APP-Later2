@@ -6,12 +6,12 @@
 <title>Later</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="1日3こま。今日を撮ると、昨日がひらく。撮った1枚は、あしたの朝に仕上がるカメラアプリ Later。">
-<script>document.documentElement.classList.add('has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},12000);</script>
+<script>document.documentElement.classList.add('has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},14000);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Instrument+Serif:ital@1&family=Space+Mono:wght@400;700&family=Klee+One:wght@600&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
 <style>
-/* Layout: dark stage like a camera roll in a dim room; the app's white phone screens and paper-white prints are the only bright things. One orange (the date stamp) carries all emphasis. */
+/* Layout: one day, top to bottom. Dark stage like a camera roll in a dim room; the only bright things are the app screens and the paper-white prints. One orange (the date stamp) carries all emphasis. */
 :root{
   --ground:#0a0a0b;
   --card:#161618;
@@ -23,24 +23,20 @@
   --stamp:#ff7a1a;
   --peach:#ffb078;
   --rose:#ff8fa0;
-  --sun:#ffd23f;
-  --squig:#3d7bff;
-  --flower:#ff5aa0;
   --print:#f8f5ee;
-  --print-ink:#7d7a72;
   --f-body:'Zen Kaku Gothic New','Hiragino Sans','Noto Sans JP',system-ui,sans-serif;
   --f-word:'Inter','Helvetica Neue',Arial,sans-serif;
   --f-serif:'Instrument Serif','Times New Roman',serif;
   --f-mono:'Space Mono',ui-monospace,Menlo,monospace;
   --f-hand:'Klee One','Hiragino Maru Gothic ProN',cursive;
   --ease:cubic-bezier(.22,.8,.24,1);
-  --gl:max(16px, env(safe-area-inset-left, 0px));
-  --gr:max(16px, env(safe-area-inset-right, 0px));
+  --gl:max(18px, env(safe-area-inset-left, 0px));
+  --gr:max(18px, env(safe-area-inset-right, 0px));
   color-scheme:dark;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;background:var(--ground)}
-body{margin:0;background:var(--ground);color:var(--txt);font-family:var(--f-body);font-weight:500;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ground);color:var(--txt);font-family:var(--f-body);font-weight:500;line-height:1.7;-webkit-font-smoothing:antialiased}
 img,video{max-width:100%;display:block}
 button{font:inherit;color:inherit}
 a{color:inherit}
@@ -49,7 +45,6 @@ h1,h2,h3{font-family:var(--f-body);font-weight:900;letter-spacing:-.045em;line-h
 :focus-visible{outline:2px solid var(--stamp);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1180px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
 .mono{font-family:var(--f-mono);letter-spacing:.14em;font-size:.72rem;text-transform:uppercase}
-.hand{font-family:var(--f-hand);font-weight:600}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:600;opacity:.22;mix-blend-mode:overlay;background-size:180px 180px}
 
 /* ---------- header ---------- */
@@ -66,17 +61,13 @@ html.intro-on,html.intro-on body{overflow:hidden;height:100%}
 .chip-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(20,20,22,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:999px;padding:7px 12px;font-size:.78rem;cursor:pointer;white-space:nowrap}
 .chip-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--sub)}
 .chip-btn[aria-pressed="true"] .dot{background:var(--stamp);box-shadow:0 0 8px var(--stamp)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font-weight:700;font-size:.98rem;text-decoration:none;cursor:pointer;transition:transform .15s var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font-weight:700;font-size:.98rem;text-decoration:none;cursor:pointer;transition:transform .15s var(--ease)}
 .btn:active{transform:scale(.97)}
 .btn-white{background:var(--paper);color:#111}
 .btn-sm{padding:8px 14px;font-size:.8rem}
 .btn-glow{background:linear-gradient(90deg,var(--peach),var(--rose));color:#1a0d08;box-shadow:0 10px 34px color-mix(in srgb,var(--rose) 40%,transparent)}
 
-/* ---------- stickers (from the app) ---------- */
-.stk{position:absolute;pointer-events:none;z-index:3}
-.float{animation:float 6s ease-in-out infinite}
-.float.d2{animation-delay:-2s}.float.d3{animation-delay:-4s}
-@keyframes float{50%{transform:translateY(-8px) rotate(6deg)}}
+/* ---------- hand-drawn circle ---------- */
 .circ{position:relative;display:inline-block;white-space:nowrap}
 .circ svg{position:absolute;left:-12%;top:-18%;width:124%;height:136%;overflow:visible;pointer-events:none}
 .circ path{fill:none;stroke:var(--stamp);stroke-width:2.8;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0}
@@ -85,249 +76,173 @@ html.has-intro:not(.hero-go) .hero .circ path{stroke-dashoffset:420}
 html.hero-go .hero .circ.draw path{animation:draw 1.2s .9s var(--ease) both}
 @keyframes draw{from{stroke-dashoffset:420}}
 
-/* ---------- prints ---------- */
-.print{position:relative;background:var(--print);border-radius:5px;padding:9px 9px 34px;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 22px 50px rgba(0,0,0,.55);color:var(--print-ink)}
-.print .win{position:relative;overflow:hidden;background:#101012;aspect-ratio:3/4}
-.print .win img,.print .win video{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.08) sepia(.06)}
-.print .win::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.35) 100%),linear-gradient(135deg,rgba(255,255,255,.16),transparent 40%);pointer-events:none}
-.print .cap{position:absolute;left:10px;right:10px;bottom:9px;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em}
-.print .cap .hw{font-family:var(--f-hand);font-size:.82rem;letter-spacing:0;color:#5b5850}
-.tape{position:absolute;left:50%;top:-12px;width:58px;height:20px;transform:translateX(-50%) rotate(-3deg);background:repeating-linear-gradient(90deg,rgba(255,214,90,.88) 0 6px,rgba(255,226,130,.88) 6px 12px);box-shadow:0 1px 2px rgba(0,0,0,.2);z-index:2}
-.stamp{position:absolute;right:16px;bottom:42px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;color:#ff8a2a;text-shadow:0 0 5px rgba(255,140,40,.9),0 0 12px rgba(255,120,30,.5);z-index:2}
-.milk{position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.75),rgba(246,242,234,.95) 70%);z-index:1}
-
-/* ---------- hero (full-bleed video, giant type) ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+/* ---------- hero: a day of full-bleed clips ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:#050506}
 .hero-media{position:absolute;inset:0;z-index:-2}
-.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.05)}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,rgba(10,10,11,.12) 28%,rgba(10,10,11,.2) 52%,rgba(10,10,11,.88) 88%,var(--ground) 100%)}
-.hero .wrap{width:100%;padding-block:clamp(110px,18vh,160px) clamp(40px,9vh,84px)}
-.rec{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:calc(78px + env(safe-area-inset-top,0px));z-index:5;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9),0 0 16px rgba(255,120,30,.55);text-align:right;line-height:1.7}
-.rec i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-right:6px;box-shadow:0 0 10px #ff3b30;animation:rec 1.2s steps(2) infinite}
+.hv{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
+.hv.on{opacity:1}
+.hv video{width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);filter:saturate(1.15) contrast(1.05);transform:scale(1.06)}
+.hv.on video{animation:kb 7.4s linear forwards}
+@keyframes kb{from{transform:scale(1.06)}to{transform:scale(1.15)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.6) 0%,rgba(10,10,11,.1) 26%,rgba(10,10,11,.18) 50%,rgba(10,10,11,.86) 86%,var(--ground) 100%)}
+.hero .wrap{width:100%;padding-block:clamp(110px,18vh,160px) clamp(58px,9vh,88px)}
+.rec{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:calc(74px + env(safe-area-inset-top,0px));z-index:5;font-family:var(--f-mono);letter-spacing:.12em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9),0 0 16px rgba(255,120,30,.55);text-align:right;line-height:1.2}
+.rec .r1{font-size:.7rem}
+.rec .r1 i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-right:6px;box-shadow:0 0 10px #ff3b30;animation:rec 1.2s steps(2) infinite}
+.rec .clock{font-size:clamp(1.9rem,8vw,3rem);font-weight:700;letter-spacing:.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.rec .lab{font-family:var(--f-body);font-size:.82rem;letter-spacing:.2em;color:rgba(255,255,255,.85);text-shadow:none;margin-top:2px}
 @keyframes rec{50%{opacity:.15}}
 .hero h1{font-size:clamp(2.9rem,11.4vw,8.4rem);letter-spacing:-.06em;line-height:1.02;max-width:12em}
-.hero .tagline{margin-top:clamp(16px,3vw,26px);font-size:clamp(1rem,2.8vw,1.3rem);color:rgba(244,243,239,.88);max-width:30em}
-.hero .tagline b{color:#fff}
-.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:clamp(22px,4vw,34px)}
-.hero-cta .hand{color:var(--peach);font-size:1.05rem}
-.film{display:flex;align-items:center;gap:6px}
-.film i{width:12px;height:16px;border-radius:3px;border:1.5px dashed var(--sub)}
-.film i.used{background:var(--txt);border:1.5px solid var(--txt)}
-.film span{margin-left:6px;color:var(--sub)}
-.hero-media video{transform:scale(1.14)}
-html.hero-go .hero-media video{transform:none;transition:transform 2.6s var(--ease)}
+.hero .tagline{margin-top:clamp(14px,2.6vw,22px);font-size:clamp(1rem,2.8vw,1.3rem);color:rgba(244,243,239,.9)}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:clamp(20px,4vw,30px)}
+.hero-bars{position:absolute;left:var(--gl);right:var(--gr);bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:5px;z-index:6}
+.hero-bars button{flex:1;border:0;background:none;padding:10px 0;cursor:pointer}
+.hero-bars button span{display:block;height:3px;border-radius:3px;background:rgba(255,255,255,.28);overflow:hidden}
+.hero-bars button i{display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+.hero-bars button.done i{transform:scaleX(1)}
 html.has-intro .ha{opacity:0;transform:translateY(34px)}
 html.hero-go .ha{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
-.scroll-cue{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.65rem}
-@media (max-width:879px){.scroll-cue{display:none}}
 
-/* ---------- ticker ---------- */
-.ticker-wrap{overflow:clip;position:relative;z-index:2}
-.ticker{background:var(--paper);color:#111;transform:rotate(-2deg);margin:clamp(30px,6vw,56px) -20px 0;overflow:hidden;padding-block:12px;position:relative;z-index:2}
-.ticker-track{display:flex;width:max-content;animation:tick 34s linear infinite}
-.ticker-track span{padding-right:2.2em;white-space:nowrap;font-family:var(--f-mono);font-size:.82rem;letter-spacing:.16em}
-@keyframes tick{to{transform:translateX(-50%)}}
+/* ---------- a day: pinned scene ---------- */
+.day{position:relative;background:#050506}
+.day-track{position:relative;height:420svh}
+.day-stick{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate}
+.dbg{position:absolute;inset:0;z-index:-3;opacity:0;transition:opacity 1.2s ease;margin:0}
+.dbg.on{opacity:1}
+.dbg video{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) brightness(.7)}
+.day-stick::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,rgba(10,10,11,0) 0%,rgba(10,10,11,.62) 82%),linear-gradient(180deg,rgba(10,10,11,.6),transparent 22%,transparent 55%,rgba(10,10,11,.9))}
+.day-clock{position:absolute;left:var(--gl);top:calc(76px + env(safe-area-inset-top,0px));z-index:3;font-family:var(--f-mono);font-variant-numeric:tabular-nums;line-height:1}
+.day-clock b{display:block;font-size:clamp(2.4rem,10vw,4.4rem);letter-spacing:-.02em;font-weight:700}
+.day-clock span{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.2em;color:var(--stamp);text-transform:uppercase}
+.day-nav{position:absolute;right:var(--gr);top:calc(82px + env(safe-area-inset-top,0px));z-index:4;display:flex;gap:8px}
+.day-nav button{border:1px solid var(--line);background:rgba(20,20,22,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--sub);border-radius:999px;padding:5px 12px;font-size:.74rem;cursor:pointer;transition:all .3s}
+.day-nav button.on{background:var(--paper);color:#111;border-color:var(--paper)}
+.day-copy{position:absolute;left:var(--gl);right:var(--gr);bottom:calc(7svh + env(safe-area-inset-bottom,0px));height:8.4rem;z-index:3}
+.dc{position:absolute;left:0;right:0;bottom:0;opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .7s var(--ease);pointer-events:none}
+.dc.on{opacity:1;transform:none;pointer-events:auto}
+.dc .mono{color:var(--stamp);display:block;margin-bottom:8px}
+.dc h2{font-size:clamp(1.9rem,8.4vw,3.8rem)}
+.dc p.s{margin-top:8px;color:rgba(244,243,239,.78);font-size:clamp(.95rem,2.6vw,1.1rem)}
+.film{display:flex;align-items:center;gap:6px;margin-top:12px}
+.film i{width:14px;height:19px;border-radius:3px;border:1.5px dashed rgba(255,255,255,.5);transition:all .25s}
+.film i.used{background:var(--txt);border:1.5px solid var(--txt)}
 
-/* ---------- sections ---------- */
-.sec{position:relative;padding-block:clamp(72px,12vw,140px);overflow-x:clip}
-.sec h2{font-size:clamp(2.1rem,6.8vw,4.2rem)}
-.sec .lead{margin-top:16px;color:var(--sub);font-size:clamp(.98rem,2.4vw,1.1rem);max-width:32em}
-.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--stamp);margin-bottom:14px}
-.kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--stamp);box-shadow:0 0 8px var(--stamp)}
-.two{display:grid;gap:40px;align-items:center}
-.two>*{min-width:0}
-@media (min-width:880px){.two{grid-template-columns:1fr 1fr;gap:72px}}
+.p3wrap{position:absolute;left:50%;top:44%;height:min(52svh,540px);aspect-ratio:390/844;translate:-50% -50%;perspective:1400px;z-index:2}
+.p3{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;--pr:14.2% / 6.6%}
+.p3 .sl{position:absolute;inset:0;border-radius:var(--pr);background:#2a2a2f;box-shadow:inset 0 0 0 1px #5a5a62}
+.p3 .face{position:absolute;inset:0;border-radius:var(--pr);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.p3 .front{transform:translateZ(5.5px);background:#09090b;box-shadow:inset 0 0 0 1.5px #4a4a52,inset 0 0 0 4px #0c0c0e}
+.p3 .scr{position:absolute;inset:.9% 2.4%;border-radius:12.6% / 5.8%;overflow:hidden;background:#fff}
+.p3 .scr img{position:absolute;inset:-1%;width:102%;height:102%;max-width:none;object-fit:cover;opacity:0;transition:opacity .3s}
+.p3 .scr img.on{opacity:1}
+.p3 .fl{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.p3 .fl.go{animation:fl .55s ease-out}
+@keyframes fl{0%{opacity:.75}100%{opacity:0}}
+.p3 .sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 49%,transparent 62%);background-size:260% 100%;background-position:var(--sh,100%) 0;mix-blend-mode:soft-light}
+.p3 .back{transform:rotateY(180deg) translateZ(5.5px);background:linear-gradient(160deg,#3a3a41,#19191d 55%,#2b2b31);box-shadow:inset 0 0 0 1.5px #55555c}
+.p3 .back .cam{position:absolute;left:7%;top:3.6%;width:40%;aspect-ratio:1;border-radius:26%;background:linear-gradient(145deg,#26262b,#101013);box-shadow:inset 0 0 0 1px #4d4d55,0 6px 16px rgba(0,0,0,.5)}
+.p3 .back .cam i{position:absolute;width:38%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#5b6b8c 0,#10131c 38%,#050507 70%);box-shadow:0 0 0 2px #2c2c33,0 0 0 3px #4a4a52}
+.p3 .back .cam i:nth-child(1){left:9%;top:9%}.p3 .back .cam i:nth-child(2){right:9%;top:9%}.p3 .back .cam i:nth-child(3){left:31%;bottom:9%}
+.p3 .back b{position:absolute;left:0;right:0;top:50%;text-align:center;font-family:var(--f-word);font-weight:900;font-size:clamp(1.1rem,3.4svh,1.7rem);letter-spacing:-.05em;color:rgba(255,255,255,.34);translate:0 -50%;transform:scaleX(-1)}
+.p3-glow{position:absolute;left:50%;top:50%;width:170%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,var(--gc,rgba(255,150,100,.34)),transparent 60%);z-index:-1;transition:background 1s}
+.p3wrap.beat .p3-glow{animation:glowb 1s ease-out}
+@keyframes glowb{0%{scale:.86;opacity:1}100%{scale:1.12;opacity:.55}}
+.p3-shadow{position:absolute;left:50%;bottom:-7%;width:62%;height:5%;translate:-50% 0;background:radial-gradient(ellipse,rgba(0,0,0,.6),transparent 70%);filter:blur(7px)}
 
-/* ---------- story: sticky phone + steps ---------- */
-.story-grid{display:grid;gap:0;position:relative}
-.story-grid>*{min-width:0}
-.steps{display:grid;gap:clamp(56px,10vw,96px)}
-.step{display:grid;gap:22px;align-items:center}
-.step .time{color:var(--stamp)}
-.step h3{font-size:clamp(1.9rem,6vw,3rem);margin-top:10px}
-.step p.body{margin-top:14px;color:var(--sub);max-width:28em}
-.phone{position:relative;width:min(300px,76vw);margin-inline:auto;aspect-ratio:390/844;border-radius:46px;padding:7px;background:#1b1b1e;box-shadow:0 0 0 1.5px #2e2e32 inset,0 40px 80px rgba(0,0,0,.6),0 0 90px color-mix(in srgb,var(--peach) 14%,transparent)}
-.phone img{width:100%;height:100%;object-fit:cover;border-radius:40px}
-.story-phone{display:none}
 @media (min-width:880px){
-  .story-grid{grid-template-columns:1.1fr .9fr;gap:80px}
-  .step{min-height:78svh;align-content:center}
-  .step .phone{display:none}
-  .story-phone{display:block;grid-column:2;grid-row:1}
-  .story-sticky{position:sticky;top:calc(50svh - 330px);top:max(84px,calc(50svh - 330px))}
-  .story-sticky .phone{width:min(330px,28vw)}
-  .story-sticky .screens{position:absolute;inset:7px;border-radius:40px;overflow:hidden;background:#fff}
-  .story-sticky .screens img{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease)}
-  .story-sticky .screens img.on{opacity:1}
-  .steps{grid-column:1;grid-row:1}
-  .step{opacity:.28;transition:opacity .5s var(--ease)}
-  .step.on{opacity:1}
+  .p3wrap{left:70%;top:50%;height:min(72svh,680px)}
+  .day-copy{left:max(var(--gl),7vw);right:auto;bottom:auto;top:calc(50% - 4.2rem);width:min(40vw,540px)}
+  .dc{bottom:auto;top:0}
+  .dc h2{font-size:clamp(2.4rem,3.8vw,3.8rem);white-space:nowrap}
+  .day-clock{top:calc(86px + env(safe-area-inset-top,0px));left:max(var(--gl),7vw)}
 }
-.tabs{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
-.tabs span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.78rem;color:var(--sub)}
-
-/* ---------- shoot demo ---------- */
-.panel{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:clamp(20px,4vw,28px);box-shadow:0 30px 70px rgba(0,0,0,.4)}
-.panel h3{font-size:1.25rem}
-.panel .sub{color:var(--sub);font-size:.85rem;margin-top:4px}
-.three{display:flex;align-items:flex-end;gap:10px;margin-top:22px}
-.three b{font-family:var(--f-word);font-weight:900;font-size:clamp(6rem,22vw,10rem);line-height:.8;letter-spacing:-.06em}
-.three span{font-size:1.4rem;font-weight:900;padding-bottom:.4em}
-.facts{display:grid;gap:10px;margin-top:26px;padding:0;list-style:none}
-.facts li{display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
-.facts .mono{color:var(--stamp);min-width:5.5em}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.tag{border:1px solid var(--line);background:var(--well);border-radius:999px;padding:8px 14px;font-size:.92rem;cursor:pointer;transition:all .2s}
-.tag[aria-pressed="true"]{background:var(--paper);color:#111;border-color:var(--paper)}
-.shoot-row{display:flex;align-items:center;gap:18px;margin-top:22px}
-.shutter{position:relative;width:84px;height:84px;flex:none;border:0;background:none;padding:0;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
-.shutter svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.shutter .track{fill:none;stroke:var(--line);stroke-width:4}
-.shutter .gauge{fill:none;stroke:var(--stamp);stroke-width:4;stroke-linecap:round;stroke-dasharray:252;stroke-dashoffset:252}
-.shutter .in{position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb066,#ff7a1a 60%,#c4520a);box-shadow:0 0 28px rgba(255,122,26,.45);transition:transform .2s}
-.shutter.hold .in{transform:scale(.88)}
-.tray{display:flex;gap:10px;margin-top:22px;min-height:118px;align-items:flex-start}
-.tray .print{width:84px;padding:5px 5px 20px}
-.tray .print .cap{bottom:4px;left:6px;right:6px;font-size:.5rem}
-.tray .empty{width:84px;height:118px;border:1.5px dashed var(--line);border-radius:5px;display:grid;place-items:center;color:var(--sub);font-size:.7rem}
-.note{margin-top:14px;color:var(--sub);font-size:.85rem}
-
-/* ---------- night / develop ---------- */
-.night{background:#050506;overflow:hidden}
-.night .stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 20%,#fff8,transparent),radial-gradient(1px 1px at 72% 12%,#fff6,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#fff7,transparent),radial-gradient(1px 1px at 88% 60%,#fff5,transparent),radial-gradient(1px 1px at 24% 84%,#fff6,transparent);pointer-events:none}
-.dev{display:flex;flex-direction:column;align-items:center;gap:18px}
-.dev .print{width:min(260px,72vw);transform:rotate(-2deg);touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
-.dev .print.beat{animation:beat .28s ease-out}
-@keyframes beat{40%{transform:rotate(-2deg) scale(1.025)}}
-.dev-clock{font-family:var(--f-mono);font-size:clamp(2rem,7vw,2.8rem);letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-align:center}
-.dev-clock small{display:block;font-size:.68rem;letter-spacing:.16em;color:var(--stamp)}
-.dev .mono{color:var(--sub)}
-.link-btn{background:none;border:0;color:var(--sub);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:.85rem;padding:4px}
 
 /* ---------- open yesterday ---------- */
-.ygrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:34px;position:relative}
-@media (min-width:720px){.ygrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
-.ytile{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;background:var(--well)}
-.ytile video{width:100%;height:100%;object-fit:cover;filter:blur(26px) saturate(.2) brightness(.8);transform:scale(1.15);transition:filter 1.6s var(--ease),transform 2s var(--ease)}
-.ytile .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 30%,transparent 50%,rgba(0,0,0,.7));opacity:0;transition:opacity .8s}
-.ytile .inf{position:absolute;left:12px;right:12px;bottom:12px;color:#fff;opacity:0;transform:translateY(8px);transition:all .8s var(--ease)}
-.ytile .inf b{font-size:1.05rem;letter-spacing:-.02em}
-.ytile .inf .mono{display:block;font-size:.6rem;opacity:.8;margin-top:2px}
-.ytile .tg{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
-.ytile .tg span{font-size:.68rem;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px)}
-.ytile .stamp{top:12px;bottom:auto;right:12px;opacity:0;transition:opacity .8s}
+.sec{position:relative;padding-block:clamp(56px,9vw,100px);overflow-x:clip}
+.sec h2{font-size:clamp(2rem,7vw,3.8rem)}
+.sec .mono.k{display:block;color:var(--stamp);margin-bottom:12px}
+.ygrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:26px;position:relative;max-width:620px;margin-inline:auto}
+@media (min-width:720px){.ygrid{gap:14px}}
+.ytile{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:var(--well)}
+.ytile video{width:100%;height:100%;object-fit:cover;filter:blur(24px) saturate(.2) brightness(.8);transform:scale(1.15);transition:filter 1.6s var(--ease),transform 2s var(--ease)}
+.ytile .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),transparent 30%,transparent 55%,rgba(0,0,0,.72));opacity:0;transition:opacity .8s}
+.ytile .inf{position:absolute;left:9px;right:9px;bottom:8px;color:#fff;opacity:0;transform:translateY(8px);transition:all .8s var(--ease);line-height:1.3}
+.ytile .inf b{font-size:.9rem;letter-spacing:-.02em;display:block}
+.ytile .inf .mono{display:block;font-size:.52rem;opacity:.85;margin-top:2px;letter-spacing:.08em}
+.stamp{position:absolute;right:9px;top:9px;font-family:var(--f-mono);font-size:.5rem;letter-spacing:.06em;color:#ff8a2a;text-shadow:0 0 5px rgba(255,140,40,.9),0 0 12px rgba(255,120,30,.5);z-index:2;opacity:0;transition:opacity .8s}
 .ygrid.open .ytile video{filter:contrast(1.05) saturate(1.1);transform:none}
 .ygrid.open .shade,.ygrid.open .stamp{opacity:1}
 .ygrid.open .inf{opacity:1;transform:none}
-.lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:3;text-align:center;padding:16px;transition:opacity .6s}
+.lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:3;text-align:center;transition:opacity .6s}
 .ygrid.open .lock{opacity:0;pointer-events:none}
-.lock p{color:#fff;font-weight:700;text-shadow:0 1px 10px rgba(0,0,0,.6)}
-.orb-btn{position:relative;width:132px;height:132px;border:0;padding:0;border-radius:50%;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;background:linear-gradient(180deg,#fff 0%,#fff0cc 10%,#ffd08a 22%,#ff9e8a 36%,#c87bff 54%,#5a3fc0 80%,#1d1a52 100%);box-shadow:0 0 0 1.5px rgba(255,255,255,.8) inset,0 0 50px color-mix(in srgb,var(--peach) 60%,transparent)}
-.orb-btn svg{position:absolute;inset:-10px;width:152px;height:152px;transform:rotate(-90deg);overflow:visible}
+.orb-btn{position:relative;width:112px;height:112px;border:0;padding:0;border-radius:50%;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;background:linear-gradient(180deg,#fff 0%,#fff0cc 10%,#ffd08a 22%,#ff9e8a 36%,#c87bff 54%,#5a3fc0 80%,#1d1a52 100%);box-shadow:0 0 0 1.5px rgba(255,255,255,.8) inset,0 0 50px color-mix(in srgb,var(--peach) 60%,transparent)}
+.orb-btn svg{position:absolute;inset:-10px;width:132px;height:132px;transform:rotate(-90deg);overflow:visible}
 .orb-btn .gauge{fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:452;stroke-dashoffset:452}
-.orb-btn span{position:relative;color:#1a1a22;font-weight:900;font-size:.95rem;line-height:1.3}
+.orb-btn span{position:relative;color:#1a1a22;font-weight:900;font-size:.9rem;line-height:1.3}
+.lock .mono{color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.7)}
 .bloom{position:absolute;left:50%;top:50%;width:140px;height:140px;margin:-70px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#ffe2c4 38%,#ffb48c 65%,transparent 100%);opacity:0;pointer-events:none;z-index:4}
 .bloom.go{animation:bloom 1.1s var(--ease)}
 @keyframes bloom{0%{opacity:.95;transform:scale(.3)}100%{opacity:0;transform:scale(9)}}
-
-/* ---------- wall of prints (video marquee) ---------- */
-.wall{overflow:hidden;padding-block:clamp(60px,10vw,110px);background:var(--paper);color:#111}
-.wall h2{font-size:clamp(2rem,6.4vw,3.8rem)}
-.wall .lead{color:#5d5c63}
-.wall .kicker{color:#d65a00}
-.rail{display:flex;gap:clamp(14px,3vw,26px);width:max-content;padding:44px 4px 30px;animation:rail 60s linear infinite}
-.wall:hover .rail{animation-play-state:paused}
-@keyframes rail{to{transform:translateX(-50%)}}
-.rail .print{width:clamp(150px,34vw,210px);flex:none;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 18px 36px rgba(0,0,0,.2);background:#fff}
-.rail .print:nth-child(odd){transform:rotate(-2.5deg) translateY(10px)}
-.rail .print:nth-child(even){transform:rotate(2deg) translateY(-6px)}
-.rail .print:nth-child(3n){transform:rotate(-1deg) translateY(16px)}
+.link-btn{background:none;border:0;color:var(--sub);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:.85rem;padding:4px}
 
 /* ---------- mondo ---------- */
 .mondo{text-align:center;background:#101012}
-.globe-wrap{position:relative;width:min(340px,80vw);aspect-ratio:1;margin:0 auto}
+.globe-wrap{position:relative;width:min(250px,64vw);aspect-ratio:1;margin:0 auto}
 .globe-wrap .halo{position:absolute;inset:-18%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--peach) 26%,transparent),transparent 62%)}
 .globe-wrap canvas{position:relative;width:100%;height:100%}
 .ring-text{position:absolute;inset:-14%;width:128%;height:128%;animation:spin 60s linear infinite}
 .ring-text text{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.32em;fill:var(--sub)}
 @keyframes spin{to{transform:rotate(360deg)}}
-.mondo-word{display:flex;justify-content:center;align-items:baseline;gap:10px;margin-top:22px}
-.mondo-word b{font-family:var(--f-word);font-weight:900;font-size:clamp(3rem,11vw,5.6rem);letter-spacing:-.06em;line-height:1}
-.mondo-word i{font-family:var(--f-serif);font-size:clamp(1.6rem,5vw,2.4rem);color:var(--sub)}
-.mondo .stats{margin-top:10px;color:var(--sub)}
-.mondo .stats .mono{color:var(--stamp)}
-.mondo h2{margin-top:clamp(40px,7vw,64px)}
-.rules{display:grid;gap:12px;margin:28px auto 0;max-width:760px;text-align:left}
-@media (min-width:720px){.rules{grid-template-columns:repeat(3,1fr)}}
-.rules div{border-top:2px solid var(--txt);padding-top:12px}
-.rules b{display:block;font-size:1.05rem}
-.rules span{display:block;color:var(--sub);font-size:.88rem;margin-top:4px}
-.wrow-box{overflow-x:auto;margin-top:40px;padding-bottom:10px;scrollbar-width:none}
-.wrow-box::-webkit-scrollbar{display:none}
-.wrow{display:flex;gap:14px;width:max-content;padding-inline:var(--gl);margin-inline:auto}
-.wcard{position:relative;width:170px;border-radius:22px;overflow:hidden;aspect-ratio:3/4;text-align:left;background:var(--well)}
-.wcard video,.wcard img{width:100%;height:100%;object-fit:cover}
-.wcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.65))}
-.wcard .lb{position:absolute;left:12px;right:12px;bottom:10px;color:#fff;z-index:2}
-.wcard .lb b{display:block;font-size:.85rem}
-.wcard .lb .mono{font-size:.56rem;opacity:.85}
-.words{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:12px}
-.words span{border-radius:999px;padding:8px 16px;font-weight:700;background:var(--card);border:1px solid var(--line);display:inline-flex;align-items:center;gap:8px}
-.words span i{width:7px;height:7px;border-radius:50%}
-
-/* ---------- haptics ---------- */
-.pads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:32px}
-.pads .pad:last-child{grid-column:1/-1;min-height:0}
-@media (min-width:880px){.pads{grid-template-columns:repeat(5,minmax(0,1fr))}.pads .pad:last-child{grid-column:auto;min-height:150px}}
-.pad{border:1px solid var(--line);background:var(--card);border-radius:24px;padding:18px 16px;text-align:left;cursor:pointer;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;transition:transform .15s var(--ease),box-shadow .2s}
-.pad:active{transform:scale(.96)}
-.pad.on{box-shadow:0 0 0 2px var(--stamp)}
-.pad b{font-size:clamp(1.15rem,3.6vw,1.45rem);letter-spacing:-.03em;line-height:1.3;word-break:keep-all}
-.pad .mono{color:var(--stamp);font-size:.62rem}
-.pad span{color:var(--sub);font-size:.82rem;line-height:1.55}
-.pad .wave{display:flex;align-items:flex-end;gap:3px;height:22px}
-.pad .wave i{width:5px;border-radius:2px;background:var(--txt)}
+.mondo-word{display:flex;justify-content:center;align-items:baseline;gap:10px;margin-top:24px}
+.mondo-word b{font-family:var(--f-word);font-weight:900;font-size:clamp(3rem,11vw,5.2rem);letter-spacing:-.06em;line-height:1}
+.mondo-word i{font-family:var(--f-serif);font-size:clamp(1.5rem,5vw,2.2rem);color:var(--sub)}
+.mondo p.s{margin-top:8px;color:var(--sub)}
 
 /* ---------- closing ---------- */
-.closing{position:relative;text-align:center;overflow:hidden;isolation:isolate}
+.closing{position:relative;text-align:center;overflow:hidden;isolation:isolate;padding-block:clamp(72px,12vw,130px)}
 .closing .bg{position:absolute;inset:0;z-index:-2}
-.closing .bg img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) brightness(.7)}
-.closing::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--ground),rgba(10,10,11,.35) 40%,rgba(10,10,11,.6) 100%)}
-.closing h2{font-size:clamp(2.4rem,8.6vw,5.2rem)}
-.closing .lead{margin-inline:auto;color:rgba(244,243,239,.85)}
-.closing .btn{margin-top:30px}
+.closing .bg img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) brightness(.62)}
+.closing::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#101012,rgba(10,10,11,.3) 40%,rgba(10,10,11,.7) 100%)}
+.closing h2{font-size:clamp(2.4rem,8.6vw,5rem)}
+.closing .btn{margin-top:28px}
 .closing .mono{display:block;margin-top:14px;color:var(--sub);text-transform:none}
-footer{border-top:1px solid var(--line);padding-block:28px}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--sub);font-size:.8rem}
-.credit{max-width:1180px;margin:0 auto;padding:0 var(--gr) 28px var(--gl);color:#6d6c74;font-size:.72rem;line-height:1.7}
+footer{border-top:1px solid var(--line);padding:24px 0 calc(24px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px 22px;flex-wrap:wrap;color:var(--sub);font-size:.8rem}
+footer nav{display:flex;gap:6px 20px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--txt)}
+.credit{max-width:1180px;margin:0 auto;padding:0 var(--gr) 26px var(--gl);color:#6d6c74;font-size:.7rem;line-height:1.7}
 .credit a{text-decoration:underline;text-underline-offset:2px}
 
 /* ---------- opening sequence ---------- */
 .intro{position:fixed;inset:0;z-index:500;background:#050506;overflow:hidden;touch-action:none;cursor:pointer;
   -webkit-mask-image:radial-gradient(circle at 50% 50%,transparent var(--ir,0px),#000 calc(var(--ir,0px) + 1.5px));
   mask-image:radial-gradient(circle at 50% 50%,transparent var(--ir,0px),#000 calc(var(--ir,0px) + 1.5px))}
-.intro-stage{position:absolute;inset:0;overflow:hidden;transition:opacity .3s}
+.intro-stage{position:absolute;inset:0;overflow:hidden;transform:scale(var(--z,1));transition:opacity .3s,transform .22s linear}
+.intro-leak{position:absolute;inset:-20%;z-index:5;pointer-events:none;opacity:0;mix-blend-mode:screen;background:linear-gradient(100deg,transparent 30%,rgba(255,120,40,.5) 46%,rgba(255,80,120,.4) 54%,transparent 70%);transition:opacity .4s}
+.intro-leak.on{opacity:.55;animation:leak 1.1s linear infinite}
+@keyframes leak{from{transform:translateX(-45%)}to{transform:translateX(45%)}}
 .intro-hud{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:var(--gl);right:var(--gr);display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9),0 0 16px rgba(255,120,30,.55);z-index:6;transition:opacity .4s}
 .intro-hud i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-right:6px;box-shadow:0 0 10px #ff3b30;animation:rec 1s steps(2) infinite}
 .intro-hud.off{opacity:0}
-.intro-skip{position:absolute;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:6;border:1px solid rgba(255,255,255,.22);background:rgba(20,20,22,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:rgba(255,255,255,.8);border-radius:999px;padding:8px 18px;font-size:.78rem;letter-spacing:.06em;cursor:pointer}
+.intro-count{position:absolute;left:var(--gl);bottom:calc(26px + env(safe-area-inset-bottom,0px));z-index:6;font-family:var(--f-mono);font-size:.9rem;letter-spacing:.1em;color:#ff8a2a;text-shadow:0 0 6px rgba(255,140,40,.9);font-variant-numeric:tabular-nums;transition:opacity .4s}
+.intro-count.off{opacity:0}
+.intro-skip{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom,0px));right:var(--gr);z-index:6;border:1px solid rgba(255,255,255,.22);background:rgba(20,20,22,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:rgba(255,255,255,.8);border-radius:999px;padding:8px 18px;font-size:.78rem;letter-spacing:.06em;cursor:pointer;transition:opacity .4s}
+.intro-skip.off{opacity:0;pointer-events:none}
 .intro-dot{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:#fff;box-shadow:0 0 18px #fff,0 0 60px rgba(255,255,255,.7);animation:dotp 1s ease-in-out infinite;transition:opacity .25s,transform .25s}
 .intro-dot.off{opacity:0;transform:scale(.2)}
 @keyframes dotp{50%{transform:scale(1.5)}}
 .intro-bloom{position:absolute;left:50%;top:50%;width:90vmax;height:90vmax;margin:-45vmax;border-radius:50%;background:radial-gradient(circle,rgba(255,226,196,.5) 0%,rgba(255,150,110,.18) 28%,transparent 60%);opacity:0;transform:scale(.1);pointer-events:none}
 .intro-bloom.go{animation:bloomIn 1.7s var(--ease) both}
 @keyframes bloomIn{0%{opacity:0;transform:scale(.1)}22%{opacity:.85}100%{opacity:0;transform:scale(1)}}
-.ip{position:absolute;left:var(--x);top:var(--y);width:var(--w);transform:translate(-50%,-50%) rotate(var(--r));background:var(--print);padding:6px 6px 22px;border-radius:4px;box-shadow:0 14px 34px rgba(0,0,0,.65);animation:ipIn .26s cubic-bezier(.2,.9,.3,1.15) backwards;transition:filter .35s,opacity .35s}
-@keyframes ipIn{from{opacity:0;filter:brightness(1.7);transform:translate(-50%,-50%) rotate(var(--r)) scale(1.5)}}
+.ip{position:absolute;left:var(--x);top:var(--y);width:var(--w);transform:translate(-50%,-50%) rotate(var(--r));background:var(--print);padding:6px 6px 22px;border-radius:4px;box-shadow:0 14px 34px rgba(0,0,0,.65);animation:ipIn .24s cubic-bezier(.2,.9,.3,1.15) backwards;transition:filter .35s,opacity .35s}
+@keyframes ipIn{from{opacity:0;filter:brightness(1.25);transform:translate(-50%,-50%) rotate(var(--r)) scale(1.45)}}
 .ip .w{aspect-ratio:3/4;overflow:hidden;background:#111}
 .ip img,.ip video{width:100%;height:100%;object-fit:cover;display:block}
 .ip .d{position:absolute;right:9px;bottom:4px;font-family:var(--f-mono);font-size:.52rem;letter-spacing:.06em;color:#ff8a2a;text-shadow:0 0 5px rgba(255,140,40,.9)}
-.ip.phone{padding:4px;background:#1b1b1e;border-radius:20px;width:var(--pw)}
-.ip.phone .w{aspect-ratio:390/844;border-radius:16px}
-.ip.phone .d{display:none}
-.ip.old{filter:brightness(.55)}
-.ip.older{filter:brightness(.3)}
-.ip.suck{animation:none;left:50%;top:50%;opacity:0;filter:brightness(1.4);transform:translate(-50%,-50%) rotate(calc(var(--r) * 3)) scale(.06);transition:left .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),top .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),transform .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),opacity .5s ease-in calc(var(--sd,0s) + .12s)}
+.ip.old{filter:brightness(.6)}
+.ip.older{filter:brightness(.32)}
+.ip.suck{animation:none;left:50%;top:50%;opacity:0;filter:brightness(1.3);transform:translate(-50%,-50%) rotate(calc(var(--r) * 3)) scale(.06);transition:left .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),top .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),transform .62s cubic-bezier(.65,0,.85,.35) var(--sd,0s),opacity .5s ease-in calc(var(--sd,0s) + .12s)}
 .intro-fly{position:fixed;inset:0;z-index:501;display:grid;place-content:center;justify-items:center;gap:clamp(14px,3vw,24px);pointer-events:none}
 .iw{display:flex;align-items:flex-start;font-size:clamp(3.4rem,16vw,9rem);color:#fff;transform-origin:center;will-change:transform}
 .iw b{font-family:var(--f-word);font-weight:900;font-size:1.5em;letter-spacing:-.05em;line-height:1;display:inline-flex}
@@ -340,43 +255,34 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 .intro-tag{color:rgba(255,255,255,.78);font-size:clamp(.85rem,2.6vw,1.05rem);letter-spacing:.08em;opacity:0;transition:opacity .6s}
 .intro-tag.on{opacity:1}
 .intro-tag.gone{opacity:0;transition-duration:.25s}
-.replay{margin-left:12px}
-.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:300}
-.flash.go{animation:flash .5s ease-out}
-@keyframes flash{0%{opacity:.95}100%{opacity:0}}
-.shake{animation:shk .34s}
-@keyframes shk{25%{transform:translateX(-6px)}60%{transform:translateX(5px)}}
+.replay{margin-left:0}
 .haps{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:220;background:var(--paper);color:#111;border-radius:999px;padding:9px 16px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;opacity:0;transition:opacity .2s,transform .25s var(--ease);pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);overflow:hidden;text-overflow:ellipsis}
 .haps b{color:#d65a00;font-weight:700}
 .haps.on{opacity:1;transform:translate(-50%,0)}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .float,.ticker-track,.rail,.ring-text,.circ.draw path,.rec i{animation:none!important}
-  .rail{flex-wrap:wrap;width:auto;justify-content:center}
-  .ticker-track{flex-wrap:wrap;width:auto}
-  .flash.go{animation-duration:.01s}
-  .ytile video,.ytile .inf,.ytile .shade,.step,.story-sticky .screens img{transition-duration:.01s}
+  .ring-text,.circ.draw path,.rec .r1 i,.hv.on video,.intro-leak.on{animation:none!important}
+  .ytile video,.ytile .inf,.ytile .shade,.dc,.dbg,.hv{transition-duration:.01s}
 }
 </style>
 </head>
 <body>
 <div class="intro" id="intro" role="presentation">
   <div class="intro-stage" id="introStage" aria-hidden="true"></div>
+  <div class="intro-leak" id="introLeak" aria-hidden="true"></div>
   <div class="intro-dot" id="introDot" aria-hidden="true"></div>
   <div class="intro-bloom" id="introBloom" aria-hidden="true"></div>
   <div class="intro-hud" id="introHud" aria-hidden="true"><span><i></i>REC · YESTERDAY</span><span id="introDate">'26 10 28</span></div>
+  <div class="intro-count" id="introCount" aria-hidden="true">000</div>
   <button class="intro-skip" id="introSkip" type="button">スキップ</button>
 </div>
 <div class="intro-fly" id="introFly" aria-hidden="true">
   <div class="iw" id="introWord"><b><span style="--k:0">L</span><span style="--k:1">a</span><span style="--k:2">t</span><span style="--k:3">e</span><span style="--k:4">r</span></b><i>today</i></div>
   <p class="intro-tag" id="introTag">今日を撮ると、昨日がひらく。</p>
 </div>
-<div class="intro-pool" hidden aria-hidden="true">
-  <img src="../assets/lp/pic-1.jpg" alt=""><img src="../assets/lp/pic-2.jpg" alt=""><img src="../assets/lp/pic-3.jpg" alt=""><img src="../assets/lp/pic-4.jpg" alt=""><img src="../assets/lp/pic-5.jpg" alt=""><img src="../assets/lp/pic-6.jpg" alt=""><img src="../assets/lp/pic-7.jpg" alt=""><img src="../assets/lp/pic-8.jpg" alt=""><img src="../assets/lp/pic-9.jpg" alt="">
-</div>
+<div class="intro-pool" hidden aria-hidden="true"><img src="../assets/lp/ph-191.jpg" alt=""><img src="../assets/lp/ph-223.jpg" alt=""><img src="../assets/lp/ph-23582.jpg" alt=""><img src="../assets/lp/ph-26085.jpg" alt=""><img src="../assets/lp/ph-36913.jpg" alt=""><img src="../assets/lp/ph-37008.jpg" alt=""><img src="../assets/lp/ph-40105.jpg" alt=""><img src="../assets/lp/ph-41219.jpg" alt=""><img src="../assets/lp/ph-41813.jpg" alt=""><img src="../assets/lp/ph-41888.jpg" alt=""><img src="../assets/lp/ph-42292.jpg" alt=""><img src="../assets/lp/ph-42299.jpg" alt=""><img src="../assets/lp/ph-42301.jpg" alt=""><img src="../assets/lp/ph-42303.jpg" alt=""><img src="../assets/lp/ph-42716.jpg" alt=""><img src="../assets/lp/ph-43068.jpg" alt=""><img src="../assets/lp/ph-43149.jpg" alt=""><img src="../assets/lp/ph-43150.jpg" alt=""><img src="../assets/lp/ph-43257.jpg" alt=""><img src="../assets/lp/ph-43388.jpg" alt=""><img src="../assets/lp/ph-4344.jpg" alt=""><img src="../assets/lp/ph-43573.jpg" alt=""><img src="../assets/lp/ph-4537.jpg" alt=""><img src="../assets/lp/ph-45474.jpg" alt=""><img src="../assets/lp/ph-4599.jpg" alt=""><img src="../assets/lp/ph-4640.jpg" alt=""><img src="../assets/lp/ph-46893.jpg" alt=""><img src="../assets/lp/ph-4702.jpg" alt=""><img src="../assets/lp/ph-4709.jpg" alt=""><img src="../assets/lp/ph-4815.jpg" alt=""><img src="../assets/lp/ph-4823.jpg" alt=""><img src="../assets/lp/ph-4856.jpg" alt=""><img src="../assets/lp/ph-4905.jpg" alt=""><img src="../assets/lp/ph-51241.jpg" alt=""><img src="../assets/lp/ph-51257.jpg" alt=""><img src="../assets/lp/ph-52502.jpg" alt=""><img src="../assets/lp/ph-5891.jpg" alt=""></div>
 <div class="grain" id="grain" aria-hidden="true"></div>
-<div class="flash" id="flash" aria-hidden="true"></div>
 
 <header class="top" id="top">
   <div class="wrap">
@@ -389,160 +295,85 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 </header>
 
 <main>
-<!-- ========== HERO ========== -->
+<!-- ========== HERO: one day of clips ========== -->
 <section class="hero" id="hero" aria-labelledby="h-hero">
-  <div class="hero-media" aria-hidden="true"><video id="heroVideo" src="../assets/lp/hero-friends.mp4" poster="../assets/lp/hero-friends.jpg" muted loop playsinline autoplay></video></div>
-  <div class="rec ha" style="--d:.5s" aria-hidden="true"><div><i></i>REC · TODAY</div><div id="recStamp">'26 10 28 18:42</div></div>
+  <div class="hero-media" id="heroMedia" aria-hidden="true">
+    <figure class="hv on" data-k="dawn" style="--op:62% 50%" data-t="06:12" data-l="朝"><video src="../assets/lp/sky-dawn.mp4" poster="../assets/lp/sky-dawn.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="noon" style="--op:64% 50%" data-t="12:30" data-l="昼"><video src="../assets/lp/sky-noon.mp4" poster="../assets/lp/sky-noon.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="school" data-t="15:48" data-l="放課後"><video src="../assets/lp/sky-school.mp4" poster="../assets/lp/sky-school.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="dusk" data-t="17:40" data-l="夕方"><video src="../assets/lp/sky-dusk.mp4" poster="../assets/lp/sky-dusk.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="friends" data-t="19:05" data-l="友だちと"><video src="../assets/lp/hero-friends.mp4" poster="../assets/lp/hero-friends.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="night" data-t="21:20" data-l="夜"><video src="../assets/lp/sky-night.mp4" poster="../assets/lp/sky-night.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-k="stars" data-t="23:59" data-l="おやすみ"><video src="../assets/lp/sky-stars.mp4" poster="../assets/lp/sky-stars.jpg" muted loop playsinline preload="auto"></video></figure>
+  </div>
+  <div class="rec ha" style="--d:.5s" aria-hidden="true"><div class="r1"><i></i>REC · TODAY</div><div class="clock" id="recClock">06:12</div><div class="lab" id="recLab">朝</div></div>
   <div class="wrap">
-    <p class="mono ha" style="color:rgba(255,255,255,.75);margin-bottom:14px;--d:.15s">1日3こまの、あしたに届くカメラ</p>
-    <h1 id="h-hero" class="ha" style="--d:.25s">今日を撮ると、<br><span class="circ draw">昨日<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>がひらく。</h1>
-    <p class="tagline ha" style="--d:.45s">撮れるのは<b>1日3こまだけ</b>。撮った1枚は、ひと晩かけて現像されて<b>あしたの朝9:00</b>に仕上がる。友だちの昨日は、今日を撮った人にだけひらく。</p>
-    <div class="hero-cta ha" style="--d:.6s">
+    <h1 id="h-hero" class="ha" style="--d:.2s">今日を撮ると、<br><span class="circ draw">昨日<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>がひらく。</h1>
+    <p class="tagline ha" style="--d:.4s">1日3こま。朝9:00に、仕上がる。</p>
+    <div class="hero-cta ha" style="--d:.55s">
       <a class="btn btn-glow" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlightで先に使う</a>
-      <a class="hand" href="#story" style="color:var(--peach);text-decoration:none">↓ アプリの中を見る</a>
     </div>
   </div>
-  <span class="mono scroll-cue" aria-hidden="true">scroll</span>
-</section>
-<div class="ticker-wrap" aria-hidden="true"><div class="ticker"><div class="ticker-track"><span>YESTERDAY <i class="y-date">10.27</i></span><span>今日を撮る</span><span>1日3こま</span><span>9:00 にひらく</span><span>128 の光</span><span>17 の国と地域</span><span>いいねは、ない</span><span>YESTERDAY <i class="y-date">10.27</i></span><span>今日を撮る</span><span>1日3こま</span><span>9:00 にひらく</span><span>128 の光</span><span>17 の国と地域</span><span>いいねは、ない</span></div></div></div>
-
-<!-- ========== STORY (app screens) ========== -->
-<section class="sec" id="story" aria-labelledby="h-story">
-  <svg class="stk float" style="right:7%;top:50px;width:46px" viewBox="0 0 60 24" aria-hidden="true"><path d="M3 14c6-12 10 10 16 0s10 10 16 0 10 10 16 0" fill="none" stroke="#3d7bff" stroke-width="3.5" stroke-linecap="round"/></svg>
-  <div class="wrap">
-    <p class="mono kicker">アプリの中</p>
-    <h2 id="h-story" style="max-width:11em">1日が、ぜんぶ<br>この画面で終わる。</h2>
-    <div class="story-grid" style="margin-top:clamp(40px,7vw,80px)">
-      <div class="steps" id="steps">
-        <article class="step" data-i="0">
-          <div><p class="mono time">初日</p><h3>はじめまして。<br>今日を撮ってみよう。</h3><p class="body">最初の1枚になります。撮ると、あしたの朝に仕上がる。まだ昨日がない日は、ここから、はじまる。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-first.webp" alt="Later の初日の画面。「はじめまして。今日を撮ってみよう。」" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="1">
-          <div><p class="mono time">毎朝 9:00</p><h3>今日を撮ると、<br><span class="circ">昨日<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>がひらく。</h3><p class="body">昨日の1枚は、現像ずみ。あたらしい3こまが届く。世界の光(128)は、月を押すたびにゆらぐ。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-ready.webp" alt="昨日の1枚が現像ずみの画面。READYの表示" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="2">
-          <div><p class="mono time">撮る</p><h3>音量ボタンを、<br>2回。</h3><p class="body">月をタップしてタグを選び、1.5秒の長押し。うっかり撮らない。画面にはその場で写真は出ない。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-capture.webp" alt="撮影画面。ファインダーとオレンジの日付スタンプ" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="3">
-          <div><p class="mono time">夜</p><h3>おやすみ。<br>朝に、仕上がります。</h3><p class="body">撮った1枚はひと晩かけて現像される。消灯までのカウントダウンが、今日の終わりを教えてくれる。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-night.webp" alt="夜の画面。「おやすみ。朝に、仕上がります。」" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="4">
-          <div><p class="mono time">Mondo</p><h3>世界の昨日が、<br>128の光。</h3><p class="body">名前も、フォローも、いいねもない。匿名の名前と丸いアイコン、国と地域だけ。</p><div class="tabs"><span>Mondo</span><span>グループ</span><span>カレンダー</span></div></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-mondo.webp" alt="Mondoの画面。地球儀と昨日の世界の写真" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="5">
-          <div><p class="mono time">グループ</p><h3>仲間と、<br>昨日を見せあおう。</h3><p class="body">4〜8人のちいさなグループ。1枚撮ると、みんなの写真が届く。合言葉・QR・リンクですぐ入れる。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-group.webp" alt="グループの画面。つくる・参加するボタン" loading="lazy"></div>
-        </article>
-        <article class="step" data-i="6">
-          <div><p class="mono time">カレンダー</p><h3>撮った日が、<br>ならんでいく。</h3><p class="body">1日1枚ずつ、チェキみたいに並ぶ。撮らなかった日も、責めません。</p></div>
-          <div class="phone"><img class="step-img" src="../assets/lp/app-calendar.webp" alt="カレンダーの画面。撮った日のチェキが並ぶ" loading="lazy"></div>
-        </article>
-      </div>
-      <div class="story-phone" aria-hidden="true"><div class="story-sticky"><div class="phone"><div class="screens" id="screens"></div></div></div></div>
-    </div>
-  </div>
+  <div class="hero-bars ha" id="heroBars" style="--d:.7s"></div>
 </section>
 
-<!-- ========== SHOOT DEMO ========== -->
-<section class="sec" style="padding-top:0" aria-labelledby="h-three">
-  <div class="wrap two">
-    <div>
-      <p class="mono kicker">今日のフィルム</p>
-      <h2 id="h-three">1日、3こま。<br>撮り直しは、なし。</h2>
-      <div class="three" aria-hidden="true"><b>3</b><span>こま</span></div>
-      <p class="lead">写ルンですみたいに、フィルムは数えるほどしかない。だから「なんとなく」じゃなくて、今日いちばん残したいものを撮る。</p>
-      <ul class="facts">
-        <li><span class="mono">9:00</span><span>毎朝、あたらしい3こまが届く</span></li>
-        <li><span class="mono">TAG</span><span>撮る前に、今日のことばを3つまで</span></li>
-        <li><span class="mono">HOLD</span><span>シャッターは1.5秒の長押し</span></li>
-      </ul>
-    </div>
-    <div class="panel" id="shootPanel">
-      <h3>今日は、どんな日?</h3>
-      <p class="sub">撮る前に、えらぶ。3つまで。</p>
-      <div class="tags" id="tags">
-        <button class="tag" type="button" aria-pressed="false">#朝</button>
-        <button class="tag" type="button" aria-pressed="false">#放課後</button>
-        <button class="tag" type="button" aria-pressed="false">#空</button>
-        <button class="tag" type="button" aria-pressed="false">#電車</button>
-        <button class="tag" type="button" aria-pressed="false">#ごはん</button>
-        <button class="tag" type="button" aria-pressed="false">#部活</button>
-        <button class="tag" type="button" aria-pressed="false">#推し</button>
-        <button class="tag" type="button" aria-pressed="false">#夕方</button>
-      </div>
-      <div class="shoot-row">
-        <button class="shutter" id="shutter" type="button" aria-label="長押しで撮る"><svg viewBox="0 0 88 88" aria-hidden="true"><circle class="track" cx="44" cy="44" r="40"/><circle class="gauge" cx="44" cy="44" r="40"/></svg><span class="in"></span></button>
-        <div>
-          <b class="shoot-msg">長押しで撮る(1.5秒)</b>
-          <div class="film" style="margin-top:8px"><i></i><i></i><i></i><span class="mono film-label">のこり 3こま</span></div>
+<!-- ========== DAY: a pinned scene, the phone turns through the day ========== -->
+<section class="day" id="day" aria-label="1日の流れ">
+  <div class="day-track" id="dayTrack">
+    <div class="day-stick">
+      <figure class="dbg on" data-src="dawn" aria-hidden="true"><video muted loop playsinline></video></figure>
+      <figure class="dbg" data-src="school" aria-hidden="true"><video muted loop playsinline></video></figure>
+      <figure class="dbg" data-src="stars" aria-hidden="true"><video muted loop playsinline></video></figure>
+      <figure class="dbg" data-src="noon" aria-hidden="true"><video muted loop playsinline></video></figure>
+
+      <div class="day-clock" aria-hidden="true"><b id="dClock">09:00</b><span id="dKick">MORNING</span></div>
+      <div class="day-nav" id="dayNav"><button type="button" class="on">朝</button><button type="button">昼</button><button type="button">夜</button><button type="button">翌朝</button></div>
+
+      <div class="p3wrap" id="p3wrap" aria-hidden="true">
+        <div class="p3-glow" id="p3glow"></div>
+        <div class="p3-shadow" id="p3shadow"></div>
+        <div class="p3" id="p3">
+          <div class="sl" style="transform:translateZ(-4.5px)"></div><div class="sl" style="transform:translateZ(-3.5px)"></div><div class="sl" style="transform:translateZ(-2.5px)"></div><div class="sl" style="transform:translateZ(-1.5px)"></div><div class="sl" style="transform:translateZ(-.5px)"></div><div class="sl" style="transform:translateZ(.5px)"></div><div class="sl" style="transform:translateZ(1.5px)"></div><div class="sl" style="transform:translateZ(2.5px)"></div><div class="sl" style="transform:translateZ(3.5px)"></div><div class="sl" style="transform:translateZ(4.5px)"></div>
+          <div class="face back"><div class="cam"><i></i><i></i><i></i></div><b>Later</b></div>
+          <div class="face front">
+            <div class="scr" id="scr">
+              <img src="../assets/lp/app-ready.webp" alt="" class="on"><img src="../assets/lp/app-capture.webp" alt=""><img src="../assets/lp/app-night.webp" alt=""><img src="../assets/lp/app-group.webp" alt="">
+              <div class="fl" id="pFlash"></div>
+            </div>
+            <div class="sheen" id="sheen"></div>
+          </div>
         </div>
       </div>
-      <div class="tray" id="tray" aria-live="polite"><div class="empty">1</div><div class="empty">2</div><div class="empty">3</div></div>
-      <p class="note">撮った写真は、その場では見られません。あしたの朝、仕上がるまでのおたのしみ。</p>
-    </div>
-  </div>
-</section>
 
-<!-- ========== NIGHT / 現像 ========== -->
-<section class="sec night" aria-labelledby="h-night">
-  <div class="stars" aria-hidden="true"></div>
-  <div class="wrap two">
-    <div>
-      <p class="mono kicker">ひと晩の現像</p>
-      <h2 id="h-night">おやすみ。<br>朝に、<span class="circ">仕上がります。<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span></h2>
-      <p class="lead">預けた1枚は、チェキみたいに乳白色のもやから、色がすこしずつ濃くなっていく。夜のあいだ、中身はまだ見えない。</p>
-      <p class="lead hand" style="color:var(--stamp);font-size:1.15rem">押し続けると、写真の鼓動が伝わる。</p>
-    </div>
-    <div class="dev">
-      <p class="dev-clock" aria-live="off"><small>ひらくまで</small><span id="devClock">02:54</span></p>
-      <figure class="print" id="devPrint" style="margin:0" role="button" tabindex="0" aria-label="押し続けて現像する">
-        <span class="tape"></span>
-        <div class="win"><img id="devImg" src="../assets/lp/clip-42308.jpg" alt="カラフルな傘をさして自撮りする女の子"><div class="milk" id="devMilk"></div></div>
-        <span class="stamp" id="devStamp" style="opacity:0">'26 10 28</span>
-        <div class="cap"><span id="devPct">現像 0%</span><span class="hw">#朝 #空</span></div>
-      </figure>
-      <p class="mono" id="devHint">長押しで、鼓動を感じる</p>
-      <button class="link-btn" id="devReset" type="button" hidden>もういちど、現像を見る</button>
+      <div class="day-copy" id="dayCopy">
+        <div class="dc on"><span class="mono">09:00</span><h2>昨日が、仕上がる。</h2><p class="s">朝、1枚が届く。</p></div>
+        <div class="dc" aria-hidden="true"><span class="mono">Day</span><h2>1日、3こま。</h2><p class="s">撮り直しは、なし。</p><div class="film" id="film"><i></i><i></i><i></i></div></div>
+        <div class="dc" aria-hidden="true"><span class="mono">Night</span><h2>ひと晩、現像。</h2><p class="s">中身は、まだ見えない。</p></div>
+        <div class="dc" aria-hidden="true"><span class="mono">Next morning</span><h2>友だちの昨日が、<br>ひらく。</h2><p class="s">今日を撮った人にだけ。</p></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ========== OPEN YESTERDAY ========== -->
 <section class="sec" aria-labelledby="h-open">
-  <div class="wrap">
-    <p class="mono kicker">月を長押し</p>
-    <h2 id="h-open">見るだけの人は、いない。</h2>
-    <p class="lead">グループのみんなの昨日は、自分の今日を撮った人にだけひらく。撮ったら、月を長押し。縁をなぞるように光がたまって、昨日がひらく。</p>
+  <div class="wrap" style="text-align:center">
+    <span class="mono k">月を長押し</span>
+    <h2 id="h-open">撮ったら、ひらく。</h2>
     <div class="ygrid" id="ygrid">
-      <div class="ytile"><video src="../assets/lp/clip-42306.mp4" poster="../assets/lp/clip-42306.jpg" muted loop playsinline aria-label="ドーナツ柄の壁の前で帽子をかぶる女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あおぞら</b><span class="mono">渋谷区 ・ 7:42</span><div class="tg"><span>#朝</span><span>#推し</span></div></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-40028.mp4" poster="../assets/lp/clip-40028.jpg" muted loop playsinline aria-label="2人で自撮りする友だち"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>つむぎ</b><span class="mono">世田谷区 ・ 16:20</span><div class="tg"><span>#放課後</span></div></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-42313.mp4" poster="../assets/lp/clip-42313.jpg" muted loop playsinline aria-label="レトロなダイナーでふざける2人"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ほたる</b><span class="mono">大阪府 ・ 19:05</span><div class="tg"><span>#夜</span><span>#ごはん</span></div></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-51252.mp4" poster="../assets/lp/clip-51252.jpg" muted loop playsinline aria-label="カメラ越しに笑う女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ひなた</b><span class="mono">港区 ・ 12:10</span><div class="tg"><span>#ごはん</span></div></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-42308.mp4" poster="../assets/lp/clip-42308.jpg" muted loop playsinline aria-label="虹色の傘で自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>しずく</b><span class="mono">目黒区 ・ 17:31</span><div class="tg"><span>#放課後</span></div></div></div>
-      <div class="ytile"><video src="../assets/lp/clip-41181.mp4" poster="../assets/lp/clip-41181.jpg" muted loop playsinline aria-label="朝、コーヒーを持って自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あなた</b><span class="mono">中野区 ・ 7:05</span><div class="tg"><span>#朝</span></div></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-42306.mp4" poster="../assets/lp/clip-42306.jpg" muted loop playsinline aria-label="ドーナツ柄の壁の前で帽子をかぶる女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あおぞら</b><span class="mono">7:42</span></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-40028.mp4" poster="../assets/lp/clip-40028.jpg" muted loop playsinline aria-label="2人で自撮りする友だち"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>つむぎ</b><span class="mono">16:20</span></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-42313.mp4" poster="../assets/lp/clip-42313.jpg" muted loop playsinline aria-label="レトロなダイナーでふざける2人"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ほたる</b><span class="mono">19:05</span></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-51252.mp4" poster="../assets/lp/clip-51252.jpg" muted loop playsinline aria-label="カメラ越しに笑う女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>ひなた</b><span class="mono">12:10</span></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-42308.mp4" poster="../assets/lp/clip-42308.jpg" muted loop playsinline aria-label="虹色の傘で自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>しずく</b><span class="mono">17:31</span></div></div>
+      <div class="ytile"><video src="../assets/lp/clip-41181.mp4" poster="../assets/lp/clip-41181.jpg" muted loop playsinline aria-label="朝、コーヒーを持って自撮りする女の子"></video><div class="shade"></div><span class="stamp y-stamp">'26 10 27</span><div class="inf"><b>あなた</b><span class="mono">7:05</span></div></div>
       <div class="lock" id="lock">
         <div class="bloom" id="bloom"></div>
-        <button class="orb-btn" id="openOrb" type="button" aria-label="長押しで昨日をひらく"><svg viewBox="0 0 152 152" aria-hidden="true"><circle class="gauge" cx="76" cy="76" r="72"/></svg><span>昨日を<br>ひらく</span></button>
-        <p>長押し ・ 昨日の光が、まだ閉じています</p>
+        <button class="orb-btn" id="openOrb" type="button" aria-label="長押しで昨日をひらく"><svg viewBox="0 0 152 152" aria-hidden="true"><circle class="gauge" cx="76" cy="76" r="72"/></svg><span>長押し</span></button>
       </div>
     </div>
-    <p class="note" style="text-align:center"><button class="link-btn" id="closeY" type="button" hidden>もういちど、閉じる</button></p>
+    <p style="margin-top:8px"><button class="link-btn" id="closeY" type="button" hidden>もういちど、閉じる</button></p>
   </div>
-</section>
-
-<!-- ========== WALL OF PRINTS ========== -->
-<section class="wall" aria-labelledby="h-wall">
-  <div class="wrap">
-    <p class="mono kicker">きょうの、みんな</p>
-    <h2 id="h-wall">放課後も、朝も、<br>ぜんぶ1枚に。</h2>
-    <p class="lead">撮るたびに、入っているグループ全部にすぐ届く。みんなの1枚が、チェキみたいに壁にならぶ。</p>
-  </div>
-  <div class="rail" id="rail" aria-hidden="true"></div>
 </section>
 
 <!-- ========== MONDO ========== -->
@@ -554,66 +385,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <canvas id="globe" width="680" height="680" aria-label="世界じゅうの昨日の光"></canvas>
     </div>
     <div class="mondo-word"><b>Mondo</b><i>yesterday</i></div>
-    <p class="stats"><span class="mono">昨日の世界 ・ <i class="y-date" style="font-style:normal">10.27</i></span><br>128 の光 ・ 17 の国と地域</p>
-    <h2 id="h-mondo">名前も、フォローも、<br>いいねもない。</h2>
-    <p class="lead" style="margin-inline:auto">Mondo はイタリア語で「世界」。世界じゅうの、ひとり1枚の昨日が集まる場所。数字を気にしなくていいから、ちょっとラク。</p>
-    <div class="rules">
-      <div><b>匿名の名前と、丸いアイコン</b><span>見えるのは、国と地域だけ</span></div>
-      <div><b>ひとり1枚、昨日だけ</b><span>ことばごとに集まって、流れるように見られる</span></div>
-      <div><b>1日で、消える</b><span>あしたになれば、また新しい世界</span></div>
-    </div>
-    <div class="wrow-box">
-      <div class="wrow">
-        <div class="wcard"><video src="../assets/lp/clip-42306.mp4" poster="../assets/lp/clip-42306.jpg" muted loop playsinline autoplay aria-label="ドーナツ柄の壁の前の女の子"></video><div class="lb"><b>ゆうなぎ</b><span class="mono">日本 ・ 神奈川県</span></div></div>
-        <div class="wcard"><video src="../assets/lp/clip-51252.mp4" poster="../assets/lp/clip-51252.jpg" muted loop playsinline autoplay aria-label="カメラ越しに笑う女の子"></video><div class="lb"><b>Lumi</b><span class="mono">Italia ・ Roma</span></div></div>
-        <div class="wcard"><video src="../assets/lp/clip-42313.mp4" poster="../assets/lp/clip-42313.jpg" muted loop playsinline autoplay aria-label="レトロなダイナーの2人"></video><div class="lb"><b>ほたる</b><span class="mono">日本 ・ 大阪府</span></div></div>
-        <div class="wcard"><video src="../assets/lp/clip-42308.mp4" poster="../assets/lp/clip-42308.jpg" muted loop playsinline autoplay aria-label="虹色の傘の女の子"></video><div class="lb"><b>Wren</b><span class="mono">United States</span></div></div>
-        <div class="wcard"><video src="../assets/lp/clip-40028.mp4" poster="../assets/lp/clip-40028.jpg" muted loop playsinline autoplay aria-label="2人の自撮り"></video><div class="lb"><b>しずく</b><span class="mono">日本 ・ 千葉県</span></div></div>
-      </div>
-    </div>
-    <p class="mono" style="margin-top:34px;color:var(--sub)">昨日、多かったことば</p>
-    <div class="words">
-      <span style="font-size:1.4rem"><i style="background:#8fa6ff"></i>#空</span>
-      <span style="font-size:1.15rem"><i style="background:#ffb078"></i>#朝</span>
-      <span style="font-size:1.25rem"><i style="background:#ff8fa0"></i>#放課後</span>
-      <span><i style="background:#c3a6ff"></i>#ごはん</span>
-      <span style="font-size:.9rem"><i style="background:#ffd23f"></i>#電車</span>
-      <span style="font-size:.95rem"><i style="background:#6fd39b"></i>#推し</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== HAPTICS ========== -->
-<section class="sec" aria-labelledby="h-hap">
-  <svg class="stk float d3" style="right:8%;top:60px;width:40px" viewBox="0 0 40 40" aria-hidden="true"><g fill="#ff5aa0" stroke="#fff" stroke-width="1.4"><circle cx="20" cy="9" r="7"/><circle cx="31" cy="17" r="7"/><circle cx="27" cy="30" r="7"/><circle cx="13" cy="30" r="7"/><circle cx="9" cy="17" r="7"/></g><circle cx="20" cy="20" r="5" fill="#ffd23f"/></svg>
-  <div class="wrap">
-    <p class="mono kicker">触覚</p>
-    <h2 id="h-hap">指先で、<br>写真を感じる。</h2>
-    <p class="lead">Later は、ひとつひとつの操作に手ざわりがある。押してみて。Android のブラウザなら、ほんとうに震えます。</p>
-    <div class="pads">
-      <button class="pad" type="button" data-hap="shutter"><span class="mono">撮る</span><b>パシャ</b><span>シャッターが切れた瞬間。強く、鋭く。</span><span class="wave" aria-hidden="true"><i style="height:22px"></i><i style="height:14px"></i><i style="height:20px"></i></span></button>
-      <button class="pad" type="button" data-hap="beat"><span class="mono">現像中</span><b>ドクン</b><span>仕上がりが近いほど、鼓動が速くなる。</span><span class="wave" aria-hidden="true"><i style="height:20px"></i><i style="height:6px"></i><i style="height:11px"></i></span></button>
-      <button class="pad" type="button" data-hap="ton"><span class="mono">届いた</span><b>トン</b><span>グループに、光がひとつ増えた。</span><span class="wave" aria-hidden="true"><i style="height:12px"></i></span></button>
-      <button class="pad" type="button" data-hap="soft2"><span class="mono">まだ</span><b>ふわっ、ふわっ</b><span>月が消灯中。やわらかく2回、「まだだよ」。</span><span class="wave" aria-hidden="true"><i style="height:9px"></i><i style="height:4px;opacity:.2"></i><i style="height:9px"></i></span></button>
-      <button class="pad" type="button" data-hap="sarasara"><span class="mono">仕上がり</span><b>さらさら、トン</b><span>朝9:00、写真がひらく合図。</span><span class="wave" aria-hidden="true"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i><i style="height:22px"></i></span></button>
-    </div>
-    <p class="note">iPhone のブラウザは振動に対応していないので、画面の下に「いまの触覚」が文字で出ます。アプリでは、ほんものの触覚で届きます。</p>
+    <h2 id="h-mondo" style="font-size:clamp(1.3rem,4.4vw,1.9rem);margin-top:6px">名前も、いいねもない。</h2>
+    <p class="s mono">昨日の世界 · <span class="y-date">10.27</span> · 128 の光</p>
   </div>
 </section>
 
 <!-- ========== CLOSING ========== -->
-<section class="sec closing" aria-labelledby="h-close">
-  <div class="bg" aria-hidden="true"><img src="../assets/lp/hero-friends.jpg" alt=""></div>
+<section class="closing" aria-labelledby="h-close">
+  <div class="bg" aria-hidden="true"><img src="../assets/lp/sky-dusk.jpg" alt=""></div>
   <div class="wrap">
     <h2 id="h-close"><span class="circ">あしたの朝<svg viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path d="M58 6C26 4 6 18 8 36s28 30 58 28 50-14 48-32S86 2 46 10"/></svg></span>、<br>また会おう。</h2>
-    <p class="lead">今日の3こまを撮って、ひと晩待つ。待つ時間まで、写真になる。</p>
     <a class="btn btn-white" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlightに参加する</a>
-    <span class="mono">iOS ・ 招待制のベータ版</span>
+    <span class="mono">iOS · 招待制のベータ版</span>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Later<button class="link-btn replay" id="replayIntro" type="button">オープニングをもう一度</button></span><span class="mono">TODAY ⇄ YESTERDAY</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Later</span><nav aria-label="フッター"><a href="terms.html">利用規約</a><a href="privacy.html">プライバシーポリシー</a><a href="privacy.html#contact">お問い合わせ</a><button class="link-btn replay" id="replayIntro" type="button">オープニング</button></nav></div></footer>
 <p class="credit">動画素材: <a href="https://mixkit.co/free-stock-video/" target="_blank" rel="noopener">Mixkit</a>(Stock Video Free License)。画面は開発中のアプリのものです。</p>
 
 <p class="haps" id="haps" aria-live="polite"></p>
@@ -623,7 +411,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 'use strict';
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var clamp=function(x,a,b){return Math.max(a,Math.min(b,x))};
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var root=document.documentElement;
 
 /* ---------- dates ---------- */
 var now=new Date(), yd=new Date(now.getTime()-864e5);
@@ -632,26 +422,14 @@ var md=function(d){return pad(d.getMonth()+1)+'.'+pad(d.getDate())};
 var stampOf=function(d){return "'"+String(d.getFullYear()).slice(2)+' '+pad(d.getMonth()+1)+' '+pad(d.getDate())};
 $$('.y-date').forEach(function(e){e.textContent=md(yd)});
 $$('.y-stamp').forEach(function(e){e.textContent=stampOf(yd)});
-$('#devStamp').textContent=stampOf(now);
-function tickRec(){var d=new Date();$('#recStamp').textContent=stampOf(d)+' '+pad(d.getHours())+':'+pad(d.getMinutes())}
-tickRec();setInterval(tickRec,20000);
 
 /* ---------- grain ---------- */
 try{var g=document.createElement('canvas');g.width=g.height=180;var gx=g.getContext('2d');var id=gx.createImageData(180,180);for(var i=0;i<id.data.length;i+=4){var v=Math.random()*255|0;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=46}gx.putImageData(id,0,0);$('#grain').style.backgroundImage='url('+g.toDataURL()+')'}catch(e){}
 
 /* ---------- header solidifies after the hero ---------- */
-var top=$('#top');
-function onScroll(){top.classList.toggle('solid',window.scrollY>window.innerHeight*.6)}
+var topEl=$('#top');
+function onScroll(){topEl.classList.toggle('solid',window.scrollY>window.innerHeight*.6)}
 window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-/* ---------- play videos only while visible ---------- */
-var vio=null;
-try{vio=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(reduce){v.pause();return}if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.15})}catch(e){}
-$$('video').forEach(function(v){
-  if(reduce){v.removeAttribute('autoplay');v.pause();return}
-  if(v.closest('.ytile')&&!v.closest('.ygrid.open')){v.removeAttribute('autoplay')}
-  vio&&vio.observe(v);
-});
 
 /* ---------- haptics + sound ---------- */
 var HAP={
@@ -661,21 +439,20 @@ var HAP={
   beat:{v:[34,110,16],l:'ドクン・ドク'},
   ton:{v:[18],l:'トン'},
   open:{v:[80],l:'強く1回(ひらく)'},
-  swell:{v:[10],l:'じわっと強くなる'},
-  sarasara:{v:[5,40,6,40,8,40,10,40,12,60,40],l:'さらさら → トン'},
-  copy:{v:[8],l:'ごく軽く1回'}
+  sarasara:{v:[5,40,6,40,8,40,10,40,12,60,40],l:'さらさら → トン'}
 };
 var hapOn=true;
 try{if(localStorage.getItem('later-hap')==='0')hapOn=false}catch(e){}
 var tgl=$('#hapToggle');tgl.setAttribute('aria-pressed',String(hapOn));
 tgl.addEventListener('click',function(){hapOn=!hapOn;tgl.setAttribute('aria-pressed',String(hapOn));try{localStorage.setItem('later-hap',hapOn?'1':'0')}catch(e){}if(hapOn)hap('tap')});
 var hapsEl=$('#haps'),hapsT=0;
-function say(html,ms){hapsEl.innerHTML=html;hapsEl.classList.add('on');clearTimeout(hapsT);hapsT=setTimeout(function(){hapsEl.classList.remove('on')},ms||1500)}
+function say(html,ms){hapsEl.innerHTML=html;hapsEl.classList.add('on');clearTimeout(hapsT);hapsT=setTimeout(function(){hapsEl.classList.remove('on')},ms||1400)}
 function hap(name,quiet){
   var h=HAP[name];if(!h||!hapOn)return;
   try{navigator.vibrate&&navigator.vibrate(h.v)}catch(e){}
   if(!quiet)say('<b>触覚 ▸</b> '+h.l);
 }
+function buzz(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
 var actx=null;
 function shutterSound(){
   if(!hapOn)return;
@@ -691,10 +468,6 @@ function shutterSound(){
     });
   }catch(e){}
 }
-$$('.pad').forEach(function(p){p.addEventListener('click',function(){
-  var n=p.getAttribute('data-hap');hap(n);if(n==='shutter')shutterSound();
-  p.classList.add('on');setTimeout(function(){p.classList.remove('on')},400);
-})});
 
 /* ---------- long-press helper ---------- */
 function holdable(el,ms,o){
@@ -705,7 +478,7 @@ function holdable(el,ms,o){
     if(p>=1){on=false;el.classList.remove('hold');o.done&&o.done();return}
     raf=requestAnimationFrame(frame);
   }
-  function start(e){if(o.can&&!o.can()){o.blocked&&o.blocked();return}if(e.preventDefault)e.preventDefault();on=true;t0=performance.now();last=t0;el.classList.add('hold');try{e.pointerId!=null&&el.setPointerCapture(e.pointerId)}catch(_){}raf=requestAnimationFrame(frame)}
+  function start(e){if(e.preventDefault)e.preventDefault();on=true;t0=performance.now();last=t0;el.classList.add('hold');try{e.pointerId!=null&&el.setPointerCapture(e.pointerId)}catch(_){}raf=requestAnimationFrame(frame)}
   function stop(){if(!on)return;on=false;cancelAnimationFrame(raf);el.classList.remove('hold');o.cancel&&o.cancel()}
   el.addEventListener('pointerdown',start);
   el.addEventListener('pointerup',stop);el.addEventListener('pointercancel',stop);el.addEventListener('lostpointercapture',stop);
@@ -713,167 +486,159 @@ function holdable(el,ms,o){
   el.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat)start({})});
   el.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')stop()});
 }
+function play(v){if(!v)return;var p=v.play();if(p&&p.catch)p.catch(function(){})}
 
-/* ---------- story: sticky phone follows the active step ---------- */
-var screens=$('#screens'),steps=$$('.step');
-steps.forEach(function(s,i){var im=$('.step-img',s);var c=document.createElement('img');c.src=im.currentSrc||im.src;c.alt='';if(i===0)c.className='on';screens.appendChild(c)});
-var cur=0;
-function setStep(i){
-  if(i===cur&&$$('img.on',screens).length)return;
-  var changed=i!==cur;cur=i;
-  $$('img',screens).forEach(function(im,k){im.classList.toggle('on',k===i)});
-  steps.forEach(function(s,k){s.classList.toggle('on',k===i)});
-  if(changed)hap('tap',true);
+/* ---------- hero: one day of clips, story-style bars ---------- */
+var hvs=$$('#heroMedia .hv'),hbars=$('#heroBars'),T=5400,hcur=0,helapsed=0,hlast=0,hvis=true,hprev=null;
+hvs.forEach(function(f,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label',f.getAttribute('data-l')+' '+f.getAttribute('data-t'));b.innerHTML='<span><i></i></span>';b.addEventListener('click',function(){hshow(i)});hbars.appendChild(b)});
+var hbtn=$$('button',hbars);
+function hshow(i){
+  var prev=hcur;hcur=i;helapsed=0;
+  hvs.forEach(function(f,k){f.classList.toggle('on',k===i)});
+  var nv=$('video',hvs[i]);try{nv.currentTime=0}catch(e){}
+  if(!reduce)play(nv);
+  if(prev!==i){var pv=$('video',hvs[prev]);clearTimeout(hprev);hprev=setTimeout(function(){if(hcur!==prev)pv.pause()},1400)}
+  hbtn.forEach(function(b,k){b.classList.toggle('done',k<i);$('i',b).style.transform=k<i?'':'scaleX(0)'});
+  $('#recClock').textContent=hvs[i].getAttribute('data-t');
+  $('#recLab').textContent=hvs[i].getAttribute('data-l');
 }
-try{
-  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setStep(+e.target.getAttribute('data-i'))})},{rootMargin:'-45% 0px -45% 0px'});
-  steps.forEach(function(s){so.observe(s)});
-}catch(e){}
-steps[0].classList.add('on');
+function hloop(t){
+  var dt=hlast?Math.min(100,t-hlast):0;hlast=t;
+  var run=root.classList.contains('hero-go')&&hvis&&!document.hidden&&!reduce;
+  if(run){
+    helapsed+=dt;
+    $('i',hbtn[hcur]).style.transform='scaleX('+clamp(helapsed/T,0,1).toFixed(3)+')';
+    if(helapsed>=T)hshow((hcur+1)%hvs.length);
+  }
+  requestAnimationFrame(hloop);
+}
+try{new IntersectionObserver(function(es){hvis=es[0].isIntersecting;var v=$('video',hvs[hcur]);if(hvis){if(!reduce)play(v)}else v.pause()},{threshold:.05}).observe($('#hero'))}catch(e){}
+hshow(0);requestAnimationFrame(hloop);
 
-/* ---------- shoot demo ---------- */
-var film=3;
-var STILLS=['../assets/lp/clip-42306.jpg','../assets/lp/clip-51252.jpg','../assets/lp/clip-40028.jpg'];
-function renderFilm(){
-  $$('.film').forEach(function(f){$$('i',f).forEach(function(b,i){b.classList.toggle('used',i<3-film)})});
-  $$('.film-label').forEach(function(l){l.textContent=film>0?'のこり '+film+'こま':'今日は、ここまで'});
-  $('.shoot-msg').textContent=film>0?'長押しで撮る(1.5秒)':'今日は、ここまで。また朝に。';
-}
-function selectedTags(){return $$('#tags .tag[aria-pressed="true"]').map(function(t){return t.textContent})}
-function shoot(){
-  if(film<=0){hap('soft2');var p=$('#shutter');p.classList.remove('shake');void p.offsetWidth;p.classList.add('shake');return}
-  film--;
-  var fl=$('#flash');fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');
-  hap('shutter');shutterSound();
-  var tags=selectedTags();
-  var tray=$('#tray'),slot=$('.empty',tray);
-  var src=STILLS[2-film];
-  var fig=document.createElement('figure');fig.className='print';fig.style.margin='0';
-  fig.innerHTML='<div class="win"><img src="'+src+'" alt="" style="filter:blur(14px) saturate(.2)"><div class="milk"></div></div><div class="cap"><span>'+md(now)+'</span><span>'+(tags[0]||'')+'</span></div>';
-  if(slot)tray.replaceChild(fig,slot);
-  renderFilm();
-  setTimeout(function(){hap('ton',true)},900);
-}
-$$('#tags .tag').forEach(function(t){t.addEventListener('click',function(){
-  var on=t.getAttribute('aria-pressed')==='true';
-  if(!on&&selectedTags().length>=3){hap('soft2');return}
-  t.setAttribute('aria-pressed',String(!on));hap('tap');
-})});
-var gauge=$('#shutter .gauge');
-holdable($('#shutter'),1500,{
-  can:function(){return film>0},
-  blocked:function(){hap('soft2')},
-  progress:function(p){gauge.style.strokeDashoffset=252*(1-p)},
-  tickEvery:function(p){return 260-160*p},
-  tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(6+30*p))}catch(e){}},
-  done:function(){gauge.style.strokeDashoffset=252;shoot()},
-  cancel:function(){gauge.style.strokeDashoffset=252;try{navigator.vibrate&&navigator.vibrate(0)}catch(e){}}
-});
-renderFilm();
-
-/* ---------- developing: hold to feel the heartbeat ---------- */
-var devP=0,devOn=false,devRaf=0,lastBeat=0,devDone=false;
-var devImg=$('#devImg'),devMilk=$('#devMilk'),devPrint=$('#devPrint');
-var TOTAL=2*3600+54*60;
-function devRender(){
-  devMilk.style.opacity=String(1-devP);
-  devImg.style.filter='brightness('+(1.6-.6*devP).toFixed(3)+') contrast('+(.45+.6*devP).toFixed(3)+') saturate('+(.1+devP).toFixed(3)+') blur('+((1-devP)*8).toFixed(2)+'px)';
-  var left=Math.round(TOTAL*(1-devP)),h=Math.floor(left/3600),m=Math.floor(left%3600/60),sec=left%60;
-  $('#devClock').textContent=h>0?pad(h)+':'+pad(m):pad(m)+':'+pad(sec);
-  $('#devPct').textContent=devP>=1?'仕上がり 9:00':'現像 '+Math.round(devP*100)+'%';
-  $('#devStamp').style.opacity=devP>=1?'1':'0';
-}
-function devFrame(t){
-  if(!devOn)return;
-  devP=Math.min(1,devP+0.0042);
-  if(t-lastBeat>900-560*devP){lastBeat=t;hap('beat',devP>0.02);devPrint.classList.remove('beat');void devPrint.offsetWidth;devPrint.classList.add('beat')}
-  devRender();
-  if(devP>=1){devOn=false;devDone=true;hap('sarasara');$('#devHint').textContent='仕上がりました。朝9:00、写真がひらく。';$('#devReset').hidden=false;return}
-  devRaf=requestAnimationFrame(devFrame);
-}
-function devStart(e){if(devDone)return;if(e&&e.preventDefault)e.preventDefault();devOn=true;lastBeat=0;$('#devHint').textContent='ドクン、ドク…  はなさないで';try{e&&e.pointerId!=null&&devPrint.setPointerCapture(e.pointerId)}catch(_){}devRaf=requestAnimationFrame(devFrame)}
-function devStop(){if(!devOn)return;devOn=false;cancelAnimationFrame(devRaf);if(!devDone)$('#devHint').textContent='また押すと、つづきから'}
-devPrint.addEventListener('pointerdown',devStart);
-['pointerup','pointercancel','lostpointercapture'].forEach(function(ev){devPrint.addEventListener(ev,devStop)});
-devPrint.addEventListener('contextmenu',function(e){e.preventDefault()});
-devPrint.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();devStart()}});
-devPrint.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')devStop()});
-$('#devReset').addEventListener('click',function(){devP=0;devDone=false;devRender();$('#devHint').textContent='長押しで、鼓動を感じる';$('#devReset').hidden=true;hap('tap')});
-devRender();
-
-/* ---------- open yesterday ---------- */
-var og=$('#openOrb .gauge'),yg=$('#ygrid');
-function ytiles(play){$$('.ytile video',yg).forEach(function(v){if(play){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})}
-holdable($('#openOrb'),1200,{
-  progress:function(p){og.style.strokeDashoffset=452*(1-p)},
-  tickEvery:function(p){return 220-150*p},
-  tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(5+40*p))}catch(e){}},
-  done:function(){
-    og.style.strokeDashoffset=452;var b=$('#bloom');b.classList.remove('go');void b.offsetWidth;b.classList.add('go');
-    hap('open');setTimeout(function(){yg.classList.add('open');$('#closeY').hidden=false;if(!reduce)ytiles(true)},250);
-  },
-  cancel:function(){og.style.strokeDashoffset=452;hap('soft2')}
-});
-$('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('#closeY').hidden=true;ytiles(false);hap('tap')});
-
-/* ---------- wall of prints (built from the clips so each clip is embedded once per use) ---------- */
+/* ---------- day: the phone turns through one day ---------- */
 (function(){
-  var rail=$('#rail');
-  var items=[['42306','あおぞら','#朝'],['40028','つむぎ','#放課後'],['42313','ほたる','#夜'],['51252','ひなた','#ごはん'],['42308','しずく','#放課後'],['41181','あなた','#朝']];
-  var srcs={};
-  $$('.ytile video').forEach(function(v){var m=v.getAttribute('src').match(/clip-(\d+)\.mp4/);if(m)srcs[m[1]]=v.currentSrc||v.getAttribute('src')});
-  var html='';
-  for(var r=0;r<2;r++){items.forEach(function(it){html+='<figure class="print" style="margin:0"><span class="tape"></span><div class="win"><video data-clip="'+it[0]+'" muted loop playsinline></video></div><span class="stamp">'+stampOf(yd)+'</span><div class="cap"><span>'+md(yd)+'</span><span class="hw">'+it[2]+'</span></div></figure>'})}
-  rail.innerHTML=html;
-  $$('video',rail).forEach(function(v){
-    var id=v.getAttribute('data-clip');v.src=srcs[id];v.setAttribute('poster',($('.ytile video[src*="'+id+'"]')||{getAttribute:function(){return ''}}).getAttribute('poster')||'');
-    if(reduce)return;
-    vio&&vio.observe(v);
-  });
+  var track=$('#dayTrack'),p3=$('#p3'),wrap=$('#p3wrap'),glow=$('#p3glow'),shadow=$('#p3shadow'),sheen=$('#sheen');
+  var imgs=$$('#scr img'),dcs=$$('.dc'),dbgs=$$('.dbg'),navb=$$('#dayNav button'),filmI=$$('#film i'),flashEl=$('#pFlash');
+  var clock=$('#dClock'),kick=$('#dKick');
+  var KICK=['MORNING','AFTERNOON','NIGHT','NEXT MORNING'];
+  var GC=['rgba(255,170,110,.36)','rgba(255,214,120,.3)','rgba(120,140,255,.34)','rgba(255,150,170,.38)'];
+  var RNG=[[540,585],[730,1170],[1380,1900],[1900,1980]];
+  // reuse the hero clips as the scene backdrops (same source strings, no extra bytes in the page)
+  dbgs.forEach(function(f){var src=$('#heroMedia .hv[data-k="'+f.getAttribute('data-src')+'"] video');if(src){var v=$('video',f);v.src=src.getAttribute('src');v.poster=src.getAttribute('poster')||''}});
+  var vis=false,dp=0,tp=0,txt=-1,sidx=-1,shots=0,beatT=0,mx=0,my=0;
+  try{new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(!vis)dbgs.forEach(function(f){$('video',f).pause()});else play($('video',dbgs[Math.max(0,txt)]))},{rootMargin:'10% 0px'}).observe(track)}catch(e){vis=true}
+  function ss(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x)}
+  function setText(i){
+    if(i===txt)return;var from=txt;txt=i;
+    dcs.forEach(function(d,k){d.classList.toggle('on',k===i);d.setAttribute('aria-hidden',k===i?'false':'true')});
+    dbgs.forEach(function(f,k){f.classList.toggle('on',k===i);var v=$('video',f);if(k===i){if(vis)play(v)}else setTimeout(function(){if(txt!==k)v.pause()},1300)});
+    navb.forEach(function(b,k){b.classList.toggle('on',k===i)});
+    kick.textContent=KICK[i];
+    glow.style.setProperty('--gc',GC[i]);
+    clearInterval(beatT);
+    if(from!==-1){
+      if(i===1)hap('tap',true);
+      if(i===2){hap('beat',true);if(!reduce)beatT=setInterval(function(){if(!vis)return;hap('beat',true);wrap.classList.remove('beat');void wrap.offsetWidth;wrap.classList.add('beat')},1100)}
+      if(i===3)hap('sarasara');
+      if(i===0)hap('tap',true);
+    }
+  }
+  function setScreen(i){if(i===sidx)return;sidx=i;imgs.forEach(function(im,k){im.classList.toggle('on',k===i)})}
+  function shoot(n){
+    filmI.forEach(function(el,k){el.classList.toggle('used',k<n)});
+    if(n>shots&&n<=3){flashEl.classList.remove('go');void flashEl.offsetWidth;flashEl.classList.add('go');hap('shutter');shutterSound()}
+    shots=n;
+  }
+  function frame(){
+    requestAnimationFrame(frame);
+    if(!vis)return;
+    var r=track.getBoundingClientRect(),span=r.height-window.innerHeight;
+    tp=clamp(-r.top/span,0,1);
+    dp+=(tp-dp)*(reduce?1:.16);
+    var u=dp*4,k=Math.min(3,Math.floor(u)),f=u-k;
+    var flip=reduce?1:ss(0,.5,f);
+    var ang=reduce?0:(k+flip-1)*360;
+    var tx=mx*5,ty=my*-3.5;
+    p3.style.transform='rotateX('+(-5+ty).toFixed(2)+'deg) rotateY('+(ang+tx).toFixed(2)+'deg) rotateZ('+(Math.sin(u*Math.PI)*2.2).toFixed(2)+'deg)';
+    var c=Math.abs(Math.cos(ang*Math.PI/180));
+    shadow.style.transform='scaleX('+(.5+.5*c).toFixed(3)+')';
+    sheen.style.setProperty('--sh',(100-((ang%360+360)%360)/360*100).toFixed(1)+'%');
+    var ti=f>=.18?k:Math.max(0,k-1);
+    setText(ti);
+    setScreen(f>=.25?k:Math.max(0,k-1));
+    var m;
+    if(k>0&&f<.18)m=RNG[k-1][1];
+    else{var ff=k===0?f:clamp((f-.18)/.82,0,1);m=RNG[k][0]+(RNG[k][1]-RNG[k][0])*ss(0,1,ff)}
+    var hh=Math.floor(m/60)%24,mm=Math.floor(m%60);
+    clock.textContent=pad(hh)+':'+pad(mm);
+    shoot(ti===1?(f<.55?0:f<.7?1:f<.85?2:3):(ti>1?3:0));
+  }
+  navb.forEach(function(b,i){b.addEventListener('click',function(){
+    var top=track.getBoundingClientRect().top+window.scrollY,span=track.offsetHeight-window.innerHeight;
+    window.scrollTo({top:top+span*(i+.62)/4,behavior:reduce?'auto':'smooth'});hap('tap',true);
+  })});
+  if(!reduce&&window.matchMedia('(hover:hover)').matches){
+    window.addEventListener('pointermove',function(e){mx=e.clientX/window.innerWidth-.5;my=e.clientY/window.innerHeight-.5},{passive:true});
+  }
+  setText(0);setScreen(0);requestAnimationFrame(frame);
 })();
 
-/* ---------- opening sequence: rewind through photos, land on "Later" ---------- */
+/* ---------- open yesterday ---------- */
 (function(){
-  var root=document.documentElement;
+  var og=$('#openOrb .gauge'),yg=$('#ygrid');
+  function ytiles(on){$$('.ytile video',yg).forEach(function(v){if(on)play(v);else v.pause()})}
+  holdable($('#openOrb'),1200,{
+    progress:function(p){og.style.strokeDashoffset=452*(1-p)},
+    tickEvery:function(p){return 220-150*p},
+    tick:function(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(Math.round(5+40*p))}catch(e){}},
+    done:function(){
+      og.style.strokeDashoffset=452;var b=$('#bloom');b.classList.remove('go');void b.offsetWidth;b.classList.add('go');
+      hap('open');setTimeout(function(){yg.classList.add('open');$('#closeY').hidden=false;if(!reduce)ytiles(true)},250);
+    },
+    cancel:function(){og.style.strokeDashoffset=452;hap('soft2')}
+  });
+  $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('#closeY').hidden=true;ytiles(false);hap('tap')});
+})();
+
+/* ---------- opening sequence: ~40 prints flash by, land on "Later" ---------- */
+(function(){
   var intro=$('#intro'),fly=$('#introFly'),iw=$('#introWord'),stage=$('#introStage'),hud=$('#introHud'),hudDate=$('#introDate');
-  var bloom=$('#introBloom'),dot=$('#introDot'),tagEl=$('#introTag'),skipBtn=$('#introSkip');
-  var timers=[],irRaf=0,running=false,finished=true,primed=false;
+  var bloom=$('#introBloom'),dot=$('#introDot'),tagEl=$('#introTag'),skipBtn=$('#introSkip'),leak=$('#introLeak'),count=$('#introCount');
+  var timers=[],irRaf=0,running=false,finished=true;
   function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t}
   function clearAll(){timers.forEach(clearTimeout);timers=[];cancelAnimationFrame(irRaf)}
   function rnd(a,b){return a+Math.random()*(b-a)}
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-  function buzz(p){try{hapOn&&navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
 
   function buildItems(){
     var items=[];
     $$('.intro-pool img').forEach(function(im){items.push({k:'img',src:im.getAttribute('src')})});
-    var clips=$$('.ytile video');
-    clips.forEach(function(v,i){
+    $$('.ytile video').forEach(function(v,i){
       var poster=v.getAttribute('poster'),src=v.getAttribute('src');
       items.push(i%2===0?{k:'vid',src:src,poster:poster}:{k:'img',src:poster});
     });
-    var hs=$('.closing .bg img');if(hs)items.push({k:'img',src:hs.getAttribute('src')});
-    shuffle($$('.step-img')).slice(0,4).forEach(function(im){items.push({k:'phone',src:im.getAttribute('src')})});
-    items=shuffle(items).slice(0,18);
-    // keep at least one phone in the second half so the app shows up before the logo
-    return items;
+    return shuffle(items);
   }
   function preload(items){
     var jobs=items.filter(function(it){return it.k!=='vid'}).map(function(it){return new Promise(function(res){var im=new Image();im.onload=im.onerror=function(){res()};im.src=it.src;if(im.decode)im.decode().then(res,res)})});
-    return Promise.race([Promise.all(jobs),new Promise(function(r){setTimeout(r,2200)})]);
+    return Promise.race([Promise.all(jobs),new Promise(function(r){setTimeout(r,2400)})]);
   }
 
   function spawn(it,i,n){
     var p=i/(n-1),el=document.createElement('figure');
-    var vw=Math.min(window.innerWidth,1100),big=window.innerWidth>760?1.55:1;
-    var d=new Date(now);d.setDate(d.getDate()-1-Math.floor(i*1.7+Math.random()*2));
-    hudDate.textContent=stampOf(d);
-    el.className='ip'+(it.k==='phone'?' phone':'');
-    var x=14+((i*37+Math.random()*22)%72),y=24+((i*53+Math.random()*18)%52);
-    var w=Math.min(vw*.4,230)*big*(0.82+0.42*p)*rnd(.9,1.12);
+    var W=window.innerWidth,H=window.innerHeight,wide=W>760;
+    var d=new Date(now);d.setDate(d.getDate()-1-Math.floor(i*1.9+Math.random()*3));
+    hudDate.textContent=stampOf(d);count.textContent=pad(i+1).padStart(3,'0')+' / '+pad(n);
+    el.className='ip';
+    // spread over the whole frame on a golden-angle spiral, with jitter, drifting a little wider as it speeds up
+    var a=i*2.39996+rnd(-.35,.35),rr=(.16+.84*((i*.618)%1))*(.82+.28*p);
+    var rx=wide?40:44,ry=wide?36:34;
+    var x=50+Math.cos(a)*rx*rr+rnd(-4,4),y=50+Math.sin(a)*ry*rr+rnd(-4,4);
+    var base=wide?Math.min(Math.min(W*.22,H*.36),340):Math.min(W*.46,240);
+    var big=(i%9===8)?1.45:1;
+    var w=base*(0.82+0.46*p)*rnd(.9,1.12)*big;
     el.style.setProperty('--x',x.toFixed(1)+'%');el.style.setProperty('--y',y.toFixed(1)+'%');
     el.style.setProperty('--w',w.toFixed(0)+'px');
-    el.style.setProperty('--pw',(Math.min(vw*.27,150)*big).toFixed(0)+'px');
     el.style.setProperty('--r',rnd(-13,13).toFixed(1)+'deg');
     el.style.zIndex=String(i+1);
     var inner;
@@ -881,10 +646,13 @@ $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('
     else{inner='<img alt="" src="'+it.src+'">'}
     el.innerHTML='<div class="w">'+inner+'</div><span class="d">'+stampOf(d)+'</span>';
     stage.appendChild(el);
-    var v=el.querySelector('video');if(v){var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
+    var v=el.querySelector('video');if(v)play(v);
     var kids=stage.children;
     if(kids.length>3)kids[kids.length-4].classList.add('old');
     if(kids.length>7)kids[kids.length-8].classList.add('older');
+    while(kids.length>16)stage.removeChild(stage.firstChild);
+    stage.style.setProperty('--z',(1+.1*p).toFixed(3));
+    if(i===Math.floor(n*.45))leak.classList.add('on');
     buzz(6);
   }
 
@@ -910,35 +678,35 @@ $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('
   }
   function exit(ms){
     root.classList.add('hero-go');
-    tagEl.classList.add('gone');hud.classList.add('off');
+    tagEl.classList.add('gone');hud.classList.add('off');count.classList.add('off');skipBtn.classList.add('off');
     if(reduce){intro.style.transition='opacity .5s';intro.style.opacity='0';fly.style.transition='opacity .5s';fly.style.opacity='0';later(finish,560);return}
     flight(ms);hole(ms);later(finish,ms+80);
   }
   function showWord(){
     iw.classList.add('on');
-    later(function(){tagEl.classList.add('on')},reduce?300:1000);
+    later(function(){tagEl.classList.add('on')},reduce?300:900);
     buzz([16,50,24]);
   }
   function collapse(){
-    dot.classList.add('off');
+    dot.classList.add('off');leak.classList.remove('on');count.classList.add('off');
     $$('.ip',stage).forEach(function(el){el.style.setProperty('--sd',(Math.random()*.16).toFixed(2)+'s');el.classList.add('suck')});
     bloom.classList.add('go');
     buzz([20,30,28]);
     later(showWord,560);
-    later(function(){exit(950)},560+2350);
+    later(function(){exit(950)},560+1900);
   }
   function montage(items){
     var n=items.length,t=0;
     items.forEach(function(it,i){
       later(function(){spawn(it,i,n)},t);
-      t+=Math.max(60,270*Math.pow(.84,i));
+      t+=Math.max(46,250*Math.pow(.9,i));
     });
-    later(collapse,t+420);
+    later(collapse,t+380);
   }
   function skip(){
     if(!running||finished)return;
     clearAll();
-    stage.style.opacity='0';dot.classList.add('off');
+    stage.style.opacity='0';dot.classList.add('off');leak.classList.remove('on');count.classList.add('off');
     iw.classList.add('on');tagEl.classList.add('on');
     later(function(){exit(520)},260);
   }
@@ -946,16 +714,17 @@ $('#closeY').addEventListener('click',function(){yg.classList.remove('open');$('
     running=true;finished=false;
     root.classList.add('has-intro','intro-on');root.classList.remove('hero-go','logo-in');
     intro.style.cssText='';fly.style.cssText='';iw.style.cssText='';iw.classList.remove('on');
-    tagEl.className='intro-tag';hud.classList.remove('off');dot.classList.remove('off');bloom.classList.remove('go');
-    stage.style.opacity='';stage.innerHTML='';
+    tagEl.className='intro-tag';hud.classList.remove('off');count.classList.remove('off');skipBtn.classList.remove('off');dot.classList.remove('off');bloom.classList.remove('go');leak.classList.remove('on');
+    stage.style.opacity='';stage.style.setProperty('--z','1');stage.innerHTML='';
     window.scrollTo({top:0,behavior:'instant'});
+    hshow(0);
     if(reduce){
-      dot.classList.add('off');hud.classList.add('off');
+      dot.classList.add('off');hud.classList.add('off');count.classList.add('off');
       later(showWord,150);later(function(){exit(0)},1900);
       return;
     }
     var items=buildItems();
-    preload(items).then(function(){if(!running||finished)return;later(function(){montage(items)},360)});
+    preload(items).then(function(){if(!running||finished)return;later(function(){montage(items)},320)});
   }
   intro.addEventListener('click',skip);
   skipBtn.addEventListener('click',function(e){e.stopPropagation();skip()});
