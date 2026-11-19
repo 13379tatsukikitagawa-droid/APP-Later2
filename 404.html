@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ページが 見つかりません | Lattag</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0C0D">
+<style>
+  /* どの 階層からでも 表示できるよう、この ページだけ スタイルを 中に 書いています */
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center;
+    background: #0B0C0D; color: #F4F1EA;
+    font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', system-ui, sans-serif; line-height: 1.8;
+  }
+  main { padding: 40px 24px; max-width: 560px; }
+  .mono { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .74rem; letter-spacing: .14em; color: #C8F25A; margin: 0 0 14px; }
+  h1 { margin: 0 0 14px; font-size: clamp(1.8rem, 7vw, 2.8rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.25; }
+  h1 span { display: inline-block; }
+  p { margin: 0; color: #A3A3AB; }
+  a {
+    display: inline-flex; align-items: center; height: 52px; padding: 0 26px; margin-top: 30px; border-radius: 999px;
+    background: #C8F25A; color: #0E1206; font-weight: 700; text-decoration: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .14);
+  }
+  a:focus-visible { outline: 2px solid #C8F25A; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="mono"># 404</p>
+  <h1><span>この ページは、</span><span>まだ ひらいていません。</span></h1>
+  <p>アドレスが 変わったか、ページが なくなった ようです。</p>
+  <a id="home" href="/">トップへ もどる</a>
+</main>
+<script>
+  // GitHub Pages では サイトが /リポジトリ名/ の 下に あるので、トップの 場所を 合わせる
+  if (location.hostname.endsWith('github.io')) {
+    document.getElementById('home').href = '/' + location.pathname.split('/')[1] + '/';
+  }
+</script>
+</body>
+</html>
