@@ -8,7 +8,7 @@
   margin-top: 14px;
 }
 .lede { color: var(--sub); font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 1.9; }
-main p, .faq-list summary { word-break: auto-phrase; line-break: strict; }
+main p { word-break: auto-phrase; line-break: strict; }
 
 /* スクロールで あらわれる(JS が 動く ときだけ かくす) */
 .js [data-reveal] {
@@ -235,38 +235,6 @@ html.intro-on, html.intro-on body { overflow: hidden; height: 100%; }
   .card-wide .card-shot { padding-top: 26px; }
 }
 @media (min-width: 620px) and (max-width: 900px) { .card, .card-wide { grid-column: span 6; } }
-
-/* ───────── よくある質問 ───────── */
-.faq-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 6vw, 88px); align-items: start; }
-.faq .section-head { margin-bottom: 0; position: sticky; top: calc(var(--header-h) + 32px); }
-@media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } .faq .section-head { position: static; margin-bottom: 8px; } }
-
-.faq-list { border-top: 1px solid var(--line); }
-.faq-list details { border-bottom: 1px solid var(--line); interpolate-size: allow-keywords; }
-.faq-list summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: 22px 2px; cursor: pointer; list-style: none;
-  font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: 1.6;
-  transition: color .18s ease;
-}
-.faq-list summary::-webkit-details-marker { display: none; }
-.faq-list summary::after {
-  content: ''; flex: none; width: 30px; height: 30px; border-radius: 50%;
-  background:
-    linear-gradient(currentColor, currentColor) center / 12px 1.6px no-repeat,
-    linear-gradient(currentColor, currentColor) center / 1.6px 12px no-repeat;
-  box-shadow: inset 0 0 0 1px var(--line-2);
-  transition: transform .4s var(--ease), background-color .2s ease;
-}
-.faq-list details[open] summary::after { transform: rotate(45deg); }
-@media (hover: hover) { .faq-list summary:hover::after { background-color: rgba(255, 255, 255, .08); } }
-.faq-list .a { padding: 0 44px 24px 2px; color: var(--sub); font-size: .95rem; }
-.faq-list .a a { color: var(--lime); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-.faq-list details::details-content {
-  block-size: 0; overflow: clip; opacity: 0;
-  transition: block-size .45s var(--ease), opacity .35s ease, content-visibility .45s allow-discrete;
-}
-.faq-list details[open]::details-content { block-size: auto; opacity: 1; }
 
 /* ───────── CTA ───────── */
 .cta { position: relative; isolation: isolate; padding: clamp(72px, 10vw, 128px) 0 clamp(96px, 13vw, 160px); text-align: center; overflow: clip; }
