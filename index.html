@@ -24,7 +24,7 @@
 <link rel="preload" as="image" href="assets/video/hero.jpg" fetchpriority="high">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/home.css">
-<script>document.documentElement.classList.add('js','has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},14000);</script>
+<script>(function(){var d=document.documentElement,seen=false;d.classList.add('js');try{seen=localStorage.getItem('lattag-intro-seen')==='1'}catch(e){}if(seen)return;d.classList.add('has-intro','intro-on');window.__ifs=setTimeout(function(){d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},14000);})();</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ スキップ</a>

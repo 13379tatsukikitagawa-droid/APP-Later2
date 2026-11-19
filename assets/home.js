@@ -148,6 +148,7 @@
     };
     const run = () => {
       running = true; finished = false;
+      try { localStorage.setItem('lattag-intro-seen', '1'); } catch (e) { /* 保存できない ブラウザ */ }
       root.classList.add('has-intro', 'intro-on'); root.classList.remove('hero-go', 'logo-in');
       intro.style.cssText = ''; fly.style.cssText = ''; iw.style.cssText = ''; iw.classList.remove('on');
       hud.classList.remove('off'); skipBtn.classList.remove('off'); dot.classList.remove('off'); bloom.classList.remove('go'); leak.classList.remove('on');
@@ -162,6 +163,8 @@
     skipBtn.addEventListener('click', (e) => { e.stopPropagation(); skip(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') skip(); });
     if (replay) replay.addEventListener('click', () => { if (!running) run(); });
-    try { run(); } catch (err) { finish(); }
+    // 2回目からは オープニングを とばす(フッターの ボタンで もういちど 見られる)
+    if (!root.classList.contains('has-intro')) { intro.style.display = 'none'; fly.style.display = 'none'; }
+    else { try { run(); } catch (err) { finish(); } }
   })();
 })();
