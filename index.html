@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Instrument+Serif:ital@1&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
-<link rel="preload" as="image" href="assets/video/sky-dawn.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero.jpg" fetchpriority="high">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/home.css">
 <script>document.documentElement.classList.add('js','has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},14000);</script>
@@ -39,7 +39,6 @@
 </div>
 <div class="intro-fly" id="introFly" aria-hidden="true">
   <div class="iw" id="introWord"><b><span style="--k:0">L</span><span style="--k:1">a</span><span style="--k:2">t</span><span style="--k:3">t</span><span style="--k:4">a</span><span style="--k:5">g</span></b></div>
-  <p class="intro-tag" id="introTag">今日を撮ると、きのうが ひらく。</p>
 </div>
 <div class="intro-pool" hidden aria-hidden="true"><img src="assets/intro/ph-191.jpg" alt=""><img src="assets/intro/ph-223.jpg" alt=""><img src="assets/intro/ph-23582.jpg" alt=""><img src="assets/intro/ph-26085.jpg" alt=""><img src="assets/intro/ph-36913.jpg" alt=""><img src="assets/intro/ph-37008.jpg" alt=""><img src="assets/intro/ph-40105.jpg" alt=""><img src="assets/intro/ph-41219.jpg" alt=""><img src="assets/intro/ph-41813.jpg" alt=""><img src="assets/intro/ph-41888.jpg" alt=""><img src="assets/intro/ph-42292.jpg" alt=""><img src="assets/intro/ph-42299.jpg" alt=""><img src="assets/intro/ph-42301.jpg" alt=""><img src="assets/intro/ph-42303.jpg" alt=""><img src="assets/intro/ph-42716.jpg" alt=""><img src="assets/intro/ph-43068.jpg" alt=""><img src="assets/intro/ph-43149.jpg" alt=""><img src="assets/intro/ph-43150.jpg" alt=""><img src="assets/intro/ph-43257.jpg" alt=""><img src="assets/intro/ph-43388.jpg" alt=""><img src="assets/intro/ph-4344.jpg" alt=""><img src="assets/intro/ph-43573.jpg" alt=""><img src="assets/intro/ph-4537.jpg" alt=""><img src="assets/intro/ph-45474.jpg" alt=""><img src="assets/intro/ph-4599.jpg" alt=""><img src="assets/intro/ph-4640.jpg" alt=""><img src="assets/intro/ph-46893.jpg" alt=""><img src="assets/intro/ph-4702.jpg" alt=""><img src="assets/intro/ph-4709.jpg" alt=""><img src="assets/intro/ph-4815.jpg" alt=""><img src="assets/intro/ph-4823.jpg" alt=""><img src="assets/intro/ph-4856.jpg" alt=""><img src="assets/intro/ph-4905.jpg" alt=""><img src="assets/intro/ph-51241.jpg" alt=""><img src="assets/intro/ph-51257.jpg" alt=""><img src="assets/intro/ph-52502.jpg" alt=""><img src="assets/intro/ph-5891.jpg" alt=""></div>
 
@@ -50,7 +49,6 @@
       <span class="brand-word">Lattag</span>
     </a>
     <nav class="nav" aria-label="メイン">
-      <a href="#develop">Concept</a>
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#faq">FAQ</a>
@@ -63,69 +61,13 @@
 
 <!-- ───────── HERO ───────── -->
 <section class="hero" id="hero">
-  <div class="hero-media" id="heroMedia" aria-hidden="true">
-    <figure class="hv on" data-t="06:12" data-tag="#朝"><video src="assets/video/sky-dawn.mp4" poster="assets/video/sky-dawn.jpg" muted loop playsinline preload="auto"></video></figure>
-    <figure class="hv" data-t="16:20" data-tag="#放課後"><video data-src="assets/video/sky-school.mp4" poster="assets/video/sky-school.jpg" muted loop playsinline preload="none"></video></figure>
-    <figure class="hv" data-t="18:42" data-tag="#夕焼け"><video data-src="assets/video/sky-dusk.mp4" poster="assets/video/sky-dusk.jpg" muted loop playsinline preload="none"></video></figure>
-    <figure class="hv" data-t="21:30" data-tag="#帰り道"><video data-src="assets/video/sky-night.mp4" poster="assets/video/sky-night.jpg" muted loop playsinline preload="none"></video></figure>
-  </div>
+  <video class="hero-video" id="heroVideo" src="assets/video/hero.mp4" poster="assets/video/hero.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
   <div class="hero-shade" aria-hidden="true"></div>
-  <div class="finder" aria-hidden="true">
-    <i></i><i></i><i></i><i></i>
-    <p class="finder-rec"><b></b>REC ・ TODAY</p>
-    <p class="finder-time"><span id="heroDate">'26 11 19</span> <span id="heroClock">06:12</span></p>
-  </div>
-
   <div class="wrap hero-inner">
-    <span class="sticker" id="heroTag" aria-hidden="true">#朝</span>
     <h1><span class="line"><span>今日を撮ると、</span></span><span class="line"><span>きのうが ひらく<i>。</i></span></span></h1>
-    <p class="lede hero-lede"><span class="nw">1日 3こま。</span><span class="nw">撮った写真は、</span><span class="nw">あしたの朝 9:00 まで</span> <span class="nw">見られない。</span></p>
-    <div class="hero-row">
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlight で ためす
-          <svg class="arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
-        <a class="btn btn-glass" href="#develop">くわしく 見る
-          <svg class="arr-d" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4v12M5 11l5 5 5-5"/></svg></a>
-      </div>
-      <p class="countdown" id="countdown" aria-label="つぎに ひらくまでの 時間"><i></i><span>ひらくまで</span><b id="countdownTime">--:--:--</b></p>
-    </div>
-    <div class="hero-bars" id="heroBars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  </div>
-</section>
-
-<!-- ───────── TAGS ───────── -->
-<div class="tags" aria-hidden="true">
-  <div class="tags-row">
-    <ul><li>#放課後</li><li>#夕焼け</li><li>#ごはん</li><li>#ねむい</li><li>#帰り道</li><li>#雨の日</li><li>#部活</li><li>#エモい</li><li>#コーヒー</li><li>#テスト前</li></ul>
-    <ul><li>#放課後</li><li>#夕焼け</li><li>#ごはん</li><li>#ねむい</li><li>#帰り道</li><li>#雨の日</li><li>#部活</li><li>#エモい</li><li>#コーヒー</li><li>#テスト前</li></ul>
-  </div>
-  <div class="tags-row rev">
-    <ul><li>#チル</li><li>#いい匂い</li><li>#しんどい</li><li>#映え</li><li>#尊い</li><li>#きもかわ</li><li>#ガチ</li><li>#推ししか勝たん</li><li>#やばい</li><li>#草</li></ul>
-    <ul><li>#チル</li><li>#いい匂い</li><li>#しんどい</li><li>#映え</li><li>#尊い</li><li>#きもかわ</li><li>#ガチ</li><li>#推ししか勝たん</li><li>#やばい</li><li>#草</li></ul>
-  </div>
-</div>
-
-<!-- ───────── DEVELOP ───────── -->
-<section class="develop" id="develop" aria-labelledby="developTitle">
-  <div class="develop-pin">
-    <div class="wrap develop-grid">
-      <div class="develop-copy">
-        <p class="mono"><b>01</b> ・ Developing</p>
-        <h2 id="developTitle"><span class="nw">撮っても、</span><span class="nw">すぐには</span> <span class="nw">見られない。</span></h2>
-        <p class="lede">撮った 1枚は、ミルク色の まま ひと晩 預けます。中身は、じぶんにも 見えません。あしたの朝 9:00 に、ひらきます。</p>
-      </div>
-      <div class="develop-stage">
-        <div class="lcd" id="lcd" role="img" aria-label="9:00">9:00</div>
-        <figure class="polaroid">
-          <div class="polaroid-photo">
-            <img src="assets/img/photo-walk.webp" width="360" height="480" alt="夕焼けの 帰り道を 歩く うしろ姿" loading="lazy" decoding="async">
-            <span class="milk" aria-hidden="true"></span>
-            <span class="mono milk-label" aria-hidden="true">Developing</span>
-          </div>
-          <figcaption><span class="mono">Lattag ・ Film</span><span class="serif">yesterday</span></figcaption>
-        </figure>
-        <p class="develop-status mono" aria-live="polite"><span class="st st-a">現像ちゅう ・ ミルク色が とけていく</span><span class="st st-b"><b>9:00</b> ・ きのうが、ひらきました</span></p>
-      </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlight で ためす
+        <svg class="arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
     </div>
   </div>
 </section>
@@ -134,33 +76,21 @@
 <section class="section how" id="how" aria-labelledby="howTitle">
   <div class="wrap">
     <header class="section-head" data-reveal>
-      <p class="mono"><b>02</b> ・ How it works</p>
-      <h2 id="howTitle">つかいかたは、<span class="nw">3つだけ。</span></h2>
+      <p class="mono"><b>01</b> ・ How it works</p>
+      <h2 id="howTitle"><span class="nw">撮る。</span><span class="nw">待つ。</span><span class="nw">ひらく。</span></h2>
     </header>
     <ol class="steps">
       <li class="step" data-reveal>
-        <div class="phone"><img src="assets/img/screen-tag.webp" width="660" height="1428" alt="タグを えらぶ 画面" loading="lazy" decoding="async"></div>
-        <div class="step-body">
-          <p class="mono step-num">Step 1</p>
-          <h3># を えらぶ</h3>
-          <p>今日は、どんな日? 気分の ことばを 3つまで。つけずに 撮っても だいじょうぶ。</p>
-        </div>
+        <div class="phone"><video data-play src="assets/video/app-tag.mp4" poster="assets/video/app-tag.webp" width="600" height="1298" muted loop playsinline preload="none" aria-label="タグを えらぶ 画面"></video></div>
+        <h3><span class="mono">1</span># を えらぶ</h3>
       </li>
       <li class="step" data-reveal style="--d:90ms">
-        <div class="phone"><img src="assets/img/screen-shoot.webp" width="660" height="1428" alt="撮影の 画面。まんなかの ボタンを ながおしで 撮る" loading="lazy" decoding="async"></div>
-        <div class="step-body">
-          <p class="mono step-num">Step 2</p>
-          <h3>ながおしで 撮る</h3>
-          <p>撮れるのは 1日 3こま。写真でも、動画でも。24:00 の 消灯までが、今日です。</p>
-        </div>
+        <div class="phone"><video data-play src="assets/video/app-shoot.mp4" poster="assets/video/app-shoot.webp" width="600" height="1298" muted loop playsinline preload="none" aria-label="ながおしで 撮る 画面"></video></div>
+        <h3><span class="mono">2</span>ながおしで 撮る</h3>
       </li>
       <li class="step" data-reveal style="--d:180ms">
-        <div class="phone"><img src="assets/img/screen-open.webp" width="660" height="1428" alt="朝に ひらいた 写真。「友だちに公開」と「自分だけ」の ボタン" loading="lazy" decoding="async"></div>
-        <div class="step-body">
-          <p class="mono step-num">Step 3</p>
-          <h3>朝 9:00 に ひらく</h3>
-          <p>仕上がった 1枚を、ともだちに 公開するか、自分だけに するか。えらぶのは、見てから。</p>
-        </div>
+        <div class="phone"><video data-play src="assets/video/app-morning.mp4" poster="assets/video/app-morning.webp" width="600" height="1298" muted loop playsinline preload="none" aria-label="朝 9:00 に 写真が ひらく 画面"></video></div>
+        <h3><span class="mono">3</span>朝 9:00 に ひらく</h3>
       </li>
     </ol>
 
@@ -168,7 +98,7 @@
       <div><dt><b>3</b><span>こま</span></dt><dd>1日に 撮れる 数</dd></div>
       <div><dt><b>9:00</b></dt><dd>あしたの朝に ひらく</dd></div>
       <div><dt><b>7</b><span>日</span></dt><dd>写真が きえるまで</dd></div>
-      <div><dt><b>1</b><span>年</span></dt><dd>★ の 1枚が のこる 期間</dd></div>
+      <div><dt><b>1</b><span>年</span></dt><dd>★ の 1枚が のこる</dd></div>
     </dl>
   </div>
 </section>
@@ -177,8 +107,8 @@
 <section class="section features" id="features" aria-labelledby="featuresTitle">
   <div class="wrap">
     <header class="section-head" data-reveal>
-      <p class="mono"><b>03</b> ・ Friends / Groups / Mondo / Me</p>
-      <h2 id="featuresTitle">きのうを、<span class="nw">だれと 見る?</span></h2>
+      <p class="mono"><b>02</b> ・ Features</p>
+      <h2 id="featuresTitle">だれと 見る?</h2>
     </header>
 
     <div class="bento">
@@ -186,56 +116,31 @@
         <div class="card-text">
           <p class="mono">Friends</p>
           <h3>撮った人だけが、<span class="nw">見られる。</span></h3>
-          <p>今日 1枚 撮ると、ともだちの きのうが ひらきます。ともだちは 12人まで。人数は、どこにも 出ません。</p>
         </div>
-        <div class="card-shot"><div class="phone"><img src="assets/img/screen-friends.webp" width="660" height="1428" alt="Friends の 画面。今日 1枚 撮ると、きのうが ひらく" loading="lazy" decoding="async"></div></div>
+        <div class="card-shot"><div class="phone"><img src="assets/img/screen-friends.webp" width="660" height="1428" alt="Friends の 画面" loading="lazy" decoding="async"></div></div>
       </article>
-
       <article class="card" data-reveal style="--d:90ms">
         <div class="card-text">
           <p class="mono">Groups</p>
           <h3>いつもの なかまと。</h3>
-          <p>4〜8人の 部屋で、きのうを 見せあう。メッセージは 7日で きえます。</p>
         </div>
         <div class="card-shot"><div class="phone"><img src="assets/img/screen-group.webp" width="660" height="1428" alt="グループの 部屋の 画面" loading="lazy" decoding="async"></div></div>
       </article>
-
       <article class="card" data-reveal>
         <div class="card-text">
           <p class="mono">Mondo</p>
           <h3>世界の きのう。</h3>
-          <p>地球の どこかで ひらいた きのうと、いちばん 多かった ことば。</p>
         </div>
-        <div class="card-shot"><div class="phone"><img src="assets/img/screen-mondo.webp" width="660" height="1428" alt="Mondo の 画面。地球の うえに 世界の きのうが ならぶ" loading="lazy" decoding="async"></div></div>
+        <div class="card-shot"><div class="phone"><video data-play src="assets/video/app-mondo.mp4" poster="assets/video/app-mondo.webp" width="600" height="1298" muted loop playsinline preload="none" aria-label="Mondo の 画面。地球の うえに 世界の きのうが ならぶ"></video></div></div>
       </article>
-
       <article class="card card-wide" data-reveal style="--d:90ms">
         <div class="card-text">
           <p class="mono">Me</p>
           <h3>のこすのは、<span class="nw">1日 1枚。</span></h3>
-          <p>きのうの 写真は 7日で きえます。★ を つけた 1枚だけが、1年 のこる。月曜の 朝には、1週間の Recap が できています。</p>
         </div>
-        <div class="card-shot"><div class="phone"><img src="assets/img/screen-me.webp" width="660" height="1428" alt="ME の 画面。1週間を まとめた Recap" loading="lazy" decoding="async"></div></div>
+        <div class="card-shot"><div class="phone"><video data-play src="assets/video/app-me.mp4" poster="assets/video/app-me.webp" width="600" height="1298" muted loop playsinline preload="none" aria-label="ME の 画面。1週間を まとめた Recap"></video></div></div>
       </article>
     </div>
-
-    <ul class="minis">
-      <li data-reveal>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5h17v10a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5v-10ZM8.5 8.5V6A1.5 1.5 0 0 1 10 4.5h4A1.5 1.5 0 0 1 15.5 6v2.5M3.5 13h17"/></svg>
-        <h3>Trip</h3>
-        <p>旅の あいだだけの アルバム。いっしょに 行く 人を さそえます。</p>
-      </li>
-      <li data-reveal style="--d:80ms">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5V6l10-2v12.5"/><circle cx="6.5" cy="18.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
-        <h3>今日の 1曲</h3>
-        <p>Apple Music や Spotify から、写真に 1曲 つけられます。</p>
-      </li>
-      <li data-reveal style="--d:160ms">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7.5" y="3.5" width="9" height="17" rx="2.2"/><path d="M3.5 9.5c-.9 1.6-.9 3.4 0 5M20.5 9.5c.9 1.6.9 3.4 0 5"/></svg>
-        <h3>ふって つながる</h3>
-        <p>となりで スマホを ふるだけ。QR や リンクでも つながれます。</p>
-      </li>
-    </ul>
   </div>
 </section>
 
@@ -243,37 +148,25 @@
 <section class="section faq" id="faq" aria-labelledby="faqTitle">
   <div class="wrap faq-grid">
     <header class="section-head" data-reveal>
-      <p class="mono"><b>04</b> ・ Q &amp; A</p>
-      <h2 id="faqTitle">よくある 質問</h2>
+      <p class="mono"><b>03</b> ・ FAQ</p>
+      <h2 id="faqTitle">Q &amp; A</h2>
     </header>
     <div class="faq-list" data-reveal>
-      <details name="faq" open>
-        <summary>撮った 写真は、いつ 見られますか?</summary>
-        <div class="a"><p>あしたの朝 9:00 です。それまでは ミルク色の ままで、撮った 本人にも 見えません。</p></div>
+      <details name="faq">
+        <summary>いつ 見られる?</summary>
+        <div class="a"><p>あしたの朝 9:00。それまでは、撮った 本人にも 見えません。</p></div>
       </details>
       <details name="faq">
-        <summary>1日に、何枚 撮れますか?</summary>
-        <div class="a"><p>3こま までです。写真でも 動画でも、合わせて 3こま。24:00 に 消灯すると、その日は おしまいです。</p></div>
+        <summary>何枚 撮れる?</summary>
+        <div class="a"><p>1日 3こま。写真でも、動画でも。</p></div>
       </details>
       <details name="faq">
-        <summary>写真は、だれに 見えますか?</summary>
-        <div class="a"><p>朝に ひらいた あと、「友だちに 公開」か「自分だけ」を えらべます。ともだちの きのうは、今日 1枚 撮った 人だけが 見られます。</p></div>
+        <summary>だれに 見える?</summary>
+        <div class="a"><p>ひらいた あとに、「友だちに 公開」か「自分だけ」を えらべます。</p></div>
       </details>
       <details name="faq">
-        <summary>写真は、ずっと のこりますか?</summary>
-        <div class="a"><p>きのうの 写真は 7日で きえます。★ を つけた 1日 1枚だけが、1年 のこります。</p></div>
-      </details>
-      <details name="faq">
-        <summary>いやな 投稿や 人を 見つけたら?</summary>
-        <div class="a"><p>アプリの 中から、通報と ブロックが できます。通報は、24時間 以内に 確認します。</p></div>
-      </details>
-      <details name="faq">
-        <summary>アカウントは、消せますか?</summary>
-        <div class="a"><p>はい。アプリの 設定から、いつでも 消せます。くわしくは <a href="privacy.html">プライバシーポリシー</a> を ごらんください。</p></div>
-      </details>
-      <details name="faq">
-        <summary>どうやって はじめますか?</summary>
-        <div class="a"><p>いまは iPhone 向けの ベータ版を、TestFlight で 配っています。<a href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">招待リンク</a>から 参加できます。</p></div>
+        <summary>ずっと のこる?</summary>
+        <div class="a"><p>7日で きえます。★ を つけた 1日 1枚だけ、1年 のこります。</p></div>
       </details>
     </div>
   </div>
@@ -287,9 +180,8 @@
       <span class="print p2"><img src="assets/img/photo-train.webp" width="260" height="346" alt="" loading="lazy" decoding="async"><i>#帰り道</i></span>
       <span class="print p3"><img src="assets/img/photo-vending.webp" width="260" height="346" alt="" loading="lazy" decoding="async"><i>#コーヒー</i></span>
     </div>
-    <h2 id="ctaTitle" data-reveal><span class="nw">今日の 1枚を、</span><span class="nw">あしたへ。</span></h2>
-    <p class="lede" data-reveal style="--d:80ms">iPhone 向けの ベータ版を、TestFlight で 配っています。</p>
-    <div data-reveal style="--d:160ms">
+    <h2 id="ctaTitle" data-reveal><span class="nw">きのうを、</span><span class="nw">見せあおう。</span></h2>
+    <div data-reveal style="--d:90ms">
       <a class="btn btn-primary" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlight で ためす
         <svg class="arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
     </div>

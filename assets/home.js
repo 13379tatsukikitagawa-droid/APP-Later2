@@ -2,6 +2,10 @@
 (() => {
   'use strict';
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const root = document.documentElement;
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const stampOf = (d) => `'${String(d.getFullYear()).slice(2)} ${pad2(d.getMonth() + 1)} ${pad2(d.getDate())}`;
+  const play = (v) => { if (!v) return; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
 
   /* ヘッダー:スクロールしたら すりガラスに */
   const header = document.getElementById('header');
@@ -22,138 +26,22 @@
     targets.forEach((t) => t.classList.add('is-in'));
   }
 
-  /* タグの 帯:画面の 幅が うまるまで 複製して、とぎれなく 流す */
-  document.querySelectorAll('.tags-row').forEach((row) => {
-    const first = row.querySelector('ul');
-    if (!first) return;
-    const w = first.getBoundingClientRect().width;
-    if (!w) return;
-    const need = Math.ceil((window.innerWidth * 1.2) / w) + 1;
-    while (row.children.length < need) row.appendChild(first.cloneNode(true));
-    row.style.setProperty('--shift', `${-w}px`);
-  });
-
-  /* つぎの 9:00 までの カウントダウン(見ている人の 時刻で) */
-  const cd = document.getElementById('countdownTime');
-  if (cd) {
-    const pad = (n) => String(n).padStart(2, '0');
-    const tick = () => {
-      const now = new Date();
-      const next = new Date(now);
-      next.setHours(9, 0, 0, 0);
-      if (next <= now) next.setDate(next.getDate() + 1);
-      const s = Math.floor((next - now) / 1000);
-      cd.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}`;
-    };
-    tick();
-    setInterval(tick, 1000);
-  }
-
-  /* 7セグの 時計 */
-  const lcd = document.getElementById('lcd');
-  const SEG = { // a b c d e f g
-    0: 'abcdef', 1: 'bc', 2: 'abdeg', 3: 'abcdg', 4: 'bcfg', 5: 'acdfg', 6: 'acdefg', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg',
-  };
-  const H = (x, y) => `${x + 1},${y} ${x + 7},${y} ${x + 8},${y + 1} ${x + 7},${y + 2} ${x + 1},${y + 2} ${x},${y + 1}`;
-  const V = (x, y) => `${x + 1},${y} ${x + 2},${y + 1} ${x + 2},${y + 7} ${x + 1},${y + 8} ${x},${y + 7} ${x},${y + 1}`;
-  const SHAPE = { a: H(1, 0), g: H(1, 8), d: H(1, 16), f: V(0, 1), b: V(8, 1), e: V(0, 9), c: V(8, 9) };
-  let lcdText = '';
-  const drawLcd = (text) => {
-    if (!lcd || text === lcdText) return;
-    lcdText = text;
-    let x = 0; let out = '';
-    for (const ch of text) {
-      if (ch === ':') {
-        out += `<g transform="translate(${x})"><rect class="on" x="1" y="5" width="2" height="2" rx=".4"/><rect class="on" x="1" y="11" width="2" height="2" rx=".4"/></g>`;
-        x += 6;
-      } else if (ch === ' ') {
-        x += 13;
-      } else {
-        const lit = SEG[ch] || '';
-        out += `<g transform="translate(${x})">` + Object.keys(SHAPE).map((k) => `<polygon class="${lit.includes(k) ? 'on' : 'off'}" points="${SHAPE[k]}"/>`).join('') + '</g>';
-        x += 13;
+  /* 動画:画面に 入っている あいだだけ 再生する */
+  const heroVideo = document.getElementById('heroVideo');
+  const clips = [...document.querySelectorAll('video[data-play]')];
+  if (reduce.matches) {
+    if (heroVideo) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
+  } else if ('IntersectionObserver' in window) {
+    const vio = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.target === heroVideo && root.classList.contains('intro-on')) continue; // オープニング中は 待つ
+        if (e.isIntersecting) play(e.target); else e.target.pause();
       }
-    }
-    lcd.innerHTML = `<svg viewBox="-1 0 ${x} 18" aria-hidden="true"><g transform="skewX(-5)">${out}</g></svg>`;
-  };
-
-  /* 現像:スクロールに あわせて、夜 → 朝 9:00 */
-  const dev = document.getElementById('develop');
-  if (dev && lcd) {
-    const START = 20 * 60 + 43; // 20:43
-    const SPAN = (24 * 60 - START) + 9 * 60; // 9:00 まで
-    const clamp = (v) => Math.min(1, Math.max(0, v));
-    const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-    const fmt = (min) => { const m = ((min % 1440) + 1440) % 1440; return `${Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, '0')}`; };
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      if (reduce.matches) { dev.style.setProperty('--p', 1); dev.classList.remove('is-waiting'); drawLcd('9:00'); return; }
-      const r = dev.getBoundingClientRect();
-      const total = r.height - window.innerHeight;
-      const t = total > 0 ? clamp(-r.top / total) : 1;
-      const clock = ease(clamp((t - 0.04) / 0.62));      // 時計が すすむ
-      const p = ease(clamp((t - 0.34) / 0.44));          // ミルク色が とける
-      dev.style.setProperty('--p', p.toFixed(4));
-      dev.classList.toggle('is-waiting', p < 0.985);
-      drawLcd(clock >= 1 ? '9:00' : fmt(START + Math.round(SPAN * clock)));
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-    reduce.addEventListener('change', request);
-    update();
-  }
-
-  /* ヒーロー:1日の 映像を 朝 → 夜へ 切りかえる */
-  const root = document.documentElement;
-  const hvs = [...document.querySelectorAll('#heroMedia .hv')];
-  const bars = [...document.querySelectorAll('#heroBars i')];
-  const heroTag = document.getElementById('heroTag');
-  const heroClock = document.getElementById('heroClock');
-  const heroDate = document.getElementById('heroDate');
-  const pad2 = (n) => String(n).padStart(2, '0');
-  const stampOf = (d) => `'${String(d.getFullYear()).slice(2)} ${pad2(d.getMonth() + 1)} ${pad2(d.getDate())}`;
-  if (heroDate) heroDate.textContent = stampOf(new Date());
-  const play = (v) => { if (!v) return; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-  const HOLD = 4600;
-  let hcur = 0; let helapsed = 0; let hlast = 0; let hvis = true;
-  const hshow = (i, first) => {
-    const prev = hcur; hcur = i; helapsed = 0;
-    hvs.forEach((f, k) => f.classList.toggle('on', k === i));
-    const v = hvs[i].querySelector('video');
-    if (v.dataset.src && !v.src) v.src = v.dataset.src;
-    try { v.currentTime = 0; } catch (e) { /* まだ 読みこみ中 */ }
-    if (!reduce.matches) play(v);
-    if (prev !== i) setTimeout(() => { if (hcur !== prev) hvs[prev].querySelector('video').pause(); }, 1400);
-    // つぎの 映像を 先に 読みこんでおく
-    const nv = hvs[(i + 1) % hvs.length].querySelector('video');
-    if (nv.dataset.src && !nv.src) { nv.preload = 'auto'; nv.src = nv.dataset.src; }
-    if (heroClock) heroClock.textContent = hvs[i].dataset.t;
-    if (heroTag) {
-      heroTag.textContent = hvs[i].dataset.tag;
-      if (!first) { heroTag.classList.remove('swap'); void heroTag.offsetWidth; heroTag.classList.add('swap'); }
-    }
-    bars.forEach((b, k) => { b.classList.toggle('done', k < i); b.classList.remove('now'); });
-    if (bars[i] && !reduce.matches) { void bars[i].offsetWidth; bars[i].style.setProperty('--bar', `${HOLD}ms`); bars[i].classList.add('now'); }
-  };
-  if (hvs.length) {
-    const hloop = (t) => {
-      const dt = hlast ? Math.min(100, t - hlast) : 0; hlast = t;
-      const running = (!root.classList.contains('has-intro') || root.classList.contains('hero-go')) && hvis && !document.hidden && !reduce.matches;
-      bars.forEach((b) => { b.style.animationPlayState = running ? 'running' : 'paused'; });
-      if (running) { helapsed += dt; if (helapsed >= HOLD) hshow((hcur + 1) % hvs.length); }
-      requestAnimationFrame(hloop);
-    };
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver((es) => {
-        hvis = es[0].isIntersecting;
-        const v = hvs[hcur].querySelector('video');
-        if (hvis) { if (!reduce.matches) play(v); } else v.pause();
-      }, { threshold: 0.05 }).observe(document.getElementById('hero'));
-    }
-    hshow(0, true);
-    requestAnimationFrame(hloop);
+    }, { threshold: 0.25 });
+    clips.forEach((v) => vio.observe(v));
+    if (heroVideo) vio.observe(heroVideo);
+  } else {
+    clips.forEach(play);
   }
 
   /* オープニング:写真が つぎつぎに とどいて、「Lattag」に なる */
@@ -161,7 +49,7 @@
     const $ = (id) => document.getElementById(id);
     const intro = $('intro'); const fly = $('introFly'); const iw = $('introWord'); const stage = $('introStage');
     const hud = $('introHud'); const hudDate = $('introDate'); const bloom = $('introBloom'); const dot = $('introDot');
-    const tagEl = $('introTag'); const skipBtn = $('introSkip'); const leak = $('introLeak'); const replay = $('replayIntro');
+    const skipBtn = $('introSkip'); const leak = $('introLeak'); const replay = $('replayIntro');
     if (!intro || !fly || !iw || !stage) { root.classList.remove('intro-on'); root.classList.add('hero-go', 'logo-in'); return; }
     let timers = []; let irRaf = 0; let running = false; let finished = true;
     const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
@@ -232,18 +120,19 @@
     };
     const exit = (ms) => {
       root.classList.add('hero-go');
-      tagEl.classList.add('gone'); hud.classList.add('off'); skipBtn.classList.add('off');
+      if (heroVideo && !reduce.matches) play(heroVideo);
+      hud.classList.add('off'); skipBtn.classList.add('off');
       if (reduce.matches) { intro.style.transition = 'opacity .5s'; intro.style.opacity = '0'; fly.style.transition = 'opacity .5s'; fly.style.opacity = '0'; later(finish, 560); return; }
       flight(ms); hole(ms); later(finish, ms + 80);
     };
-    const showWord = () => { iw.classList.add('on'); later(() => tagEl.classList.add('on'), reduce.matches ? 300 : 900); buzz([16, 50, 24]); };
+    const showWord = () => { iw.classList.add('on'); buzz([16, 50, 24]); };
     const collapse = () => {
       dot.classList.add('off'); leak.classList.remove('on');
       stage.querySelectorAll('.ip').forEach((el) => { el.style.setProperty('--sd', `${(Math.random() * 0.16).toFixed(2)}s`); el.classList.add('suck'); });
       bloom.classList.add('go');
       buzz([20, 30, 28]);
       later(showWord, 560);
-      later(() => exit(950), 560 + 1900);
+      later(() => exit(950), 560 + 1500);
     };
     const montage = (items) => {
       const n = items.length; let t = 0;
@@ -254,17 +143,17 @@
       if (!running || finished) return;
       clearAll();
       stage.style.opacity = '0'; dot.classList.add('off'); leak.classList.remove('on');
-      iw.classList.add('on'); tagEl.classList.add('on');
+      iw.classList.add('on');
       later(() => exit(520), 260);
     };
     const run = () => {
       running = true; finished = false;
       root.classList.add('has-intro', 'intro-on'); root.classList.remove('hero-go', 'logo-in');
       intro.style.cssText = ''; fly.style.cssText = ''; iw.style.cssText = ''; iw.classList.remove('on');
-      tagEl.className = 'intro-tag'; hud.classList.remove('off'); skipBtn.classList.remove('off'); dot.classList.remove('off'); bloom.classList.remove('go'); leak.classList.remove('on');
+      hud.classList.remove('off'); skipBtn.classList.remove('off'); dot.classList.remove('off'); bloom.classList.remove('go'); leak.classList.remove('on');
       stage.style.opacity = ''; stage.style.setProperty('--z', '1'); stage.textContent = '';
       window.scrollTo({ top: 0, behavior: 'instant' });
-      if (hvs.length) hshow(0, true);
+      if (heroVideo) { heroVideo.pause(); try { heroVideo.currentTime = 0; } catch (e) { /* まだ 読みこみ中 */ } }
       if (reduce.matches) { dot.classList.add('off'); hud.classList.add('off'); later(showWord, 150); later(() => exit(0), 1900); return; }
       const items = buildItems();
       preload(items).then(() => { if (!running || finished) return; later(() => montage(items), 320); });
