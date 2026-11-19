@@ -102,7 +102,7 @@
       irRaf = requestAnimationFrame(f);
     };
     const flight = (ms) => {
-      const target = document.querySelector('.site-header .brand-word'); const word = iw.querySelector('b');
+      const target = document.getElementById('heroMark'); const word = iw.querySelector('b');
       if (!target || !word) return;
       const tg = target.getBoundingClientRect(); const r = word.getBoundingClientRect();
       const dx = (tg.left + tg.width / 2) - (r.left + r.width / 2); const dy = (tg.top + tg.height / 2) - (r.top + r.height / 2); const sc = tg.width / r.width;

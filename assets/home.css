@@ -4,7 +4,7 @@
 .section { padding: clamp(84px, 12vw, 148px) 0; }
 .section-head { max-width: 720px; margin-bottom: clamp(36px, 6vw, 64px); }
 .section-head h2, .cta h2 {
-  font-size: clamp(2rem, 5.6vw, 3.5rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.22;
+  font-size: clamp(1.8rem, 4.6vw, 3rem); font-weight: 700; letter-spacing: -.01em; line-height: 1.3;
   margin-top: 14px;
 }
 .lede { color: var(--sub); font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 1.9; }
@@ -31,66 +31,68 @@ main p, .faq-list summary { word-break: auto-phrase; line-break: strict; }
 }
 .phone img, .phone video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 13.6% / 6.3%; background: #000; }
 
-/* ───────── HERO(映像 1本だけ) ───────── */
+/* ───────── HERO(ぼかした 映像 + ロゴ + 一行) ───────── */
 .hero {
   position: relative; isolation: isolate;
   min-height: 100vh; min-height: 100svh;
-  display: grid; align-items: end;
-  padding: calc(var(--header-h) + env(safe-area-inset-top) + 72px) 0 clamp(28px, 4.4vw, 56px);
+  display: grid; place-items: center; text-align: center;
+  padding: calc(var(--header-h) + env(safe-area-inset-top)) 0 calc(var(--header-h) * .6);
   overflow: clip; background: #050506; color: #fff;
 }
-.hero-video { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.hero-video {
+  position: absolute; inset: -6%; z-index: -2; width: 112%; height: 112%; object-fit: cover;
+  filter: blur(26px) saturate(1.5) brightness(1.04);
+}
 .hero-shade {
-  position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(5, 5, 6, .5)),
-    linear-gradient(to bottom, rgba(5, 5, 6, .45), rgba(5, 5, 6, 0) 18%),
-    linear-gradient(to top, rgba(5, 5, 6, .86), rgba(5, 5, 6, .46) 24%, rgba(5, 5, 6, 0) 50%);
+    radial-gradient(70% 60% at 50% 50%, rgba(5, 5, 6, .18), rgba(5, 5, 6, .5)),
+    linear-gradient(to bottom, rgba(5, 5, 6, .35), transparent 30%, transparent 70%, rgba(5, 5, 6, .5));
 }
-/* フィルムの 粒子(映像の 粗さも なじませる) */
-.hero-grain {
-  position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .16; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
+.hero-inner { display: grid; justify-items: center; }
+.hero-mark {
+  font-family: var(--f-en); font-weight: 900; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -.055em; line-height: 1;
+  margin-bottom: clamp(26px, 4vw, 44px);
 }
-
-.hero-kicker {
-  display: flex; align-items: center; gap: 18px;
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1; color: rgba(255, 255, 255, .92);
-  padding-bottom: clamp(16px, 2vw, 22px);
-}
-.hero-kicker i { flex: 1; height: 1px; background: linear-gradient(to right, rgba(255, 255, 255, .5), rgba(255, 255, 255, .12)); }
-.hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; }
 .hero h1 {
-  font-size: clamp(1.7rem, 3.9vw, 3.1rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.34;
-  white-space: nowrap; word-break: normal;
+  font-size: clamp(1.6rem, 4.4vw, 3.6rem); font-weight: 700; letter-spacing: .01em; line-height: 1.4;
 }
 .hero h1 .line { display: block; overflow: clip; overflow-clip-margin: .14em; }
 .hero h1 .line > span { display: inline-block; }
-.hero h1 i { font-style: normal; color: var(--lime); }
-.hero-btn { flex: none; margin-bottom: .35em; }
+.hero-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: clamp(30px, 4.4vw, 52px); padding: 8px 2px;
+  font-weight: 700; font-size: clamp(.92rem, 1.3vw, 1.02rem); letter-spacing: .02em; color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, .0);
+  transition: border-color .25s ease, opacity .25s ease;
+}
+.hero-link svg { width: 1.1em; height: 1.1em; transition: transform .3s var(--ease); }
+@media (hover: hover) {
+  .hero-link:hover { border-bottom-color: rgba(255, 255, 255, .7); }
+  .hero-link:hover svg { transform: translate(2px, -2px); }
+}
+
+/* 最初の 画面では ヘッダーの ロゴを かくす(まんなかに 出ているので) */
+.site-header .brand { transition: opacity .35s ease; }
+.site-header:not(.is-stuck) .brand { opacity: 0; pointer-events: none; }
 
 /* ヒーロー:あらわれる うごき(オープニングが おわってから) */
 @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes lineIn { from { transform: scaleX(0); } to { transform: none; } }
-.hero-kicker { animation: fadeUp .8s var(--ease) both .1s; }
-.hero-kicker i { transform-origin: left; animation: lineIn 1.2s var(--ease) both .25s; }
-.hero h1 .line > span { animation: rise .95s var(--ease) both .28s; }
-.hero h1 .line + .line > span { animation-delay: .38s; }
-.hero-btn { animation: fadeUp .8s var(--ease) both .62s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero-video { animation: fadeIn 1.6s ease both; }
+.hero h1 .line > span { animation: rise 1s var(--ease) both .15s; }
+.hero-link { animation: fadeUp .8s var(--ease) both .55s; }
 html.has-intro:not(.hero-go) .hero * { animation-play-state: paused !important; }
+html.has-intro:not(.logo-in) .hero-mark { opacity: 0; }
 
-@media (max-width: 720px) {
-  .hero-row { flex-direction: column; align-items: flex-start; gap: 22px; }
-  .hero h1 { font-size: clamp(1.7rem, 8.2vw, 2.3rem); }
-  .hero-btn { margin-bottom: 0; }
+@media (max-width: 600px) {
+  .hero h1 .nw { display: block; }
 }
 
 /* ───────── オープニング(写真が つぎつぎに とどく) ───────── */
 html:not(.has-intro) .intro, html:not(.has-intro) .intro-fly { display: none; }
 html.intro-on, html.intro-on body { overflow: hidden; height: 100%; }
-html.has-intro:not(.logo-in) .site-header .brand { opacity: 0; }
 .intro {
   position: fixed; inset: 0; z-index: 500; background: #050506; overflow: hidden; touch-action: none; cursor: pointer;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--ir, 0px), #000 calc(var(--ir, 0px) + 1.5px));
@@ -167,7 +169,7 @@ html.has-intro:not(.logo-in) .site-header .brand { opacity: 0; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); counter-reset: step; }
 .step { display: grid; align-content: start; justify-items: center; gap: 22px; text-align: center; }
 .step .phone { width: min(100%, 250px); }
-.step h3 { display: flex; align-items: center; gap: 12px; font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.4; }
+.step h3 { display: flex; align-items: center; gap: 12px; font-size: clamp(1.05rem, 1.8vw, 1.25rem); font-weight: 700; letter-spacing: 0; line-height: 1.4; }
 .step h3 .mono {
   display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; flex: none;
   background: var(--lime); color: var(--lime-ink); font-size: .74rem; font-weight: 700; letter-spacing: 0;
@@ -193,7 +195,7 @@ html.has-intro:not(.logo-in) .site-header .brand { opacity: 0; }
 .rules > div:first-child { border-left: 0; padding-left: 0; }
 .rules dt { display: flex; align-items: baseline; gap: 6px; line-height: 1; }
 .rules dt b { font-family: var(--f-en); font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.2rem); letter-spacing: -.05em; color: var(--lime); }
-.rules dt span { font-weight: 900; font-size: clamp(.95rem, 1.6vw, 1.2rem); }
+.rules dt span { font-weight: 700; font-size: clamp(.95rem, 1.6vw, 1.2rem); }
 .rules dd { margin-top: 12px; color: var(--sub); font-size: .88rem; line-height: 1.6; }
 @media (max-width: 700px) {
   .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -216,7 +218,7 @@ html.has-intro:not(.logo-in) .site-header .brand { opacity: 0; }
 .card-text { padding: clamp(24px, 3vw, 36px); padding-bottom: 0; position: relative; z-index: 1; }
 .card-wide .card-text { padding-right: 0; align-self: center; padding-bottom: clamp(24px, 3vw, 36px); }
 .card-text .mono { color: var(--lime); margin-bottom: 12px; }
-.card h3 { font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 900; letter-spacing: -.025em; line-height: 1.35; }
+.card h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 700; letter-spacing: -.01em; line-height: 1.4; }
 .card-shot { position: relative; padding: 26px clamp(24px, 3vw, 36px) 0; display: grid; justify-items: center; align-items: start; min-height: 0; }
 .card-wide .card-shot { padding-top: clamp(30px, 4vw, 48px); }
 .card-shot .phone { width: min(100%, 250px); transition: transform .7s var(--ease); }
@@ -312,4 +314,3 @@ html.has-intro:not(.logo-in) .site-header .brand { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1; transform: none; }
 }
-.site-header .brand { transition: opacity .45s ease; }
