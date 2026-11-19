@@ -86,9 +86,6 @@ main p { word-break: auto-phrase; line-break: strict; }
 html.has-intro:not(.hero-go) .hero * { animation-play-state: paused !important; }
 html.has-intro:not(.logo-in) .hero-mark { opacity: 0; }
 
-@media (max-width: 600px) {
-  .hero h1 .nw { display: block; }
-}
 
 /* ───────── オープニング(写真が つぎつぎに とどく) ───────── */
 html:not(.has-intro) .intro, html:not(.has-intro) .intro-fly { display: none; }
