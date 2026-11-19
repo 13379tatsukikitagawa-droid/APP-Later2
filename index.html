@@ -21,13 +21,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Instrument+Serif:ital@1&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
-<link rel="preload" as="image" href="assets/img/screen-home.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/sky-dawn.jpg" fetchpriority="high">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/home.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js','has-intro','intro-on');window.__ifs=setTimeout(function(){var d=document.documentElement;d.classList.remove('intro-on');d.classList.add('hero-go','logo-in');['intro','introFly'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none'})},14000);</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ スキップ</a>
+
+<div class="intro" id="intro" role="presentation">
+  <div class="intro-stage" id="introStage" aria-hidden="true"></div>
+  <div class="intro-leak" id="introLeak" aria-hidden="true"></div>
+  <div class="intro-dot" id="introDot" aria-hidden="true"></div>
+  <div class="intro-bloom" id="introBloom" aria-hidden="true"></div>
+  <div class="intro-hud" id="introHud" aria-hidden="true"><span><i></i>REC ・ YESTERDAY</span><span id="introDate">'26 11 18</span></div>
+  <button class="intro-skip" id="introSkip" type="button">スキップ</button>
+</div>
+<div class="intro-fly" id="introFly" aria-hidden="true">
+  <div class="iw" id="introWord"><b><span style="--k:0">L</span><span style="--k:1">a</span><span style="--k:2">t</span><span style="--k:3">t</span><span style="--k:4">a</span><span style="--k:5">g</span></b></div>
+  <p class="intro-tag" id="introTag">今日を撮ると、きのうが ひらく。</p>
+</div>
+<div class="intro-pool" hidden aria-hidden="true"><img src="assets/intro/ph-191.jpg" alt=""><img src="assets/intro/ph-223.jpg" alt=""><img src="assets/intro/ph-23582.jpg" alt=""><img src="assets/intro/ph-26085.jpg" alt=""><img src="assets/intro/ph-36913.jpg" alt=""><img src="assets/intro/ph-37008.jpg" alt=""><img src="assets/intro/ph-40105.jpg" alt=""><img src="assets/intro/ph-41219.jpg" alt=""><img src="assets/intro/ph-41813.jpg" alt=""><img src="assets/intro/ph-41888.jpg" alt=""><img src="assets/intro/ph-42292.jpg" alt=""><img src="assets/intro/ph-42299.jpg" alt=""><img src="assets/intro/ph-42301.jpg" alt=""><img src="assets/intro/ph-42303.jpg" alt=""><img src="assets/intro/ph-42716.jpg" alt=""><img src="assets/intro/ph-43068.jpg" alt=""><img src="assets/intro/ph-43149.jpg" alt=""><img src="assets/intro/ph-43150.jpg" alt=""><img src="assets/intro/ph-43257.jpg" alt=""><img src="assets/intro/ph-43388.jpg" alt=""><img src="assets/intro/ph-4344.jpg" alt=""><img src="assets/intro/ph-43573.jpg" alt=""><img src="assets/intro/ph-4537.jpg" alt=""><img src="assets/intro/ph-45474.jpg" alt=""><img src="assets/intro/ph-4599.jpg" alt=""><img src="assets/intro/ph-4640.jpg" alt=""><img src="assets/intro/ph-46893.jpg" alt=""><img src="assets/intro/ph-4702.jpg" alt=""><img src="assets/intro/ph-4709.jpg" alt=""><img src="assets/intro/ph-4815.jpg" alt=""><img src="assets/intro/ph-4823.jpg" alt=""><img src="assets/intro/ph-4856.jpg" alt=""><img src="assets/intro/ph-4905.jpg" alt=""><img src="assets/intro/ph-51241.jpg" alt=""><img src="assets/intro/ph-51257.jpg" alt=""><img src="assets/intro/ph-52502.jpg" alt=""><img src="assets/intro/ph-5891.jpg" alt=""></div>
 
 <header class="site-header" id="header">
   <div class="wrap">
@@ -36,10 +50,11 @@
       <span class="brand-word">Lattag</span>
     </a>
     <nav class="nav" aria-label="メイン">
-      <a href="#how">しくみ</a>
-      <a href="#features">できること</a>
-      <a href="#faq">よくある質問</a>
-      <a class="btn btn-primary btn-sm" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">ベータ版を ためす</a>
+      <a href="#develop">Concept</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlight</a>
     </nav>
   </div>
 </header>
@@ -47,53 +62,34 @@
 <main id="main">
 
 <!-- ───────── HERO ───────── -->
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <svg class="globe" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMin slice">
-      <defs>
-        <radialGradient id="gFill" cx="50%" cy="0%" r="75%"><stop offset="0" stop-color="#1F7A33" stop-opacity=".55"/><stop offset=".55" stop-color="#0F3A19" stop-opacity=".4"/><stop offset="1" stop-color="#0B0C0D" stop-opacity="0"/></radialGradient>
-        <clipPath id="gClip"><circle cx="600" cy="900" r="880"/></clipPath>
-      </defs>
-      <circle cx="600" cy="900" r="880" fill="url(#gFill)"/>
-      <g clip-path="url(#gClip)" fill="none" stroke="#C8F25A" stroke-opacity=".16" stroke-width="1">
-        <ellipse cx="600" cy="900" rx="880" ry="880"/>
-        <ellipse cx="600" cy="900" rx="660" ry="880"/>
-        <ellipse cx="600" cy="900" rx="440" ry="880"/>
-        <ellipse cx="600" cy="900" rx="220" ry="880"/>
-        <line x1="600" y1="20" x2="600" y2="900"/>
-        <ellipse cx="600" cy="120" rx="412" ry="46"/>
-        <ellipse cx="600" cy="250" rx="596" ry="78"/>
-        <ellipse cx="600" cy="400" rx="726" ry="104"/>
-        <ellipse cx="600" cy="560" rx="816" ry="124"/>
-      </g>
-      <circle cx="600" cy="900" r="880" fill="none" stroke="#C8F25A" stroke-opacity=".5" stroke-width="1.4"/>
-      <g class="stars" fill="#C8F25A">
-        <circle cx="318" cy="238" r="3"/><circle cx="902" cy="176" r="2.4"/><circle cx="742" cy="420" r="2.8"/><circle cx="188" cy="470" r="2.2"/><circle cx="1010" cy="388" r="2.6"/>
-      </g>
-    </svg>
+<section class="hero" id="hero">
+  <div class="hero-media" id="heroMedia" aria-hidden="true">
+    <figure class="hv on" data-t="06:12" data-tag="#朝"><video src="assets/video/sky-dawn.mp4" poster="assets/video/sky-dawn.jpg" muted loop playsinline preload="auto"></video></figure>
+    <figure class="hv" data-t="16:20" data-tag="#放課後"><video data-src="assets/video/sky-school.mp4" poster="assets/video/sky-school.jpg" muted loop playsinline preload="none"></video></figure>
+    <figure class="hv" data-t="18:42" data-tag="#夕焼け"><video data-src="assets/video/sky-dusk.mp4" poster="assets/video/sky-dusk.jpg" muted loop playsinline preload="none"></video></figure>
+    <figure class="hv" data-t="21:30" data-tag="#帰り道"><video data-src="assets/video/sky-night.mp4" poster="assets/video/sky-night.jpg" muted loop playsinline preload="none"></video></figure>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="finder" aria-hidden="true">
+    <i></i><i></i><i></i><i></i>
+    <p class="finder-rec"><b></b>REC ・ TODAY</p>
+    <p class="finder-time"><span id="heroDate">'26 11 19</span> <span id="heroClock">06:12</span></p>
   </div>
 
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="mono hero-eyebrow"><b>#</b> Film for tomorrow</p>
-      <h1><span class="line"><span>今日を撮ると、</span></span><span class="line"><span>きのうが ひらく<i>。</i></span></span></h1>
-      <p class="lede hero-lede"><span class="nw">1日 3こま。</span><span class="nw">撮った写真は、</span><span class="nw">あしたの朝 9:00 まで</span> <span class="nw">見られない。</span><br><span class="nw">ともだちと「きのう」を</span> <span class="nw">見せあう、</span><span class="nw">写真アプリです。</span></p>
+  <div class="wrap hero-inner">
+    <span class="sticker" id="heroTag" aria-hidden="true">#朝</span>
+    <h1><span class="line"><span>今日を撮ると、</span></span><span class="line"><span>きのうが ひらく<i>。</i></span></span></h1>
+    <p class="lede hero-lede"><span class="nw">1日 3こま。</span><span class="nw">撮った写真は、</span><span class="nw">あしたの朝 9:00 まで</span> <span class="nw">見られない。</span></p>
+    <div class="hero-row">
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://testflight.apple.com/join/Ky1zxt9T" target="_blank" rel="noopener">TestFlight で ためす
           <svg class="arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
-        <a class="btn btn-ghost" href="#develop">しくみを 見る
+        <a class="btn btn-glass" href="#develop">くわしく 見る
           <svg class="arr-d" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4v12M5 11l5 5 5-5"/></svg></a>
       </div>
-      <p class="mono hero-note">iOS ・ 招待制の ベータ版</p>
-    </div>
-
-    <div class="hero-visual">
-      <div class="phone phone-hero">
-        <img src="assets/img/screen-home.webp" width="660" height="1428" alt="Lattag の ホーム画面。まんなかに # の シャッターボタン、下に「今日を撮る」。" fetchpriority="high" decoding="async">
-      </div>
-      <span class="sticker" aria-hidden="true">#放課後</span>
       <p class="countdown" id="countdown" aria-label="つぎに ひらくまでの 時間"><i></i><span>ひらくまで</span><b id="countdownTime">--:--:--</b></p>
     </div>
+    <div class="hero-bars" id="heroBars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
@@ -317,7 +313,8 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Lattag</span>
-      <span>画面は 開発中の ものです。</span>
+      <span>画面は 開発中の ものです。 映像・写真素材:<a href="https://mixkit.co/" target="_blank" rel="noopener">Mixkit</a>(Free License)</span>
+      <button class="replay" id="replayIntro" type="button">オープニングを もういちど</button>
     </div>
   </div>
 </footer>
